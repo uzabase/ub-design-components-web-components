@@ -1,108 +1,48 @@
+import { LitElement, html } from "lit";
+import { customElement, property } from "lit/decorators.js";
 // @ts-ignore
 import resetStyle from "@acab/reset.css" assert { type: "css" };
 
-type ButtonType = "default" | "destructive" | null;
-type Appearance = "outline" | "fill" | "text" | null;
-type Size = "medium" | "large" | "xLarge" | "width160" | "width80" | null;
-
 const styles = new CSSStyleSheet();
-styles.replaceSync(`${resetStyle}`);
+styles.replaceSync(resetStyle);
 
-const render = (x) => `
-<button class="${x.allStyles()}" ${
-  x.disabled && "disabled"
-} data-testid="button">
-  <span class="base__label">${x.label}</span>
-</button>
-`;
+@customElement("ub-button")
+export class UbButton extends LitElement {
+  @property({ type: String })
+  label = "";
 
-export class UbButton extends HTMLElement {
-  constructor() {
-    super();
-    this.attachShadow({ mode: "open" });
-    this.shadowRoot!.adoptedStyleSheets = [
-      ...this.shadowRoot.adoptedStyleSheets,
-      styles,
-    ];
+  @property({ type: Boolean })
+  loading? = false;
+
+  @property({ type: Boolean })
+  selected? = false;
+
+  @property({ type: Boolean })
+  disabled? = false;
+
+  @property({ type: String })
+  type?: "default" | "destructive" = "default";
+
+  @property({ type: String })
+  appearance?: "outline" | "fill" | "text" = "outline";
+
+  @property({ type: String })
+  size?: "medium" | "large" | "xLarge" | "width160" | "width80" = "medium";
+
+  static override styles = [styles];
+
+  render() {
+    return html`
+      <button
+        class="${this.allStyles()}"
+        .disabled=${this.disabled || this.loading}
+      >
+        <span class="base__label">${this.label}</span>
+      </button>
+    `;
   }
 
-  connectedCallback() {
-    this.shadowRoot!.innerHTML = render(this);
-  }
-
-  attributeChangedCallback() {
-    this.shadowRoot!.innerHTML = render(this);
-  }
-
-  get label() {
-    return this.getAttribute("label") || "";
-  }
-
-  set label(value) {
-    this.setAttribute("label", value);
-  }
-
-  get loading() {
-    return this.getAttribute("loading") === "true";
-  }
-
-  set loading(value: boolean) {
-    this.setAttribute("loading", value + "");
-  }
-
-  get selected() {
-    return this.getAttribute("selected") === "true";
-  }
-
-  set selected(value: boolean) {
-    this.setAttribute("selected", value + "");
-  }
-
-  get disabled() {
-    return this.getAttribute("disabled") === "true";
-  }
-
-  set disabled(value: boolean) {
-    this.setAttribute("disabled", value + "");
-  }
-
-  get type() {
-    return this.getAttribute("type") as ButtonType;
-  }
-
-  set type(value: ButtonType) {
-    this.setAttribute("type", value !== null ? value : "default");
-  }
-
-  get appearance() {
-    return this.getAttribute("appearance") as Appearance;
-  }
-
-  set appearance(value: Appearance) {
-    this.setAttribute("appearance", value !== null ? value : "outline");
-  }
-
-  get size() {
-    return this.getAttribute("size") as Size;
-  }
-
-  set size(value: Size) {
-    this.setAttribute("size", value !== null ? value : "medium");
-  }
-
-  static get observedAttributes() {
-    return [
-      "label",
-      "loading",
-      "selected",
-      "disabled",
-      "type",
-      "appearance",
-      "size",
-    ];
-  }
-
-  allStyles = () => {
+  private allStyles = () => {
     const styles = ["base"];
     switch (this.type) {
       case "default":
@@ -157,4 +97,8 @@ export class UbButton extends HTMLElement {
   };
 }
 
-customElements.get("ub-button") || customElements.define("ub-button", UbButton);
+declare global {
+  interface HTMLElementTagNameMap {
+    "ub-button": UbButton;
+  }
+}

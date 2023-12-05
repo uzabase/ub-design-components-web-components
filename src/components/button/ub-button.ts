@@ -6,9 +6,9 @@ type Appearance = "outline" | "fill" | "text" | null;
 type Size = "medium" | "large" | "xLarge" | "width160" | "width80" | null;
 
 const styles = new CSSStyleSheet();
-styles.replaceSync(`${resetStyle}`);
+styles.replaceSync(resetStyle);
 
-const render = (x) => `
+const render = (x) => ` 
 <button class="${x.allStyles()}" ${
   x.disabled && "disabled"
 } data-testid="button">
@@ -31,6 +31,7 @@ export class UbButton extends HTMLElement {
   }
 
   attributeChangedCallback() {
+    this.shadowRoot.querySelector("button").setAttribute("class", this.allStyles()) // classListにaddするので重複が消えるかどうか見る
     this.shadowRoot!.innerHTML = render(this);
   }
 

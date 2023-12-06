@@ -7,7 +7,7 @@ export declare class UbCheckboxText extends LitElement {
   get checked(): boolean;
   indeterminate: boolean;
   disabled: boolean;
-  label: string | undefined;
+  text: string | undefined;
   input: HTMLInputElement;
   static styles: CSSStyleSheet[];
   protected internals: ElementInternals;

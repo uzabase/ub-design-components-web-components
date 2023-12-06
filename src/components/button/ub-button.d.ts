@@ -1,6 +1,6 @@
 import { LitElement } from "lit";
 export declare class UbButton extends LitElement {
-  label: string;
+  text: string;
   loading?: boolean;
   selected?: boolean;
   disabled?: boolean;

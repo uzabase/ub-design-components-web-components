@@ -9,7 +9,7 @@ styles.replaceSync(resetStyle);
 @customElement("ub-button")
 export class UbButton extends LitElement {
   @property({ type: String })
-  label = "";
+  text = "";
 
   @property({ type: Boolean })
   loading? = false;
@@ -37,7 +37,7 @@ export class UbButton extends LitElement {
         class="${this.allStyles()}"
         .disabled=${this.disabled || this.loading}
       >
-        <span class="base__label">${this.label}</span>
+        <span class="base__text">${this.text}</span>
       </button>
     `;
   }

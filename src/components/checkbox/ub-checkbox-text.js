@@ -25,7 +25,7 @@ export let UbCheckboxText = class UbCheckboxText extends LitElement {
         this.name = "";
         this.indeterminate = false;
         this.disabled = false;
-        this.label = undefined;
+        this.text = undefined;
         this.internals = this.attachInternals();
     }
     handleOnChange() {
@@ -56,7 +56,7 @@ export let UbCheckboxText = class UbCheckboxText extends LitElement {
             @change="${this.handleOnChange}"
           />
         </span>
-        <span class="label">${this.label}</span>
+        <span class="text">${this.text}</span>
       </label>
     `;
     }
@@ -80,7 +80,7 @@ __decorate([
 ], UbCheckboxText.prototype, "disabled", void 0);
 __decorate([
     property({ type: String })
-], UbCheckboxText.prototype, "label", void 0);
+], UbCheckboxText.prototype, "text", void 0);
 __decorate([
     query("input")
 ], UbCheckboxText.prototype, "input", void 0);

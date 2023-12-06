@@ -32,7 +32,7 @@ export class UbCheckboxText extends LitElement {
   disabled = false;
 
   @property({ type: String })
-  label: string | undefined = undefined;
+  text: string | undefined = undefined;
 
   @query("input")
   input!: HTMLInputElement;
@@ -78,7 +78,7 @@ export class UbCheckboxText extends LitElement {
             @change="${this.handleOnChange}"
           />
         </span>
-        <span class="label">${this.label}</span>
+        <span class="text">${this.text}</span>
       </label>
     `;
   }

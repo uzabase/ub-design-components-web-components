@@ -13,7 +13,7 @@ styles.replaceSync(resetStyle);
 export let UbButton = class UbButton extends LitElement {
     constructor() {
         super(...arguments);
-        this.label = "";
+        this.text = "";
         this.loading = false;
         this.selected = false;
         this.disabled = false;
@@ -82,7 +82,7 @@ export let UbButton = class UbButton extends LitElement {
         class="${this.allStyles()}"
         .disabled=${this.disabled || this.loading}
       >
-        <span class="base__label">${this.label}</span>
+        <span class="base__text">${this.text}</span>
       </button>
     `;
     }
@@ -90,7 +90,7 @@ export let UbButton = class UbButton extends LitElement {
 UbButton.styles = [styles];
 __decorate([
     property({ type: String })
-], UbButton.prototype, "label", void 0);
+], UbButton.prototype, "text", void 0);
 __decorate([
     property({ type: Boolean })
 ], UbButton.prototype, "loading", void 0);

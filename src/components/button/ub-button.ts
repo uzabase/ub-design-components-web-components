@@ -1,7 +1,7 @@
 import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 // @ts-ignore
-import resetStyle from "@acab/reset.css" assert { type: "css" };
+import resetStyle from "@acab/reset.css?inline" assert { type: "css" };
 
 const styles = new CSSStyleSheet();
 styles.replaceSync(resetStyle);

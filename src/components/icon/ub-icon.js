@@ -4,8 +4,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-import { customElement, property } from "lit/development/decorators";
-import { html, LitElement } from "lit/development";
+import { LitElement, html } from "lit";
+import { customElement, property } from "lit/decorators.js";
 // @ts-ignore
 import resetStyle from "@acab/reset.css?inline" assert { type: "css" };
 const styles = new CSSStyleSheet();
@@ -14,10 +14,10 @@ export let UbIcon = class UbIcon extends LitElement {
     constructor() {
         super(...arguments);
         this.label = ""; //TODO label => titleとか？
+        this.type = "";
         this.color = "black"; //TODO primitiveな名前でいいのか？
         this.size = "medium";
         this.viewBox = 25;
-        this.path = "";
         this.allStyles = () => {
             const styles = ["spdsIcon"]; //TODO class名変える
             switch (this.color) {
@@ -56,7 +56,7 @@ export let UbIcon = class UbIcon extends LitElement {
         viewBox="0 0 ${this.viewBox} ${this.viewBox}"
       >
         <title>${this.label}</title>
-        <path d="${this.path}" />
+        <path d="${this.paths[this.type]}" />
       </svg>
     `;
     }
@@ -65,6 +65,9 @@ UbIcon.styles = [styles];
 __decorate([
     property({ type: String })
 ], UbIcon.prototype, "label", void 0);
+__decorate([
+    property({ type: String })
+], UbIcon.prototype, "type", void 0);
 __decorate([
     property({ type: String })
 ], UbIcon.prototype, "color", void 0);

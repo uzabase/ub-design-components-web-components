@@ -1,10 +1,11 @@
-import { LitElement } from "lit/development";
+import { LitElement } from "lit";
 export declare class UbIcon extends LitElement {
   label: string;
+  type: string;
   color?: "black" | "white";
   size?: "small" | "medium" | "large";
-  private viewBox;
-  private path;
+  viewBox: number;
+  paths: Object;
   static styles: CSSStyleSheet[];
   render(): import("lit-html").TemplateResult<1>;
   allStyles: () => string;

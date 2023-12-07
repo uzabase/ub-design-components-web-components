@@ -1,5 +1,5 @@
-import { customElement, property } from "lit/development/decorators";
-import { html, LitElement } from "lit/development";
+import { LitElement, html } from "lit";
+import { customElement, property } from "lit/decorators.js";
 // @ts-ignore
 import resetStyle from "@acab/reset.css?inline" assert { type: "css" };
 
@@ -12,13 +12,16 @@ export class UbIcon extends LitElement {
   label = ""; //TODO label => titleとか？
 
   @property({ type: String })
+  type = "";
+
+  @property({ type: String })
   color?: "black" | "white" = "black"; //TODO primitiveな名前でいいのか？
 
   @property({ type: String })
   size?: "small" | "medium" | "large" = "medium";
 
-  static viewBox = 20;
-  static path = "";
+  viewBox = 25;
+  paths: Object;
 
   static override styles = [styles];
 
@@ -27,10 +30,10 @@ export class UbIcon extends LitElement {
       <svg
         aria-label="${this.label}"
         class="${this.allStyles()}"
-        viewBox="0 0 ${UbIcon.viewBox} ${UbIcon.viewBox}"
+        viewBox="0 0 ${this.viewBox} ${this.viewBox}"
       >
         <title>${this.label}</title>
-        <path d="${UbIcon.path}" />
+        <path d="${this.paths[this.type]}" />
       </svg>
     `;
   }

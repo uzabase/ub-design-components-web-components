@@ -1,5 +1,5 @@
 import { LitElement, html } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { customElement, property, query } from "lit/decorators.js";
 // @ts-ignore
 import resetStyle from "@acab/reset.css?inline" assert { type: "css" };
 
@@ -9,18 +9,15 @@ styles.replaceSync(resetStyle);
 @customElement("ub-icon")
 export class UbIcon extends LitElement {
   @property({ type: String })
-  label = ""; //TODO label => titleとか？
+  text = "";
 
   @property({ type: String })
   type = "";
 
   @property({ type: String })
-  color?: "black" | "white" = "black"; //TODO primitiveな名前でいいのか？
+  size?: "small" | "medium" = "medium";
 
-  @property({ type: String })
-  size?: "small" | "medium" | "large" = "medium";
-
-  viewBox = 25;
+  viewBox = 24;
   paths: Object;
 
   static override styles = [styles];
@@ -28,45 +25,15 @@ export class UbIcon extends LitElement {
   render() {
     return html`
       <svg
-        aria-label="${this.label}"
-        class="${this.allStyles()}"
+        aria-label="${this.text}"
+        class="icon ${this.size === "small" ? "size__small" : "size__medium"}"
         viewBox="0 0 ${this.viewBox} ${this.viewBox}"
       >
-        <title>${this.label}</title>
+        <title>${this.text}</title>
         <path d="${this.paths[this.type]}" />
       </svg>
     `;
   }
-
-  allStyles = () => {
-    const styles = ["spdsIcon"]; //TODO class名変える
-    switch (this.color) {
-      case "black":
-        styles.push("color__black");
-        break;
-      case "white":
-        styles.push("color__white");
-        break;
-      default:
-        styles.push("color__black");
-        break;
-    }
-    switch (this.size) {
-      case "small":
-        styles.push("size__small");
-        break;
-      case "medium":
-        styles.push("size__medium");
-        break;
-      case "large":
-        styles.push("size__large");
-        break;
-      default:
-        styles.push("size__medium");
-        break;
-    }
-    return styles.join(" ");
-  };
 }
 
 declare global {

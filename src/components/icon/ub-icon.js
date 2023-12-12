@@ -13,49 +13,19 @@ styles.replaceSync(resetStyle);
 export let UbIcon = class UbIcon extends LitElement {
     constructor() {
         super(...arguments);
-        this.label = ""; //TODO label => titleとか？
+        this.text = "";
         this.type = "";
-        this.color = "black"; //TODO primitiveな名前でいいのか？
         this.size = "medium";
-        this.viewBox = 25;
-        this.allStyles = () => {
-            const styles = ["spdsIcon"]; //TODO class名変える
-            switch (this.color) {
-                case "black":
-                    styles.push("color__black");
-                    break;
-                case "white":
-                    styles.push("color__white");
-                    break;
-                default:
-                    styles.push("color__black");
-                    break;
-            }
-            switch (this.size) {
-                case "small":
-                    styles.push("size__small");
-                    break;
-                case "medium":
-                    styles.push("size__medium");
-                    break;
-                case "large":
-                    styles.push("size__large");
-                    break;
-                default:
-                    styles.push("size__medium");
-                    break;
-            }
-            return styles.join(" ");
-        };
+        this.viewBox = 24;
     }
     render() {
         return html `
       <svg
-        aria-label="${this.label}"
-        class="${this.allStyles()}"
+        aria-label="${this.text}"
+        class="icon ${this.size === "small" ? "size__small" : "size__medium"}"
         viewBox="0 0 ${this.viewBox} ${this.viewBox}"
       >
-        <title>${this.label}</title>
+        <title>${this.text}</title>
         <path d="${this.paths[this.type]}" />
       </svg>
     `;
@@ -64,13 +34,10 @@ export let UbIcon = class UbIcon extends LitElement {
 UbIcon.styles = [styles];
 __decorate([
     property({ type: String })
-], UbIcon.prototype, "label", void 0);
+], UbIcon.prototype, "text", void 0);
 __decorate([
     property({ type: String })
 ], UbIcon.prototype, "type", void 0);
-__decorate([
-    property({ type: String })
-], UbIcon.prototype, "color", void 0);
 __decorate([
     property({ type: String })
 ], UbIcon.prototype, "size", void 0);

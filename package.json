@@ -1,7 +1,7 @@
 {
   "name": "@ub-design/components-web-components",
   "private": true,
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "",
   "main": "src/index.ts",
   "directories": {
@@ -18,10 +18,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@acab/reset.css": "^0.8.0",
-    "lit": "^3.1.0"
+    "@acab/reset.css": "^0.8.0"
   },
   "devDependencies": {
+    "lit": "^3.1.0",
     "prettier": "3.1.0",
     "prettier-plugin-organize-imports": "^3.2.4",
     "typescript": "^5.3.2"

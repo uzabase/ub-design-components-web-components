@@ -1,9 +1,10 @@
 {
   "name": "@ub-design/components-web-components",
   "private": true,
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "directories": {
     "example": "example"
   },
@@ -11,10 +12,7 @@
     "format": "prettier --write 'src/**/*.ts'",
     "typecheck": "tsc --noEmit"
   },
-  "files": [
-    "src/components",
-    "src/index.ts"
-  ],
+  "files": ["dist"],
   "author": "",
   "license": "ISC",
   "dependencies": {

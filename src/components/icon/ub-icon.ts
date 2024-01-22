@@ -9,10 +9,10 @@ styles.replaceSync(resetStyle);
 @customElement("ub-icon")
 export class UbIcon extends LitElement {
   @property({ type: String })
-  text = "";
+  type = "";
 
   @property({ type: String })
-  type = "";
+  text? = "";
 
   @property({ type: String })
   size?: "small" | "medium" = "medium";
@@ -26,10 +26,11 @@ export class UbIcon extends LitElement {
     return html`
       <svg
         aria-label="${this.text}"
+        role="img"
         class="icon ${this.size === "small" ? "size__small" : "size__medium"}"
         viewBox="0 0 ${this.viewBox} ${this.viewBox}"
+        data-testid="icon"
       >
-        <title>${this.text}</title>
         <path d="${this.paths[this.type]}" />
       </svg>
     `;

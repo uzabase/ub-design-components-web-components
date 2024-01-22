@@ -16,7 +16,7 @@ export class UbCheckbox extends LitElement {
   @property({ type: String })
   name: string | undefined = undefined;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, reflect: true })
   set checked(val: boolean) {
     this._checked = val;
     this.internals.setFormValue(val ? this.value : null);

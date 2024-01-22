@@ -1,7 +1,7 @@
 import { LitElement } from "lit";
 export declare class UbIcon extends LitElement {
-    text: string;
     type: string;
+    text?: string;
     size?: "small" | "medium";
     viewBox: number;
     paths: Object;

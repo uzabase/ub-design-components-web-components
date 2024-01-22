@@ -9,19 +9,28 @@
     "example": "example"
   },
   "scripts": {
-    "format": "prettier --write 'src/**/*.ts'",
-    "typecheck": "tsc --noEmit"
+    "format": "prettier --write '(.storybook|src|stories)/**/*.ts'",
+    "typecheck": "tsc --noEmit",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "build": "tsc -p tsconfig-build.json"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@acab/reset.css": "^0.8.0"
+    "@acab/reset.css": "^0.8.0",
+    "lit": "^3.1.0"
   },
   "devDependencies": {
-    "lit": "^3.1.0",
+    "@storybook/addon-essentials": "^7.6.2",
+    "@storybook/addon-links": "^7.6.2",
+    "@storybook/web-components-vite": "^7.6.10",
     "prettier": "3.1.0",
     "prettier-plugin-organize-imports": "^3.2.4",
+    "storybook": "^7.6.10",
     "typescript": "^5.3.2"
   }
 }

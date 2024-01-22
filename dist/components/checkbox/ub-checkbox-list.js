@@ -10,7 +10,7 @@ import { customElement, property, query } from "lit/decorators.js";
 import resetStyle from "@acab/reset.css?inline" assert { type: "css" };
 const styles = new CSSStyleSheet();
 styles.replaceSync(resetStyle);
-export let UbCheckboxList = class UbCheckboxList extends LitElement {
+let UbCheckboxList = class UbCheckboxList extends LitElement {
     set checked(val) {
         this._checked = val;
         this.internals.setFormValue(val ? this.value : null);
@@ -87,3 +87,4 @@ __decorate([
 UbCheckboxList = __decorate([
     customElement("ub-checkbox-list")
 ], UbCheckboxList);
+export { UbCheckboxList };

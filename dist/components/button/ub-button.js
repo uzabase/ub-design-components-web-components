@@ -10,7 +10,7 @@ import { customElement, property } from "lit/decorators.js";
 import resetStyle from "@acab/reset.css?inline" assert { type: "css" };
 const styles = new CSSStyleSheet();
 styles.replaceSync(resetStyle);
-export let UbButton = class UbButton extends LitElement {
+let UbButton = class UbButton extends LitElement {
     constructor() {
         super(...arguments);
         this.text = "";
@@ -112,3 +112,4 @@ __decorate([
 UbButton = __decorate([
     customElement("ub-button")
 ], UbButton);
+export { UbButton };

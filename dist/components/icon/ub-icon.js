@@ -10,11 +10,11 @@ import { customElement, property } from "lit/decorators.js";
 import resetStyle from "@acab/reset.css?inline" assert { type: "css" };
 const styles = new CSSStyleSheet();
 styles.replaceSync(resetStyle);
-export let UbIcon = class UbIcon extends LitElement {
+let UbIcon = class UbIcon extends LitElement {
     constructor() {
         super(...arguments);
-        this.text = "";
         this.type = "";
+        this.text = "";
         this.size = "medium";
         this.viewBox = 24;
     }
@@ -22,10 +22,11 @@ export let UbIcon = class UbIcon extends LitElement {
         return html `
       <svg
         aria-label="${this.text}"
+        role="img"
         class="icon ${this.size === "small" ? "size__small" : "size__medium"}"
         viewBox="0 0 ${this.viewBox} ${this.viewBox}"
+        data-testid="icon"
       >
-        <title>${this.text}</title>
         <path d="${this.paths[this.type]}" />
       </svg>
     `;
@@ -34,13 +35,14 @@ export let UbIcon = class UbIcon extends LitElement {
 UbIcon.styles = [styles];
 __decorate([
     property({ type: String })
-], UbIcon.prototype, "text", void 0);
+], UbIcon.prototype, "type", void 0);
 __decorate([
     property({ type: String })
-], UbIcon.prototype, "type", void 0);
+], UbIcon.prototype, "text", void 0);
 __decorate([
     property({ type: String })
 ], UbIcon.prototype, "size", void 0);
 UbIcon = __decorate([
     customElement("ub-icon")
 ], UbIcon);
+export { UbIcon };

@@ -15,7 +15,10 @@ const meta: Meta = {
   },
   argTypes: {
     text: { type: "string" },
-    type: { type: "string" },
+    type: {
+      control: { type: "select" },
+      options: ["home"],
+    },
     size: {
       control: { type: "select" },
       options: ["small", "medium"],

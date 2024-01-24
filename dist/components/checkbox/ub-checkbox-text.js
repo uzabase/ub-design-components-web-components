@@ -4,6 +4,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
+    if (kind === "m") throw new TypeError("Private method is not writable");
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
+    return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
+};
+var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (receiver, state, kind, f) {
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
+    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
+};
+var _UbCheckboxText__checked;
 import { LitElement, html } from "lit";
 import { customElement, property, query } from "lit/decorators.js";
 // @ts-ignore
@@ -12,15 +24,15 @@ const styles = new CSSStyleSheet();
 styles.replaceSync(resetStyle);
 let UbCheckboxText = class UbCheckboxText extends LitElement {
     set checked(val) {
-        this._checked = val;
+        __classPrivateFieldSet(this, _UbCheckboxText__checked, val, "f");
         this.internals.setFormValue(val ? this.value : null);
     }
     get checked() {
-        return this._checked;
+        return __classPrivateFieldGet(this, _UbCheckboxText__checked, "f");
     }
     constructor() {
         super();
-        this._checked = false;
+        _UbCheckboxText__checked.set(this, false);
         this.value = "on";
         this.name = "";
         this.indeterminate = false;
@@ -61,6 +73,7 @@ let UbCheckboxText = class UbCheckboxText extends LitElement {
     `;
     }
 };
+_UbCheckboxText__checked = new WeakMap();
 UbCheckboxText.styles = [styles];
 UbCheckboxText.formAssociated = true;
 __decorate([

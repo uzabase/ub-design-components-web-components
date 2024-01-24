@@ -8,7 +8,7 @@ styles.replaceSync(resetStyle);
 
 @customElement("ub-checkbox")
 export class UbCheckbox extends LitElement {
-  private _checked = false;
+  #_checked = false;
 
   @property({ type: String })
   value = "on";
@@ -18,11 +18,11 @@ export class UbCheckbox extends LitElement {
 
   @property({ type: Boolean, reflect: true })
   set checked(val: boolean) {
-    this._checked = val;
+    this.#_checked = val;
     this.internals.setFormValue(val ? this.value : null);
   }
   get checked() {
-    return this._checked;
+    return this.#_checked;
   }
 
   @property({ type: Boolean })

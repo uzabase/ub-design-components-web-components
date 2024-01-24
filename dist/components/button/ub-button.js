@@ -4,6 +4,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (receiver, state, kind, f) {
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
+    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
+};
+var _UbButton__allStyles;
 import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 // @ts-ignore
@@ -20,7 +26,7 @@ let UbButton = class UbButton extends LitElement {
         this.type = "default";
         this.appearance = "outline";
         this.size = "medium";
-        this.allStyles = () => {
+        _UbButton__allStyles.set(this, () => {
             const styles = ["base"];
             switch (this.type) {
                 case "default":
@@ -74,12 +80,12 @@ let UbButton = class UbButton extends LitElement {
             if (this.loading)
                 styles.push("isLoading");
             return styles.join(" ");
-        };
+        });
     }
     render() {
         return html `
       <button
-        class="${this.allStyles()}"
+        class="${__classPrivateFieldGet(this, _UbButton__allStyles, "f").call(this)}"
         .disabled=${this.disabled || this.loading}
       >
         <span class="base__text">${this.text}</span>
@@ -87,6 +93,7 @@ let UbButton = class UbButton extends LitElement {
     `;
     }
 };
+_UbButton__allStyles = new WeakMap();
 UbButton.styles = [styles];
 __decorate([
     property({ type: String })

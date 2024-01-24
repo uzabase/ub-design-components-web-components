@@ -1,5 +1,6 @@
 import { LitElement } from "lit";
 export declare class UbButton extends LitElement {
+    #private;
     text: string;
     loading?: boolean;
     selected?: boolean;
@@ -9,7 +10,6 @@ export declare class UbButton extends LitElement {
     size?: "medium" | "large" | "xLarge" | "width160" | "width80";
     static styles: CSSStyleSheet[];
     render(): import("lit-html").TemplateResult<1>;
-    private allStyles;
 }
 declare global {
     interface HTMLElementTagNameMap {

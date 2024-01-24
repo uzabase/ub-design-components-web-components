@@ -1,6 +1,6 @@
 import { LitElement } from "lit";
 export declare class UbCheckbox extends LitElement {
-    private _checked;
+    #private;
     value: string;
     name: string | undefined;
     set checked(val: boolean);

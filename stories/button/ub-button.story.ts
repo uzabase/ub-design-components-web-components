@@ -17,6 +17,8 @@ const meta: Meta = {
       control: { type: "select" },
       options: ["medium", "large", "xLarge", "width160", "width80"],
     },
+    loading: { type: "boolean" },
+    selected: { type: "boolean" },
     disabled: { type: "boolean" },
   },
   args: {
@@ -24,6 +26,8 @@ const meta: Meta = {
     type: "default",
     appearance: "fill",
     size: "medium",
+    loading: false,
+    selected: false,
     disabled: false,
   },
 };

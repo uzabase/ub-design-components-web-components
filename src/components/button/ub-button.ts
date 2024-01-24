@@ -34,7 +34,7 @@ export class UbButton extends LitElement {
   render() {
     return html`
       <button
-        class="${this.allStyles()}"
+        class="${this.#_allStyles()}"
         .disabled=${this.disabled || this.loading}
       >
         <span class="base__text">${this.text}</span>
@@ -42,7 +42,7 @@ export class UbButton extends LitElement {
     `;
   }
 
-  private allStyles = () => {
+  #_allStyles = () => {
     const styles = ["base"];
     switch (this.type) {
       case "default":

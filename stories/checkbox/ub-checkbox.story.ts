@@ -1,5 +1,6 @@
 import "../../src/components/checkbox/ub-checkbox";
 import type { Meta, StoryObj } from "@storybook/web-components";
+import { action } from "@storybook/addon-actions";
 
 const meta: Meta = {
   component: "ub-checkbox",
@@ -9,6 +10,9 @@ const meta: Meta = {
     checked: { type: "boolean" },
     indeterminate: { type: "boolean" },
     disabled: { type: "boolean" },
+    onchange: {
+      action: "onchange",
+    },
   },
   args: {
     value: "ub-checkbox-value",
@@ -16,6 +20,7 @@ const meta: Meta = {
     checked: false,
     indeterminate: false,
     disabled: false,
+    onchange: action("onchange"),
   },
 };
 export default meta;

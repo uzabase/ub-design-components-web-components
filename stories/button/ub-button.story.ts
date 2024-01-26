@@ -1,5 +1,6 @@
 import "../../src/components/button/ub-button";
 import type { Meta, StoryObj } from "@storybook/web-components";
+import { action } from "@storybook/addon-actions";
 
 const meta: Meta = {
   component: "ub-button",
@@ -20,6 +21,9 @@ const meta: Meta = {
     loading: { type: "boolean" },
     selected: { type: "boolean" },
     disabled: { type: "boolean" },
+    onclick: {
+      action: "onclick",
+    },
   },
   args: {
     text: "ub-button",
@@ -29,6 +33,7 @@ const meta: Meta = {
     loading: false,
     selected: false,
     disabled: false,
+    onclick: action("onclick"),
   },
 };
 export default meta;

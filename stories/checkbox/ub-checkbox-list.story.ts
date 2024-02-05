@@ -1,6 +1,7 @@
 import "../../src/components/checkbox/ub-checkbox-list";
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { action } from "@storybook/addon-actions";
+import { html } from "lit";
 
 const meta: Meta = {
   component: "ub-checkbox-list",
@@ -30,3 +31,15 @@ export default meta;
 type Story = StoryObj;
 
 export const Basic: Story = {};
+
+export const Form: Story = {
+  decorators: [
+    (story) => html`
+      <form>
+        <input type="checkbox" name="ub-checkbox-list-name" value="primitive" />
+        ${story()}
+        <input type="submit" />
+      </form>
+    `,
+  ],
+};

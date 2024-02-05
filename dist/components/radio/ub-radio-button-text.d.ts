@@ -1,18 +1,18 @@
 import { LitElement } from "lit";
 export declare class UbRadioButtonText extends LitElement {
     #private;
-    value: string;
-    name: string | undefined;
+    set value(val: string);
+    get value(): string;
+    set name(val: string);
+    get name(): string;
     set checked(val: boolean);
     get checked(): boolean;
-    disabled: boolean;
+    set disabled(val: boolean);
+    get disabled(): boolean;
     text: string;
-    input: HTMLInputElement;
     static styles: CSSStyleSheet[];
-    protected internals: ElementInternals;
-    static formAssociated: boolean;
     constructor();
-    private handleOnChange;
+    connectedCallback(): void;
     render(): import("lit-html").TemplateResult<1>;
 }
 declare global {

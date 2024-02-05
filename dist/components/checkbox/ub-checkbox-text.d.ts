@@ -13,7 +13,6 @@ export declare class UbCheckboxText extends LitElement {
     protected internals: ElementInternals;
     static formAssociated: boolean;
     constructor();
-    private handleOnChange;
     render(): import("lit-html").TemplateResult<1>;
 }
 declare global {

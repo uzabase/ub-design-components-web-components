@@ -8,7 +8,7 @@ styles.replaceSync(resetStyle);
 
 @customElement("ub-button")
 export class UbButton extends LitElement {
-  @property({ type: String })
+  @property()
   text = "";
 
   @property({ type: Boolean })
@@ -20,13 +20,13 @@ export class UbButton extends LitElement {
   @property({ type: Boolean })
   disabled? = false;
 
-  @property({ type: String })
+  @property()
   type?: "default" | "destructive" = "default";
 
-  @property({ type: String })
+  @property()
   appearance?: "outline" | "fill" | "text" = "outline";
 
-  @property({ type: String })
+  @property()
   size?: "medium" | "large" | "xLarge" | "width160" | "width80" = "medium";
 
   static override styles = [styles];
@@ -34,7 +34,7 @@ export class UbButton extends LitElement {
   render() {
     return html`
       <button
-        class="${this.#_allStyles()}"
+        class="${this.#allStyles()}"
         .disabled=${this.disabled || this.loading}
       >
         <span class="base__text">${this.text}</span>
@@ -42,7 +42,7 @@ export class UbButton extends LitElement {
     `;
   }
 
-  #_allStyles = () => {
+  #allStyles = () => {
     const styles = ["base"];
     switch (this.type) {
       case "default":

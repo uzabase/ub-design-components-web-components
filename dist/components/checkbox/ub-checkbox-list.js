@@ -15,7 +15,7 @@ var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
     return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 };
-var _UbCheckboxList__checked;
+var _UbCheckboxList_instances, _UbCheckboxList_checked, _UbCheckboxList_handleOnChange;
 import { LitElement, html } from "lit";
 import { customElement, property, query } from "lit/decorators.js";
 // @ts-ignore
@@ -24,34 +24,22 @@ const styles = new CSSStyleSheet();
 styles.replaceSync(resetStyle);
 let UbCheckboxList = class UbCheckboxList extends LitElement {
     set checked(val) {
-        __classPrivateFieldSet(this, _UbCheckboxList__checked, val, "f");
+        __classPrivateFieldSet(this, _UbCheckboxList_checked, val, "f");
         this.internals.setFormValue(val ? this.value : null);
     }
     get checked() {
-        return __classPrivateFieldGet(this, _UbCheckboxList__checked, "f");
+        return __classPrivateFieldGet(this, _UbCheckboxList_checked, "f");
     }
     constructor() {
         super();
-        _UbCheckboxList__checked.set(this, false);
+        _UbCheckboxList_instances.add(this);
+        _UbCheckboxList_checked.set(this, false);
         this.value = "on";
         this.name = undefined;
         this.indeterminate = false;
         this.disabled = false;
         this.text = undefined;
         this.internals = this.attachInternals();
-    }
-    handleOnChange() {
-        const { checked, indeterminate } = this.input;
-        this.checked = checked;
-        this.indeterminate = indeterminate;
-        this.dispatchEvent(new CustomEvent("change", {
-            bubbles: true,
-            composed: true,
-            detail: {
-                checked,
-                indeterminate,
-            },
-        }));
     }
     render() {
         return html `
@@ -65,7 +53,7 @@ let UbCheckboxList = class UbCheckboxList extends LitElement {
             .checked=${this.checked}
             .indeterminate=${this.indeterminate}
             .disabled=${this.disabled}
-            @change="${this.handleOnChange}"
+            @change="${__classPrivateFieldGet(this, _UbCheckboxList_instances, "m", _UbCheckboxList_handleOnChange)}"
           />
         </span>
         <span class="text">${this.text}</span>
@@ -73,14 +61,28 @@ let UbCheckboxList = class UbCheckboxList extends LitElement {
     `;
     }
 };
-_UbCheckboxList__checked = new WeakMap();
+_UbCheckboxList_checked = new WeakMap();
+_UbCheckboxList_instances = new WeakSet();
+_UbCheckboxList_handleOnChange = function _UbCheckboxList_handleOnChange() {
+    const { checked, indeterminate } = this.input;
+    this.checked = checked;
+    this.indeterminate = indeterminate;
+    this.dispatchEvent(new CustomEvent("change", {
+        bubbles: true,
+        composed: true,
+        detail: {
+            checked,
+            indeterminate,
+        },
+    }));
+};
 UbCheckboxList.styles = [styles];
 UbCheckboxList.formAssociated = true;
 __decorate([
-    property({ type: String })
+    property()
 ], UbCheckboxList.prototype, "value", void 0);
 __decorate([
-    property({ type: String })
+    property({ reflect: true })
 ], UbCheckboxList.prototype, "name", void 0);
 __decorate([
     property({ type: Boolean, reflect: true })
@@ -92,7 +94,7 @@ __decorate([
     property({ type: Boolean })
 ], UbCheckboxList.prototype, "disabled", void 0);
 __decorate([
-    property({ type: String })
+    property()
 ], UbCheckboxList.prototype, "text", void 0);
 __decorate([
     query("input")

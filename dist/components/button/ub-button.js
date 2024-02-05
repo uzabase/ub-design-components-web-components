@@ -9,7 +9,7 @@ var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
     return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 };
-var _UbButton__allStyles;
+var _UbButton_allStyles;
 import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 // @ts-ignore
@@ -26,7 +26,7 @@ let UbButton = class UbButton extends LitElement {
         this.type = "default";
         this.appearance = "outline";
         this.size = "medium";
-        _UbButton__allStyles.set(this, () => {
+        _UbButton_allStyles.set(this, () => {
             const styles = ["base"];
             switch (this.type) {
                 case "default":
@@ -85,7 +85,7 @@ let UbButton = class UbButton extends LitElement {
     render() {
         return html `
       <button
-        class="${__classPrivateFieldGet(this, _UbButton__allStyles, "f").call(this)}"
+        class="${__classPrivateFieldGet(this, _UbButton_allStyles, "f").call(this)}"
         .disabled=${this.disabled || this.loading}
       >
         <span class="base__text">${this.text}</span>
@@ -93,10 +93,10 @@ let UbButton = class UbButton extends LitElement {
     `;
     }
 };
-_UbButton__allStyles = new WeakMap();
+_UbButton_allStyles = new WeakMap();
 UbButton.styles = [styles];
 __decorate([
-    property({ type: String })
+    property()
 ], UbButton.prototype, "text", void 0);
 __decorate([
     property({ type: Boolean })
@@ -108,13 +108,13 @@ __decorate([
     property({ type: Boolean })
 ], UbButton.prototype, "disabled", void 0);
 __decorate([
-    property({ type: String })
+    property()
 ], UbButton.prototype, "type", void 0);
 __decorate([
-    property({ type: String })
+    property()
 ], UbButton.prototype, "appearance", void 0);
 __decorate([
-    property({ type: String })
+    property()
 ], UbButton.prototype, "size", void 0);
 UbButton = __decorate([
     customElement("ub-button")

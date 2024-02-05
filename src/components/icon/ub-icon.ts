@@ -8,13 +8,13 @@ styles.replaceSync(resetStyle);
 
 @customElement("ub-icon")
 export class UbIcon extends LitElement {
-  @property({ type: String })
+  @property()
   type = "";
 
-  @property({ type: String })
+  @property()
   text? = "";
 
-  @property({ type: String })
+  @property()
   size?: "small" | "medium" = "medium";
 
   viewBox = 24;

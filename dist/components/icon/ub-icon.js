@@ -34,13 +34,13 @@ let UbIcon = class UbIcon extends LitElement {
 };
 UbIcon.styles = [styles];
 __decorate([
-    property({ type: String })
+    property()
 ], UbIcon.prototype, "type", void 0);
 __decorate([
-    property({ type: String })
+    property()
 ], UbIcon.prototype, "text", void 0);
 __decorate([
-    property({ type: String })
+    property()
 ], UbIcon.prototype, "size", void 0);
 UbIcon = __decorate([
     customElement("ub-icon")

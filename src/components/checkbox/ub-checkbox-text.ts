@@ -8,21 +8,21 @@ styles.replaceSync(resetStyle);
 
 @customElement("ub-checkbox-text")
 export class UbCheckboxText extends LitElement {
-  #_checked = false;
+  #checked = false;
 
-  @property({ type: String })
+  @property()
   value = "on";
 
-  @property({ type: String })
+  @property({ reflect: true })
   name = "";
 
   @property({ type: Boolean, reflect: true })
   set checked(val: boolean) {
-    this.#_checked = val;
+    this.#checked = val;
     this.internals.setFormValue(val ? this.value : null);
   }
   get checked() {
-    return this.#_checked;
+    return this.#checked;
   }
 
   @property({ type: Boolean })
@@ -31,7 +31,7 @@ export class UbCheckboxText extends LitElement {
   @property({ type: Boolean })
   disabled = false;
 
-  @property({ type: String })
+  @property()
   text: string | undefined = undefined;
 
   @query("input")
@@ -47,7 +47,7 @@ export class UbCheckboxText extends LitElement {
     this.internals = this.attachInternals();
   }
 
-  private handleOnChange() {
+  #handleOnChange() {
     const { checked, indeterminate } = this.input;
     this.checked = checked;
     this.indeterminate = indeterminate;
@@ -75,7 +75,7 @@ export class UbCheckboxText extends LitElement {
             .checked=${this.checked}
             .indeterminate=${this.indeterminate}
             .disabled=${this.disabled}
-            @change="${this.handleOnChange}"
+            @change="${this.#handleOnChange}"
           />
         </span>
         <span class="text">${this.text}</span>

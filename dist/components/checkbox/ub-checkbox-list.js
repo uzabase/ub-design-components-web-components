@@ -41,6 +41,9 @@ let UbCheckboxList = class UbCheckboxList extends LitElement {
         this.text = undefined;
         this.internals = this.attachInternals();
     }
+    formResetCallback() {
+        this.checked = false;
+    }
     render() {
         return html `
       <label class="base">

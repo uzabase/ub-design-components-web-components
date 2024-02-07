@@ -47,6 +47,10 @@ export class UbCheckboxList extends LitElement {
     this.internals = this.attachInternals();
   }
 
+  formResetCallback() {
+    this.checked = false;
+  }
+
   #handleOnChange() {
     const { checked, indeterminate } = this.input;
     this.checked = checked;

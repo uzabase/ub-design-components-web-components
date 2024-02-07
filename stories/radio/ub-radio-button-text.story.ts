@@ -14,9 +14,9 @@ const meta: Meta = {
     onchange: {
       action: "onchange",
     },
-    onclick: {
-      action: "onclick",
-    },
+    // onclick: {
+    //   action: "onclick",
+    // },
   },
   args: {
     text: "ub-radio-button-text-text",
@@ -25,7 +25,7 @@ const meta: Meta = {
     checked: false,
     disabled: false,
     onchange: action("onchange"),
-    onclick: action("onclick"),
+    // onclick: action("onclick"),
   },
 };
 export default meta;
@@ -37,7 +37,63 @@ export const Basic: Story = {};
 export const Form: Story = {
   decorators: [
     (story) => html`
+      <label>
+        <input
+                type="radio"
+                name="ub-radio-button-text-name"
+                value="primitive4"
+        />
+        primitive4
+      </label>
+      <input
+              type="radio"
+              name="ub-radio-button-text-name"
+              value="primitive5"
+      />
+      primitive5
+      </label>
+      <ub-radio-button-text
+              text="helper4"
+              name="ub-radio-button-text-name"
+              value="helper4"
+      >
+      </ub-radio-button-text>
+      <ub-radio-button-text
+              text="helper5"
+              name="ub-radio-button-text-name"
+              value="helper5"
+      >
+      </ub-radio-button-text>
       <form>
+        <p>form1</p>
+        <label>
+          <input
+                  type="radio"
+                  name="ub-radio-button-text-name"
+                  value="primitive3"
+          />
+          primitive3
+        </label>
+        <ub-radio-button-text
+                text="helper3"
+                name="ub-radio-button-text-name"
+                value="helper3"
+        >
+        </ub-radio-button-text>
+        <input type="submit" />
+      </form>
+      <form>
+        <p>form2</p>
+        <fieldset role="radiogroup">
+          <label>
+            <input
+                    type="radio"
+                    name="ub-radio-button-text-name"
+                    value="primitive6"
+            />
+            primitive6
+          </label>
+        </fieldset>
         <fieldset role="radiogroup">
           <legend>radio button test</legend>
           <label>
@@ -58,20 +114,21 @@ export const Form: Story = {
           </label>
           ${story()} ${story()}
           <ub-radio-button-text
-            text="aaaa"
+            text="helper1"
             name="ub-radio-button-text-name"
             value="helper1"
             checked
-            ><span>test1</span></ub-radio-button-text
+            ><span>helper1</span></ub-radio-button-text
           >
           <ub-radio-button-text
-            text="bbbb"
+            text="helper2"
             name="ub-radio-button-text-name"
             value="helper2"
           >
-            <span>test2</span>
+            <span>helper2</span>
           </ub-radio-button-text>
         </fieldset>
+        <input type="reset" />
         <input type="submit" />
       </form>
     `,

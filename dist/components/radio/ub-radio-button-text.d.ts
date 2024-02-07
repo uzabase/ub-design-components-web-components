@@ -11,8 +11,11 @@ export declare class UbRadioButtonText extends LitElement {
     get disabled(): boolean;
     text: string;
     static styles: CSSStyleSheet[];
+    static formAssociated: boolean;
     constructor();
     connectedCallback(): void;
+    formResetCallback(): void;
+    deSelect(): void;
     render(): import("lit-html").TemplateResult<1>;
 }
 declare global {

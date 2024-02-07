@@ -37,6 +37,7 @@ export const Form: Story = {
         <input type="checkbox" name="ub-checkbox-name" value="primitive1" />
         <input type="checkbox" name="ub-checkbox-name" value="primitive2" />
         ${story()}
+        <input type="reset" />
         <input type="submit" />
       </form>
     `,

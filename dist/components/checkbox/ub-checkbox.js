@@ -40,6 +40,9 @@ let UbCheckbox = class UbCheckbox extends LitElement {
         this.disabled = false;
         this.internals = this.attachInternals();
     }
+    formResetCallback() {
+        this.checked = false;
+    }
     render() {
         return html `
       <label class="base">

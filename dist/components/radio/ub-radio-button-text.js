@@ -15,7 +15,7 @@ var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
     return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 };
-var _UbRadioButtonText_instances, _UbRadioButtonText_that, _UbRadioButtonText_value, _UbRadioButtonText_name, _UbRadioButtonText_checked, _UbRadioButtonText_disabled, _UbRadioButtonText_input, _UbRadioButtonText_renderToLightDOM, _UbRadioButtonText_handleOnClick, _UbRadioButtonText_handleOnChange, _UbRadioButtonText_handleOnDeSelect;
+var _UbRadioButtonText_instances, _UbRadioButtonText_value, _UbRadioButtonText_name, _UbRadioButtonText_checked, _UbRadioButtonText_disabled, _UbRadioButtonText_input, _UbRadioButtonText_renderToLightDOM, _UbRadioButtonText_dispatchOnChangeEvent, _UbRadioButtonText_otherRadioButtonDeSelect, _UbRadioButtonText_handleOnLabelClick, _UbRadioButtonText_handleOnChange;
 import { LitElement, html, render } from "lit";
 import { customElement, property } from "lit/decorators.js";
 // @ts-ignore
@@ -26,7 +26,6 @@ let UbRadioButtonText = class UbRadioButtonText extends LitElement {
     set value(val) {
         __classPrivateFieldSet(this, _UbRadioButtonText_value, val || "on", "f");
         __classPrivateFieldGet(this, _UbRadioButtonText_input, "f").setAttribute("value", String(__classPrivateFieldGet(this, _UbRadioButtonText_value, "f")));
-        // this.setAttribute("data-value", String(val));
     }
     get value() {
         return __classPrivateFieldGet(this, _UbRadioButtonText_value, "f");
@@ -40,8 +39,10 @@ let UbRadioButtonText = class UbRadioButtonText extends LitElement {
     }
     set checked(val) {
         __classPrivateFieldSet(this, _UbRadioButtonText_checked, val, "f");
-        // this.internals.setFormValue(val ? this.value : null);
-        __classPrivateFieldGet(this, _UbRadioButtonText_input, "f").checked = __classPrivateFieldGet(this, _UbRadioButtonText_checked, "f");
+        __classPrivateFieldGet(this, _UbRadioButtonText_input, "f").checked = val;
+        if (val)
+            __classPrivateFieldGet(this, _UbRadioButtonText_instances, "m", _UbRadioButtonText_otherRadioButtonDeSelect).call(this);
+        __classPrivateFieldGet(this, _UbRadioButtonText_instances, "m", _UbRadioButtonText_dispatchOnChangeEvent).call(this);
     }
     get checked() {
         return __classPrivateFieldGet(this, _UbRadioButtonText_checked, "f");
@@ -53,43 +54,43 @@ let UbRadioButtonText = class UbRadioButtonText extends LitElement {
     get disabled() {
         return __classPrivateFieldGet(this, _UbRadioButtonText_disabled, "f");
     }
-    // protected internals: ElementInternals;
-    // static formAssociated = true;
     constructor() {
-        console.log("fire constructor");
         super();
         _UbRadioButtonText_instances.add(this);
-        _UbRadioButtonText_that.set(this, this);
         _UbRadioButtonText_value.set(this, "on");
         _UbRadioButtonText_name.set(this, undefined);
         _UbRadioButtonText_checked.set(this, false);
         _UbRadioButtonText_disabled.set(this, false);
         _UbRadioButtonText_input.set(this, document.createElement("input"));
         this.text = "";
-        // this.internals = this.attachInternals();
         __classPrivateFieldGet(this, _UbRadioButtonText_input, "f").classList.add("input");
         __classPrivateFieldGet(this, _UbRadioButtonText_input, "f").addEventListener("change", () => {
             __classPrivateFieldGet(this, _UbRadioButtonText_instances, "m", _UbRadioButtonText_handleOnChange).call(this);
         });
         __classPrivateFieldGet(this, _UbRadioButtonText_input, "f").setAttribute("type", "radio");
-        // this.#input.setAttribute("style", "opacity: 0");
+        __classPrivateFieldGet(this, _UbRadioButtonText_input, "f").setAttribute("slot", "radio");
     }
     connectedCallback() {
         super.connectedCallback();
         __classPrivateFieldGet(this, _UbRadioButtonText_instances, "m", _UbRadioButtonText_renderToLightDOM).call(this);
     }
+    formResetCallback() {
+        this.deSelect();
+    }
+    deSelect() {
+        this.checked === true && (this.checked = false);
+    }
     render() {
         return html `
-      <label class="base" @click=${__classPrivateFieldGet(this, _UbRadioButtonText_instances, "m", _UbRadioButtonText_handleOnClick)}>
+      <span class="base" @click=${__classPrivateFieldGet(this, _UbRadioButtonText_instances, "m", _UbRadioButtonText_handleOnLabelClick)}>
         <span class="radio">
-          <slot></slot>
+          <slot name="radio"></slot>
         </span>
         <span class="text">${this.text}</span>
-      </label>
+      </span>
     `;
     }
 };
-_UbRadioButtonText_that = new WeakMap();
 _UbRadioButtonText_value = new WeakMap();
 _UbRadioButtonText_name = new WeakMap();
 _UbRadioButtonText_checked = new WeakMap();
@@ -99,30 +100,33 @@ _UbRadioButtonText_instances = new WeakSet();
 _UbRadioButtonText_renderToLightDOM = function _UbRadioButtonText_renderToLightDOM() {
     render(html `${__classPrivateFieldGet(this, _UbRadioButtonText_input, "f")}`, this);
 };
-_UbRadioButtonText_handleOnClick = function _UbRadioButtonText_handleOnClick() {
-    if (this.checked === true)
-        return;
-    this.checked = true;
-    __classPrivateFieldGet(this, _UbRadioButtonText_input, "f").dispatchEvent(new Event("change", {
-        bubbles: false,
-        composed: false,
-    }));
-};
-_UbRadioButtonText_handleOnChange = function _UbRadioButtonText_handleOnChange() {
-    const { checked } = __classPrivateFieldGet(this, _UbRadioButtonText_input, "f");
-    this.checked = checked;
+_UbRadioButtonText_dispatchOnChangeEvent = function _UbRadioButtonText_dispatchOnChangeEvent() {
     this.dispatchEvent(new CustomEvent("change", {
         bubbles: true,
         composed: true,
         detail: {
-            checked,
+            checked: this.checked,
         },
     }));
 };
-_UbRadioButtonText_handleOnDeSelect = function _UbRadioButtonText_handleOnDeSelect() {
-    // TODO?
+_UbRadioButtonText_otherRadioButtonDeSelect = function _UbRadioButtonText_otherRadioButtonDeSelect() {
+    Array.prototype.slice
+        .call((__classPrivateFieldGet(this, _UbRadioButtonText_input, "f").form || document).getElementsByTagName(this.tagName))
+        .filter((el) => {
+        return el.getAttribute("name") === this.name && el !== this;
+    })
+        .map((el) => {
+        el.deSelect();
+    });
+};
+_UbRadioButtonText_handleOnLabelClick = function _UbRadioButtonText_handleOnLabelClick() {
+    this.checked === false && (this.checked = true);
+};
+_UbRadioButtonText_handleOnChange = function _UbRadioButtonText_handleOnChange() {
+    this.checked = __classPrivateFieldGet(this, _UbRadioButtonText_input, "f").checked;
 };
 UbRadioButtonText.styles = [styles];
+UbRadioButtonText.formAssociated = true;
 __decorate([
     property()
 ], UbRadioButtonText.prototype, "value", null);

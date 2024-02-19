@@ -1,19 +1,20 @@
-import { LitElement } from "lit";
-export declare class UbCheckbox extends LitElement {
+export declare class UbCheckbox extends HTMLElement {
     #private;
-    value: string;
-    name: string | undefined;
-    set checked(val: boolean);
+    get value(): string;
+    set value(value: string);
+    set name(value: string);
     get checked(): boolean;
-    indeterminate: boolean;
-    disabled: boolean;
-    input: HTMLInputElement;
-    static styles: CSSStyleSheet[];
+    set checked(value: boolean);
+    get indeterminate(): boolean;
+    set indeterminate(value: boolean);
+    set disabled(value: boolean);
+    static get observedAttributes(): string[];
     protected internals: ElementInternals;
     static formAssociated: boolean;
     constructor();
+    connectedCallback(): void;
+    attributeChangedCallback(name: string, oldValue: string, newValue: string): void;
     formResetCallback(): void;
-    render(): import("lit-html").TemplateResult<1>;
 }
 declare global {
     interface HTMLElementTagNameMap {

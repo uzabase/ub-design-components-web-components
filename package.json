@@ -1,7 +1,7 @@
 {
   "name": "@ub-design/components-web-components",
   "private": true,
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -21,8 +21,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@acab/reset.css": "^0.8.0",
-    "lit": "^3.1.0"
+    "@acab/reset.css": "^0.8.0"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.6.10",

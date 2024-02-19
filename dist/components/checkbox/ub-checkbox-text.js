@@ -1,108 +1,113 @@
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
-    if (kind === "m") throw new TypeError("Private method is not writable");
-    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
-    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
-    return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
-};
 var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (receiver, state, kind, f) {
     if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
     return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 };
-var _UbCheckboxText_instances, _UbCheckboxText_checked, _UbCheckboxText_handleOnChange;
-import { LitElement, html } from "lit";
-import { customElement, property, query } from "lit/decorators.js";
+var _UbCheckboxText_instances, _UbCheckboxText_inputElement, _UbCheckboxText_textElement, _UbCheckboxText_handleOnChange;
 // @ts-ignore
 import resetStyle from "@acab/reset.css?inline" assert { type: "css" };
 const styles = new CSSStyleSheet();
 styles.replaceSync(resetStyle);
-let UbCheckboxText = class UbCheckboxText extends LitElement {
-    set checked(val) {
-        __classPrivateFieldSet(this, _UbCheckboxText_checked, val, "f");
-        this.internals.setFormValue(val ? this.value : null);
+export class UbCheckboxText extends HTMLElement {
+    get value() {
+        return __classPrivateFieldGet(this, _UbCheckboxText_inputElement, "f").value;
+    }
+    set value(value) {
+        __classPrivateFieldGet(this, _UbCheckboxText_inputElement, "f").value = value;
+    }
+    set name(value) {
+        this.setAttribute("name", value);
+        __classPrivateFieldGet(this, _UbCheckboxText_inputElement, "f").name = value;
     }
     get checked() {
-        return __classPrivateFieldGet(this, _UbCheckboxText_checked, "f");
+        return __classPrivateFieldGet(this, _UbCheckboxText_inputElement, "f").checked;
+    }
+    set checked(value) {
+        value ? this.setAttribute("checked", "") : this.removeAttribute("checked");
+        __classPrivateFieldGet(this, _UbCheckboxText_inputElement, "f").checked = value;
+        this.internals.setFormValue(value ? this.value : null);
+    }
+    get indeterminate() {
+        return __classPrivateFieldGet(this, _UbCheckboxText_inputElement, "f").indeterminate;
+    }
+    set indeterminate(value) {
+        __classPrivateFieldGet(this, _UbCheckboxText_inputElement, "f").indeterminate = value;
+    }
+    set disabled(value) {
+        __classPrivateFieldGet(this, _UbCheckboxText_inputElement, "f").disabled = value;
+    }
+    set text(value) {
+        __classPrivateFieldGet(this, _UbCheckboxText_textElement, "f").innerText = value;
+    }
+    static get observedAttributes() {
+        return ["value", "name", "checked", "indeterminate", "disabled", "text"];
     }
     constructor() {
         super();
         _UbCheckboxText_instances.add(this);
-        _UbCheckboxText_checked.set(this, false);
-        this.value = "on";
-        this.name = "";
-        this.indeterminate = false;
-        this.disabled = false;
-        this.text = undefined;
+        _UbCheckboxText_inputElement.set(this, document.createElement("input"));
+        _UbCheckboxText_textElement.set(this, document.createElement("span"));
+        this.attachShadow({ mode: "open" });
+        this.shadowRoot.adoptedStyleSheets = [
+            ...this.shadowRoot.adoptedStyleSheets,
+            styles,
+        ];
         this.internals = this.attachInternals();
+    }
+    connectedCallback() {
+        const labelElement = document.createElement("label");
+        const checkMarkElement = document.createElement("span");
+        typeof this.value === undefined && (this.value = "on");
+        labelElement.classList.add("base");
+        checkMarkElement.classList.add("checkmark");
+        __classPrivateFieldGet(this, _UbCheckboxText_inputElement, "f").setAttribute("type", "checkbox");
+        __classPrivateFieldGet(this, _UbCheckboxText_inputElement, "f").classList.add("input");
+        __classPrivateFieldGet(this, _UbCheckboxText_inputElement, "f").addEventListener("change", () => __classPrivateFieldGet(this, _UbCheckboxText_instances, "m", _UbCheckboxText_handleOnChange).call(this));
+        __classPrivateFieldGet(this, _UbCheckboxText_textElement, "f").classList.add("text");
+        checkMarkElement.appendChild(__classPrivateFieldGet(this, _UbCheckboxText_inputElement, "f"));
+        labelElement.appendChild(checkMarkElement);
+        labelElement.appendChild(__classPrivateFieldGet(this, _UbCheckboxText_textElement, "f"));
+        this.shadowRoot.appendChild(labelElement);
+    }
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (oldValue === newValue)
+            return;
+        switch (name) {
+            case "value":
+                this.value = newValue;
+                break;
+            case "name":
+                this.name = newValue;
+                break;
+            case "checked":
+                this.checked = newValue === "true" || newValue === "";
+                break;
+            case "indeterminate":
+                this.indeterminate = newValue === "true" || newValue === "";
+                break;
+            case "disabled":
+                this.disabled = newValue === "true" || newValue === "";
+                break;
+            case "text":
+                this.text = newValue;
+                break;
+        }
     }
     formResetCallback() {
         this.checked = false;
     }
-    render() {
-        return html `
-      <label class="base">
-        <span class="checkmark">
-          <input
-            type="checkbox"
-            class="input"
-            .value=${this.value}
-            .name=${this.name}
-            .checked=${this.checked}
-            .indeterminate=${this.indeterminate}
-            .disabled=${this.disabled}
-            @change="${__classPrivateFieldGet(this, _UbCheckboxText_instances, "m", _UbCheckboxText_handleOnChange)}"
-          />
-        </span>
-        <span class="text">${this.text}</span>
-      </label>
-    `;
-    }
-};
-_UbCheckboxText_checked = new WeakMap();
-_UbCheckboxText_instances = new WeakSet();
-_UbCheckboxText_handleOnChange = function _UbCheckboxText_handleOnChange() {
-    const { checked, indeterminate } = this.input;
-    this.checked = checked;
-    this.indeterminate = indeterminate;
+}
+_UbCheckboxText_inputElement = new WeakMap(), _UbCheckboxText_textElement = new WeakMap(), _UbCheckboxText_instances = new WeakSet(), _UbCheckboxText_handleOnChange = function _UbCheckboxText_handleOnChange() {
+    this.checked = this.checked;
     this.dispatchEvent(new CustomEvent("change", {
         bubbles: true,
         composed: true,
         detail: {
-            checked,
-            indeterminate,
+            checked: this.checked,
+            indeterminate: this.indeterminate,
         },
     }));
 };
-UbCheckboxText.styles = [styles];
 UbCheckboxText.formAssociated = true;
-__decorate([
-    property()
-], UbCheckboxText.prototype, "value", void 0);
-__decorate([
-    property({ reflect: true })
-], UbCheckboxText.prototype, "name", void 0);
-__decorate([
-    property({ type: Boolean, reflect: true })
-], UbCheckboxText.prototype, "checked", null);
-__decorate([
-    property({ type: Boolean })
-], UbCheckboxText.prototype, "indeterminate", void 0);
-__decorate([
-    property({ type: Boolean })
-], UbCheckboxText.prototype, "disabled", void 0);
-__decorate([
-    property()
-], UbCheckboxText.prototype, "text", void 0);
-__decorate([
-    query("input")
-], UbCheckboxText.prototype, "input", void 0);
-UbCheckboxText = __decorate([
-    customElement("ub-checkbox-text")
-], UbCheckboxText);
-export { UbCheckboxText };
+customElements.get("ub-checkbox-text") ||
+    customElements.define("ub-checkbox-text", UbCheckboxText);

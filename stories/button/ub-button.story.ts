@@ -1,6 +1,9 @@
 import "../../src/components/button/ub-button";
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { action } from "@storybook/addon-actions";
+import { UbButton } from "../../src";
+
+customElements.get("ub-button") || customElements.define("ub-button", UbButton);
 
 const meta: Meta = {
   component: "ub-button",

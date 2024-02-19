@@ -1,100 +1,169 @@
-import { LitElement, html } from "lit";
-import { customElement, property } from "lit/decorators.js";
 // @ts-ignore
 import resetStyle from "@acab/reset.css?inline" assert { type: "css" };
+
+type ButtonType = "default" | "destructive";
+type Appearance = "outline" | "fill" | "text";
+type Size = "medium" | "large" | "xLarge" | "width160" | "width80";
 
 const styles = new CSSStyleSheet();
 styles.replaceSync(resetStyle);
 
-@customElement("ub-button")
-export class UbButton extends LitElement {
-  @property()
-  text = "";
+export class UbButton extends HTMLElement {
+  #loading: boolean;
+  #selected: boolean;
+  #disabled: boolean;
+  #type: ButtonType;
+  #appearance: Appearance;
+  #size: Size;
 
-  @property({ type: Boolean })
-  loading? = false;
+  buttonElement = document.createElement("button");
+  textElement = document.createElement("span");
 
-  @property({ type: Boolean })
-  selected? = false;
-
-  @property({ type: Boolean })
-  disabled? = false;
-
-  @property()
-  type?: "default" | "destructive" = "default";
-
-  @property()
-  appearance?: "outline" | "fill" | "text" = "outline";
-
-  @property()
-  size?: "medium" | "large" | "xLarge" | "width160" | "width80" = "medium";
-
-  static override styles = [styles];
-
-  render() {
-    return html`
-      <button
-        class="${this.#allStyles()}"
-        .disabled=${this.disabled || this.loading}
-      >
-        <span class="base__text">${this.text}</span>
-      </button>
-    `;
+  set text(value: string) {
+    this.textElement.innerText = value;
   }
 
-  #allStyles = () => {
-    const styles = ["base"];
-    switch (this.type) {
-      case "default":
-        styles.push("type__default");
-        break;
-      case "destructive":
-        styles.push("type__destructive");
-        break;
-      default:
-        styles.push("type__default");
-        break;
-    }
-    switch (this.appearance) {
-      case "outline":
-        styles.push("appearance__outline");
-        break;
-      case "fill":
-        styles.push("appearance__fill");
-        break;
-      case "text":
-        styles.push("appearance__text");
-        break;
-      default:
-        styles.push("appearance__outline");
-        break;
-    }
-    switch (this.size) {
-      case "medium":
-        styles.push("size__medium");
-        break;
-      case "large":
-        styles.push("size__large");
-        break;
-      case "xLarge":
-        styles.push("size__xLarge");
-        break;
-      case "width160":
-        styles.push("size__width160");
-        break;
-      case "width80":
-        styles.push("size__width80");
-        break;
-      default:
-        styles.push("size__medium");
-        break;
-    }
-    if (this.disabled) styles.push("isDisable");
-    if (this.selected) styles.push("isSelected");
-    if (this.loading) styles.push("isLoading");
+  get loading() {
+    return this.#loading;
+  }
+  set loading(value: boolean) {
+    const button = this.buttonElement;
+    this.#loading = value;
+    value
+      ? button.classList.add("isLoading")
+      : button.classList.remove("isLoading");
+    button.disabled = value;
+  }
 
-    return styles.join(" ");
-  };
+  get selected() {
+    return this.#selected;
+  }
+  set selected(value: boolean) {
+    const button = this.buttonElement;
+    this.#selected = value;
+    value
+      ? button.classList.add("isSelected")
+      : button.classList.remove("isSelected");
+  }
+
+  get disabled() {
+    return this.#disabled;
+  }
+  set disabled(value: boolean) {
+    const button = this.buttonElement;
+    this.#disabled = value;
+    value
+      ? button.classList.add("isDisable")
+      : button.classList.remove("isDisable");
+    button.disabled = value;
+  }
+
+  get type() {
+    return this.#type;
+  }
+  set type(value: ButtonType) {
+    const button = this.buttonElement;
+    const typeClassList = {
+      default: "type__default",
+      destructive: "type__destructive",
+    };
+    button.classList.remove(typeClassList[this.#type]);
+    button.classList.add(typeClassList[value]);
+    this.#type = value;
+  }
+
+  get appearance() {
+    return this.#appearance;
+  }
+  set appearance(value: Appearance) {
+    const button = this.buttonElement;
+    const typeClassList = {
+      outline: "appearance__outline",
+      fill: "appearance__fill",
+      text: "appearance__text",
+    };
+    button.classList.remove(typeClassList[this.#appearance]);
+    button.classList.add(typeClassList[value]);
+    this.#appearance = value;
+  }
+
+  get size() {
+    return this.#size;
+  }
+  set size(value: Size) {
+    const button = this.buttonElement;
+    const typeClassList = {
+      medium: "size__medium",
+      large: "size__large",
+      xLarge: "size__xLarge",
+      width160: "size__width160",
+      width80: "size__width80",
+    };
+    button.classList.remove(typeClassList[this.#size]);
+    button.classList.add(typeClassList[value]);
+    this.#size = value;
+  }
+
+  static get observedAttributes() {
+    return [
+      "text",
+      "loading",
+      "selected",
+      "disabled",
+      "type",
+      "appearance",
+      "size",
+    ];
+  }
+
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+    this.shadowRoot.adoptedStyleSheets = [
+      ...this.shadowRoot.adoptedStyleSheets,
+      styles,
+    ];
+    this.buttonElement.classList.add("base");
+    this.textElement.classList.add("base__text");
+    this.buttonElement.appendChild(this.textElement);
+  }
+
+  connectedCallback() {
+    typeof this.loading === undefined && (this.loading = false);
+    typeof this.selected === undefined && (this.selected = false);
+    typeof this.disabled === undefined && (this.disabled = false);
+    typeof this.type === undefined && (this.type = "default");
+    typeof this.appearance === undefined && (this.appearance = "outline");
+    typeof this.size === undefined && (this.size = "medium");
+    this.shadowRoot.appendChild(this.buttonElement);
+  }
+
+  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+    if (oldValue === newValue) return;
+    switch (name) {
+      case "text":
+        this.text = newValue;
+        break;
+      case "loading":
+        this.loading = newValue === "true" || newValue === "";
+        break;
+      case "selected":
+        this.selected = newValue === "true" || newValue === "";
+        break;
+      case "disabled":
+        this.disabled = newValue === "true" || newValue === "";
+        break;
+      case "type":
+        this.type = newValue as ButtonType;
+        break;
+      case "appearance":
+        this.appearance = newValue as Appearance;
+        break;
+      case "size":
+        this.size = newValue as Size;
+        break;
+    }
+  }
 }
 
 declare global {

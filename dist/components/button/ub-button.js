@@ -1,122 +1,163 @@
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (receiver, state, kind, f) {
     if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
     return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 };
-var _UbButton_allStyles;
-import { LitElement, html } from "lit";
-import { customElement, property } from "lit/decorators.js";
+var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
+    if (kind === "m") throw new TypeError("Private method is not writable");
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
+    return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
+};
+var _UbButton_loading, _UbButton_selected, _UbButton_disabled, _UbButton_type, _UbButton_appearance, _UbButton_size;
 // @ts-ignore
 import resetStyle from "@acab/reset.css?inline" assert { type: "css" };
 const styles = new CSSStyleSheet();
 styles.replaceSync(resetStyle);
-let UbButton = class UbButton extends LitElement {
+export class UbButton extends HTMLElement {
+    set text(value) {
+        this.textElement.innerText = value;
+    }
+    get loading() {
+        return __classPrivateFieldGet(this, _UbButton_loading, "f");
+    }
+    set loading(value) {
+        const button = this.buttonElement;
+        __classPrivateFieldSet(this, _UbButton_loading, value, "f");
+        value
+            ? button.classList.add("isLoading")
+            : button.classList.remove("isLoading");
+        button.disabled = value;
+    }
+    get selected() {
+        return __classPrivateFieldGet(this, _UbButton_selected, "f");
+    }
+    set selected(value) {
+        const button = this.buttonElement;
+        __classPrivateFieldSet(this, _UbButton_selected, value, "f");
+        value
+            ? button.classList.add("isSelected")
+            : button.classList.remove("isSelected");
+    }
+    get disabled() {
+        return __classPrivateFieldGet(this, _UbButton_disabled, "f");
+    }
+    set disabled(value) {
+        const button = this.buttonElement;
+        __classPrivateFieldSet(this, _UbButton_disabled, value, "f");
+        value
+            ? button.classList.add("isDisable")
+            : button.classList.remove("isDisable");
+        button.disabled = value;
+    }
+    get type() {
+        return __classPrivateFieldGet(this, _UbButton_type, "f");
+    }
+    set type(value) {
+        const button = this.buttonElement;
+        const typeClassList = {
+            default: "type__default",
+            destructive: "type__destructive",
+        };
+        button.classList.remove(typeClassList[__classPrivateFieldGet(this, _UbButton_type, "f")]);
+        button.classList.add(typeClassList[value]);
+        __classPrivateFieldSet(this, _UbButton_type, value, "f");
+    }
+    get appearance() {
+        return __classPrivateFieldGet(this, _UbButton_appearance, "f");
+    }
+    set appearance(value) {
+        const button = this.buttonElement;
+        const typeClassList = {
+            outline: "appearance__outline",
+            fill: "appearance__fill",
+            text: "appearance__text",
+        };
+        button.classList.remove(typeClassList[__classPrivateFieldGet(this, _UbButton_appearance, "f")]);
+        button.classList.add(typeClassList[value]);
+        __classPrivateFieldSet(this, _UbButton_appearance, value, "f");
+    }
+    get size() {
+        return __classPrivateFieldGet(this, _UbButton_size, "f");
+    }
+    set size(value) {
+        const button = this.buttonElement;
+        const typeClassList = {
+            medium: "size__medium",
+            large: "size__large",
+            xLarge: "size__xLarge",
+            width160: "size__width160",
+            width80: "size__width80",
+        };
+        button.classList.remove(typeClassList[__classPrivateFieldGet(this, _UbButton_size, "f")]);
+        button.classList.add(typeClassList[value]);
+        __classPrivateFieldSet(this, _UbButton_size, value, "f");
+    }
+    static get observedAttributes() {
+        return [
+            "text",
+            "loading",
+            "selected",
+            "disabled",
+            "type",
+            "appearance",
+            "size",
+        ];
+    }
     constructor() {
-        super(...arguments);
-        this.text = "";
-        this.loading = false;
-        this.selected = false;
-        this.disabled = false;
-        this.type = "default";
-        this.appearance = "outline";
-        this.size = "medium";
-        _UbButton_allStyles.set(this, () => {
-            const styles = ["base"];
-            switch (this.type) {
-                case "default":
-                    styles.push("type__default");
-                    break;
-                case "destructive":
-                    styles.push("type__destructive");
-                    break;
-                default:
-                    styles.push("type__default");
-                    break;
-            }
-            switch (this.appearance) {
-                case "outline":
-                    styles.push("appearance__outline");
-                    break;
-                case "fill":
-                    styles.push("appearance__fill");
-                    break;
-                case "text":
-                    styles.push("appearance__text");
-                    break;
-                default:
-                    styles.push("appearance__outline");
-                    break;
-            }
-            switch (this.size) {
-                case "medium":
-                    styles.push("size__medium");
-                    break;
-                case "large":
-                    styles.push("size__large");
-                    break;
-                case "xLarge":
-                    styles.push("size__xLarge");
-                    break;
-                case "width160":
-                    styles.push("size__width160");
-                    break;
-                case "width80":
-                    styles.push("size__width80");
-                    break;
-                default:
-                    styles.push("size__medium");
-                    break;
-            }
-            if (this.disabled)
-                styles.push("isDisable");
-            if (this.selected)
-                styles.push("isSelected");
-            if (this.loading)
-                styles.push("isLoading");
-            return styles.join(" ");
-        });
+        super();
+        _UbButton_loading.set(this, void 0);
+        _UbButton_selected.set(this, void 0);
+        _UbButton_disabled.set(this, void 0);
+        _UbButton_type.set(this, void 0);
+        _UbButton_appearance.set(this, void 0);
+        _UbButton_size.set(this, void 0);
+        this.buttonElement = document.createElement("button");
+        this.textElement = document.createElement("span");
+        this.attachShadow({ mode: "open" });
+        this.shadowRoot.adoptedStyleSheets = [
+            ...this.shadowRoot.adoptedStyleSheets,
+            styles,
+        ];
+        this.buttonElement.classList.add("base");
+        this.textElement.classList.add("base__text");
+        this.buttonElement.appendChild(this.textElement);
     }
-    render() {
-        return html `
-      <button
-        class="${__classPrivateFieldGet(this, _UbButton_allStyles, "f").call(this)}"
-        .disabled=${this.disabled || this.loading}
-      >
-        <span class="base__text">${this.text}</span>
-      </button>
-    `;
+    connectedCallback() {
+        typeof this.loading === undefined && (this.loading = false);
+        typeof this.selected === undefined && (this.selected = false);
+        typeof this.disabled === undefined && (this.disabled = false);
+        typeof this.type === undefined && (this.type = "default");
+        typeof this.appearance === undefined && (this.appearance = "outline");
+        typeof this.size === undefined && (this.size = "medium");
+        this.shadowRoot.appendChild(this.buttonElement);
     }
-};
-_UbButton_allStyles = new WeakMap();
-UbButton.styles = [styles];
-__decorate([
-    property()
-], UbButton.prototype, "text", void 0);
-__decorate([
-    property({ type: Boolean })
-], UbButton.prototype, "loading", void 0);
-__decorate([
-    property({ type: Boolean })
-], UbButton.prototype, "selected", void 0);
-__decorate([
-    property({ type: Boolean })
-], UbButton.prototype, "disabled", void 0);
-__decorate([
-    property()
-], UbButton.prototype, "type", void 0);
-__decorate([
-    property()
-], UbButton.prototype, "appearance", void 0);
-__decorate([
-    property()
-], UbButton.prototype, "size", void 0);
-UbButton = __decorate([
-    customElement("ub-button")
-], UbButton);
-export { UbButton };
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (oldValue === newValue)
+            return;
+        switch (name) {
+            case "text":
+                this.text = newValue;
+                break;
+            case "loading":
+                this.loading = newValue === "true" || newValue === "";
+                break;
+            case "selected":
+                this.selected = newValue === "true" || newValue === "";
+                break;
+            case "disabled":
+                this.disabled = newValue === "true" || newValue === "";
+                break;
+            case "type":
+                this.type = newValue;
+                break;
+            case "appearance":
+                this.appearance = newValue;
+                break;
+            case "size":
+                this.size = newValue;
+                break;
+        }
+    }
+}
+_UbButton_loading = new WeakMap(), _UbButton_selected = new WeakMap(), _UbButton_disabled = new WeakMap(), _UbButton_type = new WeakMap(), _UbButton_appearance = new WeakMap(), _UbButton_size = new WeakMap();

@@ -36,8 +36,19 @@ export const Form: Story = {
   decorators: [
     (story) => html`
       <form>
-        <input type="checkbox" name="ub-checkbox-text-name" value="primitive" />
+        <input
+          type="checkbox"
+          name="ub-checkbox-text-name"
+          value="primitive1"
+          onchange="console.log('onchange fire')"
+        />
+        <input
+          type="checkbox"
+          name="ub-checkbox-text-name"
+          value="primitive2"
+        />
         ${story()}
+        <input type="reset" />
         <input type="submit" />
       </form>
     `,

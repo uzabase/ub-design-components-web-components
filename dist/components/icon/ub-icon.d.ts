@@ -1,16 +1,20 @@
-import { LitElement } from "lit";
-export declare class UbIcon extends LitElement {
-    type: string;
-    text?: string;
-    size?: "small" | "medium";
-    viewBox: number;
+type Size = "small" | "medium";
+export declare class UbIcon extends HTMLElement {
+    #private;
+    set type(value: string);
+    set text(value: string);
+    get size(): Size;
+    set size(value: Size);
+    static get observedAttributes(): string[];
     paths: Object;
-    static styles: CSSStyleSheet[];
-    render(): import("lit-html").TemplateResult<1>;
+    constructor();
+    connectedCallback(): void;
+    attributeChangedCallback(name: string, oldValue: string, newValue: string): void;
 }
 declare global {
     interface HTMLElementTagNameMap {
         "ub-icon": UbIcon;
     }
 }
+export {};
 //# sourceMappingURL=ub-icon.d.ts.map

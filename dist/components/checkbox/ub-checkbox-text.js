@@ -57,7 +57,7 @@ export class UbCheckboxText extends HTMLElement {
     connectedCallback() {
         const labelElement = document.createElement("label");
         const checkMarkElement = document.createElement("span");
-        typeof this.value === undefined && (this.value = "on");
+        typeof this.value === "undefined" && (this.value = "on");
         labelElement.classList.add("base");
         checkMarkElement.classList.add("checkmark");
         __classPrivateFieldGet(this, _UbCheckboxText_inputElement, "f").setAttribute("type", "checkbox");

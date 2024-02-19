@@ -49,7 +49,7 @@ export class UbIcon extends HTMLElement {
   }
 
   connectedCallback() {
-    typeof this.size === undefined && (this.size = "medium");
+    typeof this.size === "undefined" && (this.size = "medium");
     this.#svgElement.setAttribute("role", "img");
     this.#svgElement.setAttribute("viewBox", "0 0 24 24");
     this.#svgElement.classList.add("icon");

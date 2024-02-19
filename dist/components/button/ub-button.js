@@ -124,12 +124,12 @@ export class UbButton extends HTMLElement {
         this.buttonElement.appendChild(this.textElement);
     }
     connectedCallback() {
-        typeof this.loading === undefined && (this.loading = false);
-        typeof this.selected === undefined && (this.selected = false);
-        typeof this.disabled === undefined && (this.disabled = false);
-        typeof this.type === undefined && (this.type = "default");
-        typeof this.appearance === undefined && (this.appearance = "outline");
-        typeof this.size === undefined && (this.size = "medium");
+        typeof this.loading === "undefined" && (this.loading = false);
+        typeof this.selected === "undefined" && (this.selected = false);
+        typeof this.disabled === "undefined" && (this.disabled = false);
+        typeof this.type === "undefined" && (this.type = "default");
+        typeof this.appearance === "undefined" && (this.appearance = "outline");
+        typeof this.size === "undefined" && (this.size = "medium");
         this.shadowRoot.appendChild(this.buttonElement);
     }
     attributeChangedCallback(name, oldValue, newValue) {

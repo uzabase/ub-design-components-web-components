@@ -9,12 +9,12 @@ const styles = new CSSStyleSheet();
 styles.replaceSync(resetStyle);
 
 export class UbButton extends HTMLElement {
-  #loading = false;
-  #selected = false;
-  #disabled = false;
-  #type: ButtonType = "default";
-  #appearance: Appearance = "outline";
-  #size: Size = "medium";
+  #loading: boolean;
+  #selected: boolean;
+  #disabled: boolean;
+  #type: ButtonType;
+  #appearance: Appearance;
+  #size: Size;
 
   buttonElement = document.createElement("button");
   textElement = document.createElement("span");
@@ -129,6 +129,12 @@ export class UbButton extends HTMLElement {
   }
 
   connectedCallback() {
+    if (typeof this.loading === "undefined") this.loading = false;
+    if (typeof this.selected === "undefined") this.selected = false;
+    if (typeof this.disabled === "undefined") this.disabled = false;
+    if (typeof this.type === "undefined") this.type = "default";
+    if (typeof this.appearance === "undefined") this.appearance = "outline";
+    if (typeof this.size === "undefined") this.size = "medium";
     this.shadowRoot.appendChild(this.buttonElement);
   }
 

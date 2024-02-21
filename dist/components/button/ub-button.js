@@ -107,12 +107,12 @@ export class UbButton extends HTMLElement {
     constructor() {
         super();
         _UbButton_instances.add(this);
-        _UbButton_loading.set(this, false);
-        _UbButton_selected.set(this, false);
-        _UbButton_disabled.set(this, false);
-        _UbButton_type.set(this, "default");
-        _UbButton_appearance.set(this, "outline");
-        _UbButton_size.set(this, "medium");
+        _UbButton_loading.set(this, void 0);
+        _UbButton_selected.set(this, void 0);
+        _UbButton_disabled.set(this, void 0);
+        _UbButton_type.set(this, void 0);
+        _UbButton_appearance.set(this, void 0);
+        _UbButton_size.set(this, void 0);
         this.buttonElement = document.createElement("button");
         this.textElement = document.createElement("span");
         this.attachShadow({ mode: "open" });
@@ -125,6 +125,18 @@ export class UbButton extends HTMLElement {
         this.buttonElement.appendChild(this.textElement);
     }
     connectedCallback() {
+        if (typeof this.loading === "undefined")
+            this.loading = false;
+        if (typeof this.selected === "undefined")
+            this.selected = false;
+        if (typeof this.disabled === "undefined")
+            this.disabled = false;
+        if (typeof this.type === "undefined")
+            this.type = "default";
+        if (typeof this.appearance === "undefined")
+            this.appearance = "outline";
+        if (typeof this.size === "undefined")
+            this.size = "medium";
         this.shadowRoot.appendChild(this.buttonElement);
     }
     attributeChangedCallback(name, oldValue, newValue) {

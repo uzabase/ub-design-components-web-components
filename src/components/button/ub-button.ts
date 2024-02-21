@@ -9,12 +9,12 @@ const styles = new CSSStyleSheet();
 styles.replaceSync(resetStyle);
 
 export class UbButton extends HTMLElement {
-  #loading: boolean;
-  #selected: boolean;
-  #disabled: boolean;
-  #type: ButtonType;
-  #appearance: Appearance;
-  #size: Size;
+  #loading = false;
+  #selected = false;
+  #disabled = false;
+  #type: ButtonType = "default";
+  #appearance: Appearance = "outline";
+  #size: Size = "medium";
 
   buttonElement = document.createElement("button");
   textElement = document.createElement("span");
@@ -32,7 +32,7 @@ export class UbButton extends HTMLElement {
     value
       ? button.classList.add("isLoading")
       : button.classList.remove("isLoading");
-    button.disabled = value;
+    this.#buttonDisabledUpdate();
   }
 
   get selected() {
@@ -55,7 +55,7 @@ export class UbButton extends HTMLElement {
     value
       ? button.classList.add("isDisable")
       : button.classList.remove("isDisable");
-    button.disabled = value;
+    this.#buttonDisabledUpdate();
   }
 
   get type() {
@@ -129,12 +129,6 @@ export class UbButton extends HTMLElement {
   }
 
   connectedCallback() {
-    typeof this.loading === "undefined" && (this.loading = false);
-    typeof this.selected === "undefined" && (this.selected = false);
-    typeof this.disabled === "undefined" && (this.disabled = false);
-    typeof this.type === "undefined" && (this.type = "default");
-    typeof this.appearance === "undefined" && (this.appearance = "outline");
-    typeof this.size === "undefined" && (this.size = "medium");
     this.shadowRoot.appendChild(this.buttonElement);
   }
 
@@ -163,6 +157,10 @@ export class UbButton extends HTMLElement {
         this.size = newValue as Size;
         break;
     }
+  }
+
+  #buttonDisabledUpdate() {
+    this.buttonElement.disabled = this.disabled || this.loading;
   }
 }
 

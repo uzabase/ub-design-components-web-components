@@ -9,7 +9,7 @@ var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
     return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 };
-var _UbButton_loading, _UbButton_selected, _UbButton_disabled, _UbButton_type, _UbButton_appearance, _UbButton_size;
+var _UbButton_instances, _UbButton_loading, _UbButton_selected, _UbButton_disabled, _UbButton_type, _UbButton_appearance, _UbButton_size, _UbButton_buttonDisabledUpdate;
 // @ts-ignore
 import resetStyle from "@acab/reset.css?inline" assert { type: "css" };
 const styles = new CSSStyleSheet();
@@ -27,7 +27,7 @@ export class UbButton extends HTMLElement {
         value
             ? button.classList.add("isLoading")
             : button.classList.remove("isLoading");
-        button.disabled = value;
+        __classPrivateFieldGet(this, _UbButton_instances, "m", _UbButton_buttonDisabledUpdate).call(this);
     }
     get selected() {
         return __classPrivateFieldGet(this, _UbButton_selected, "f");
@@ -48,7 +48,7 @@ export class UbButton extends HTMLElement {
         value
             ? button.classList.add("isDisable")
             : button.classList.remove("isDisable");
-        button.disabled = value;
+        __classPrivateFieldGet(this, _UbButton_instances, "m", _UbButton_buttonDisabledUpdate).call(this);
     }
     get type() {
         return __classPrivateFieldGet(this, _UbButton_type, "f");
@@ -106,12 +106,13 @@ export class UbButton extends HTMLElement {
     }
     constructor() {
         super();
-        _UbButton_loading.set(this, void 0);
-        _UbButton_selected.set(this, void 0);
-        _UbButton_disabled.set(this, void 0);
-        _UbButton_type.set(this, void 0);
-        _UbButton_appearance.set(this, void 0);
-        _UbButton_size.set(this, void 0);
+        _UbButton_instances.add(this);
+        _UbButton_loading.set(this, false);
+        _UbButton_selected.set(this, false);
+        _UbButton_disabled.set(this, false);
+        _UbButton_type.set(this, "default");
+        _UbButton_appearance.set(this, "outline");
+        _UbButton_size.set(this, "medium");
         this.buttonElement = document.createElement("button");
         this.textElement = document.createElement("span");
         this.attachShadow({ mode: "open" });
@@ -124,12 +125,6 @@ export class UbButton extends HTMLElement {
         this.buttonElement.appendChild(this.textElement);
     }
     connectedCallback() {
-        typeof this.loading === "undefined" && (this.loading = false);
-        typeof this.selected === "undefined" && (this.selected = false);
-        typeof this.disabled === "undefined" && (this.disabled = false);
-        typeof this.type === "undefined" && (this.type = "default");
-        typeof this.appearance === "undefined" && (this.appearance = "outline");
-        typeof this.size === "undefined" && (this.size = "medium");
         this.shadowRoot.appendChild(this.buttonElement);
     }
     attributeChangedCallback(name, oldValue, newValue) {
@@ -160,4 +155,6 @@ export class UbButton extends HTMLElement {
         }
     }
 }
-_UbButton_loading = new WeakMap(), _UbButton_selected = new WeakMap(), _UbButton_disabled = new WeakMap(), _UbButton_type = new WeakMap(), _UbButton_appearance = new WeakMap(), _UbButton_size = new WeakMap();
+_UbButton_loading = new WeakMap(), _UbButton_selected = new WeakMap(), _UbButton_disabled = new WeakMap(), _UbButton_type = new WeakMap(), _UbButton_appearance = new WeakMap(), _UbButton_size = new WeakMap(), _UbButton_instances = new WeakSet(), _UbButton_buttonDisabledUpdate = function _UbButton_buttonDisabledUpdate() {
+    this.buttonElement.disabled = this.disabled || this.loading;
+};

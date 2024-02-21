@@ -7,7 +7,7 @@ styles.replaceSync(resetStyle);
 type Size = "small" | "medium";
 
 export class UbIcon extends HTMLElement {
-  #size: Size;
+  #size: Size = "medium";
 
   #svgElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   #pathElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
@@ -49,7 +49,6 @@ export class UbIcon extends HTMLElement {
   }
 
   connectedCallback() {
-    typeof this.size === "undefined" && (this.size = "medium");
     this.#svgElement.setAttribute("role", "img");
     this.#svgElement.setAttribute("viewBox", "0 0 24 24");
     this.#svgElement.classList.add("icon");

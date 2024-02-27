@@ -9,14 +9,14 @@ var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
     return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 };
-var _UbIcon_size, _UbIcon_svgElement, _UbIcon_pathElement;
+var _UbIcon_size, _UbIcon_svgElement;
 // @ts-ignore
 import resetStyle from "@acab/reset.css?inline" assert { type: "css" };
 const styles = new CSSStyleSheet();
 styles.replaceSync(resetStyle);
 export class UbIcon extends HTMLElement {
     set type(value) {
-        __classPrivateFieldGet(this, _UbIcon_pathElement, "f").setAttribute("d", this.paths[value]);
+        __classPrivateFieldGet(this, _UbIcon_svgElement, "f").innerHTML = this.paths[value];
     }
     set text(value) {
         __classPrivateFieldGet(this, _UbIcon_svgElement, "f").setAttribute("aria-label", value);
@@ -38,9 +38,8 @@ export class UbIcon extends HTMLElement {
     }
     constructor() {
         super();
-        _UbIcon_size.set(this, "medium");
+        _UbIcon_size.set(this, void 0);
         _UbIcon_svgElement.set(this, document.createElementNS("http://www.w3.org/2000/svg", "svg"));
-        _UbIcon_pathElement.set(this, document.createElementNS("http://www.w3.org/2000/svg", "path"));
         this.attachShadow({ mode: "open" });
         this.shadowRoot.adoptedStyleSheets = [
             ...this.shadowRoot.adoptedStyleSheets,
@@ -48,10 +47,11 @@ export class UbIcon extends HTMLElement {
         ];
     }
     connectedCallback() {
+        if (typeof this.size === "undefined")
+            this.size = "medium";
         __classPrivateFieldGet(this, _UbIcon_svgElement, "f").setAttribute("role", "img");
         __classPrivateFieldGet(this, _UbIcon_svgElement, "f").setAttribute("viewBox", "0 0 24 24");
         __classPrivateFieldGet(this, _UbIcon_svgElement, "f").classList.add("icon");
-        __classPrivateFieldGet(this, _UbIcon_svgElement, "f").appendChild(__classPrivateFieldGet(this, _UbIcon_pathElement, "f"));
         this.shadowRoot.appendChild(__classPrivateFieldGet(this, _UbIcon_svgElement, "f"));
     }
     attributeChangedCallback(name, oldValue, newValue) {
@@ -70,5 +70,5 @@ export class UbIcon extends HTMLElement {
         }
     }
 }
-_UbIcon_size = new WeakMap(), _UbIcon_svgElement = new WeakMap(), _UbIcon_pathElement = new WeakMap();
+_UbIcon_size = new WeakMap(), _UbIcon_svgElement = new WeakMap();
 customElements.get("ub-icon") || customElements.define("ub-icon", UbIcon);

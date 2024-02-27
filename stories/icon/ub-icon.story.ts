@@ -6,10 +6,10 @@ const meta: Meta = {
   render: (params) => {
     const el = document.createElement("ub-icon");
     el.paths = {
-      home: "M12.4515 1L1 8.66667L1.67932 9.63713L2.74684 8.86076V22.8354L3.91139 24H9.1519V17.4979H15.8481V24H20.9916L22.1561 22.8354V14.9747H20.9916V22.8354H17.0127V16.3333H7.98734V22.8354H3.91139V8.08439L12.4515 2.35865L20.9916 8.08439V12.0633H22.1561V8.86076L23.3207 9.63713L24 8.66667L12.4515 1Z",
+      edit: '<path d="M16.93 3.5H15.52L3.52 15.5V20.5H8.47L10.47 18.5L9.36 17.44L7.81 18.99H4.98V16.16L12.98 8.16L15.82 10.99L10.47 16.38L11.47 17.44L20.47 8.44V7.04L16.93 3.5ZM16.85 9.95L14.01 7.13L16.22 4.91L19.06 7.74L16.85 9.95Z"/>',
     };
     el.text = params.text ?? "ub-icon-text";
-    el.type = params.type ?? "home";
+    el.type = params.type ?? "edit";
     el.size = params.size ?? "medium";
     return el;
   },
@@ -17,7 +17,7 @@ const meta: Meta = {
     text: { type: "string" },
     type: {
       control: { type: "select" },
-      options: ["home"],
+      options: ["edit"],
     },
     size: {
       control: { type: "select" },
@@ -26,7 +26,7 @@ const meta: Meta = {
   },
   args: {
     text: "ub-icon-text",
-    type: "home",
+    type: "edit",
     size: "medium",
   },
 };

@@ -7,13 +7,12 @@ styles.replaceSync(resetStyle);
 type Size = "small" | "medium";
 
 export class UbIcon extends HTMLElement {
-  #size: Size = "medium";
+  #size: Size;
 
   #svgElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  #pathElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
 
   set type(value: string) {
-    this.#pathElement.setAttribute("d", this.paths[value]);
+    this.#svgElement.innerHTML = this.paths[value];
   }
 
   set text(value: string) {
@@ -49,10 +48,10 @@ export class UbIcon extends HTMLElement {
   }
 
   connectedCallback() {
+    if (typeof this.size === "undefined") this.size = "medium";
     this.#svgElement.setAttribute("role", "img");
     this.#svgElement.setAttribute("viewBox", "0 0 24 24");
     this.#svgElement.classList.add("icon");
-    this.#svgElement.appendChild(this.#pathElement);
     this.shadowRoot.appendChild(this.#svgElement);
   }
 

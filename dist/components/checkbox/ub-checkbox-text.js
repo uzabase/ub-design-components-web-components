@@ -108,5 +108,3 @@ _UbCheckboxText_inputElement = new WeakMap(), _UbCheckboxText_textElement = new 
     }));
 };
 UbCheckboxText.formAssociated = true;
-customElements.get("ub-checkbox-text") ||
-    customElements.define("ub-checkbox-text", UbCheckboxText);

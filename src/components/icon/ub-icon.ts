@@ -71,8 +71,6 @@ export class UbIcon extends HTMLElement {
   }
 }
 
-customElements.get("ub-icon") || customElements.define("ub-icon", UbIcon);
-
 declare global {
   interface HTMLElementTagNameMap {
     "ub-icon": UbIcon;

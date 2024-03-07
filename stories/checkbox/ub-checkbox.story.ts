@@ -1,7 +1,10 @@
-import "../../src/components/checkbox/ub-checkbox";
+import { UbCheckbox } from "../../src/components/checkbox/ub-checkbox";
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { action } from "@storybook/addon-actions";
 import { html } from "lit";
+
+customElements.get("ub-checkbox") ||
+  customElements.define("ub-checkbox", UbCheckbox);
 
 const meta: Meta = {
   component: "ub-checkbox",

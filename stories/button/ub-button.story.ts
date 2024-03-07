@@ -1,7 +1,6 @@
-import "../../src/components/button/ub-button";
+import { UbButton } from "../../src/components/button/ub-button";
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { action } from "@storybook/addon-actions";
-import { UbButton } from "../../src";
 import { html } from "lit";
 
 customElements.get("ub-button") || customElements.define("ub-button", UbButton);

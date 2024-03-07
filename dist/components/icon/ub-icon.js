@@ -71,4 +71,3 @@ export class UbIcon extends HTMLElement {
     }
 }
 _UbIcon_size = new WeakMap(), _UbIcon_svgElement = new WeakMap();
-customElements.get("ub-icon") || customElements.define("ub-icon", UbIcon);

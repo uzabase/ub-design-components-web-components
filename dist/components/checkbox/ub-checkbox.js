@@ -99,5 +99,3 @@ _UbCheckbox_inputElement = new WeakMap(), _UbCheckbox_instances = new WeakSet(),
     }));
 };
 UbCheckbox.formAssociated = true;
-customElements.get("ub-checkbox") ||
-    customElements.define("ub-checkbox", UbCheckbox);

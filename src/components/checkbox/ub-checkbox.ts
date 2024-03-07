@@ -109,9 +109,6 @@ export class UbCheckbox extends HTMLElement {
   }
 }
 
-customElements.get("ub-checkbox") ||
-  customElements.define("ub-checkbox", UbCheckbox);
-
 declare global {
   interface HTMLElementTagNameMap {
     "ub-checkbox": UbCheckbox;

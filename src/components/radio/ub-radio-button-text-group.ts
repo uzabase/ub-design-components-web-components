@@ -17,7 +17,7 @@ export class UbRadioButtonTextGroup extends HTMLElement {
   #name: string;
   #direction: string;
   #data: Data[] = [];
-  #innerElement = document.createElement("div");
+  #innerElement = document.createElement("ul");
   #inputElements: HTMLInputElement[] = [];
 
   get name() {
@@ -30,7 +30,7 @@ export class UbRadioButtonTextGroup extends HTMLElement {
   }
 
   set direction(value: Direction) {
-    const _value = value === "vertical" ? "vertical" : "horizontal";
+    const _value: Direction = value === "vertical" ? "vertical" : "horizontal";
     this.#innerElement.classList.remove(this.#direction);
     this.#innerElement.classList.add(_value);
     this.#direction = _value;
@@ -63,6 +63,7 @@ export class UbRadioButtonTextGroup extends HTMLElement {
 
   connectedCallback() {
     this.#innerElement.classList.add("base");
+    this.#innerElement.setAttribute("role", "radiogroup");
     this.shadowRoot.appendChild(this.#innerElement);
     this.#renderRadioButtons();
   }
@@ -93,16 +94,18 @@ export class UbRadioButtonTextGroup extends HTMLElement {
   #renderRadioButtons() {
     this.#innerElement.innerHTML = "";
     this.#inputElements = [];
-    this.data.map((data) => {
-      const labelElement = document.createElement("label");
+    this.data.map((data, index) => {
+      const ListElement = document.createElement("li");
       const inputElement = document.createElement("input");
       const radioElement = document.createElement("span");
-      const textElement = document.createElement("span");
+      const labelElement = document.createElement("label");
+      const labelInnerElement = document.createElement("span");
       const value = data.value || "on";
-      labelElement.classList.add("label");
+      ListElement.classList.add("item");
       inputElement.setAttribute("type", "radio");
       inputElement.setAttribute("value", value);
       inputElement.setAttribute("name", this.name);
+      inputElement.setAttribute("id", "radioButton" + index);
       inputElement.checked = data.checked;
       inputElement.disabled = data.disabled;
       if (data.checked) this.internals.setFormValue(value);
@@ -110,12 +113,18 @@ export class UbRadioButtonTextGroup extends HTMLElement {
       inputElement.addEventListener("change", (e) => this.#handleOnChange(e));
       this.#inputElements.push(inputElement);
       radioElement.classList.add("radio");
-      textElement.classList.add("text");
-      textElement.innerText = data.text;
+      labelElement.classList.add("text");
+      labelElement.setAttribute("for", "radioButton" + index);
+      labelElement.setAttribute("aria-labeledby", "radioButtonLabel" + index);
+      labelInnerElement.setAttribute("aria-hidden", "true");
+      labelInnerElement.setAttribute("id", "radioButtonLabel" + index);
+      labelInnerElement.classList.add("text-inner");
+      labelInnerElement.innerText = data.text;
       radioElement.appendChild(inputElement);
-      labelElement.appendChild(radioElement);
-      labelElement.appendChild(textElement);
-      this.#innerElement.appendChild(labelElement);
+      ListElement.appendChild(radioElement);
+      labelElement.appendChild(labelInnerElement);
+      ListElement.appendChild(labelElement);
+      this.#innerElement.appendChild(ListElement);
     });
   }
 

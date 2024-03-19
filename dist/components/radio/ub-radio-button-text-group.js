@@ -45,7 +45,7 @@ export class UbRadioButtonTextGroup extends HTMLElement {
         _UbRadioButtonTextGroup_name.set(this, void 0);
         _UbRadioButtonTextGroup_direction.set(this, void 0);
         _UbRadioButtonTextGroup_data.set(this, []);
-        _UbRadioButtonTextGroup_innerElement.set(this, document.createElement("div"));
+        _UbRadioButtonTextGroup_innerElement.set(this, document.createElement("ul"));
         _UbRadioButtonTextGroup_inputElements.set(this, []);
         this.attachShadow({ mode: "open" });
         this.shadowRoot.adoptedStyleSheets = [
@@ -56,6 +56,7 @@ export class UbRadioButtonTextGroup extends HTMLElement {
     }
     connectedCallback() {
         __classPrivateFieldGet(this, _UbRadioButtonTextGroup_innerElement, "f").classList.add("base");
+        __classPrivateFieldGet(this, _UbRadioButtonTextGroup_innerElement, "f").setAttribute("role", "radiogroup");
         this.shadowRoot.appendChild(__classPrivateFieldGet(this, _UbRadioButtonTextGroup_innerElement, "f"));
         __classPrivateFieldGet(this, _UbRadioButtonTextGroup_instances, "m", _UbRadioButtonTextGroup_renderRadioButtons).call(this);
     }
@@ -87,16 +88,18 @@ export class UbRadioButtonTextGroup extends HTMLElement {
 _UbRadioButtonTextGroup_name = new WeakMap(), _UbRadioButtonTextGroup_direction = new WeakMap(), _UbRadioButtonTextGroup_data = new WeakMap(), _UbRadioButtonTextGroup_innerElement = new WeakMap(), _UbRadioButtonTextGroup_inputElements = new WeakMap(), _UbRadioButtonTextGroup_instances = new WeakSet(), _UbRadioButtonTextGroup_renderRadioButtons = function _UbRadioButtonTextGroup_renderRadioButtons() {
     __classPrivateFieldGet(this, _UbRadioButtonTextGroup_innerElement, "f").innerHTML = "";
     __classPrivateFieldSet(this, _UbRadioButtonTextGroup_inputElements, [], "f");
-    this.data.map((data) => {
-        const labelElement = document.createElement("label");
+    this.data.map((data, index) => {
+        const ListElement = document.createElement("li");
         const inputElement = document.createElement("input");
         const radioElement = document.createElement("span");
-        const textElement = document.createElement("span");
+        const labelElement = document.createElement("label");
+        const labelInnerElement = document.createElement("span");
         const value = data.value || "on";
-        labelElement.classList.add("label");
+        ListElement.classList.add("item");
         inputElement.setAttribute("type", "radio");
         inputElement.setAttribute("value", value);
         inputElement.setAttribute("name", this.name);
+        inputElement.setAttribute("id", "radioButton" + index);
         inputElement.checked = data.checked;
         inputElement.disabled = data.disabled;
         if (data.checked)
@@ -105,12 +108,18 @@ _UbRadioButtonTextGroup_name = new WeakMap(), _UbRadioButtonTextGroup_direction 
         inputElement.addEventListener("change", (e) => __classPrivateFieldGet(this, _UbRadioButtonTextGroup_instances, "m", _UbRadioButtonTextGroup_handleOnChange).call(this, e));
         __classPrivateFieldGet(this, _UbRadioButtonTextGroup_inputElements, "f").push(inputElement);
         radioElement.classList.add("radio");
-        textElement.classList.add("text");
-        textElement.innerText = data.text;
+        labelElement.classList.add("text");
+        labelElement.setAttribute("for", "radioButton" + index);
+        labelElement.setAttribute("aria-labeledby", "radioButtonLabel" + index);
+        labelInnerElement.setAttribute("aria-hidden", "true");
+        labelInnerElement.setAttribute("id", "radioButtonLabel" + index);
+        labelInnerElement.classList.add("text-inner");
+        labelInnerElement.innerText = data.text;
         radioElement.appendChild(inputElement);
-        labelElement.appendChild(radioElement);
-        labelElement.appendChild(textElement);
-        __classPrivateFieldGet(this, _UbRadioButtonTextGroup_innerElement, "f").appendChild(labelElement);
+        ListElement.appendChild(radioElement);
+        labelElement.appendChild(labelInnerElement);
+        ListElement.appendChild(labelElement);
+        __classPrivateFieldGet(this, _UbRadioButtonTextGroup_innerElement, "f").appendChild(ListElement);
     });
 }, _UbRadioButtonTextGroup_handleOnChange = function _UbRadioButtonTextGroup_handleOnChange(event) {
     const value = event.currentTarget.value;

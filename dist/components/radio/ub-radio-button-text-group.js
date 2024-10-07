@@ -25,7 +25,9 @@ export class UbRadioButtonTextGroup extends HTMLElement {
     }
     set direction(value) {
         const _value = value === "vertical" ? "vertical" : "horizontal";
-        __classPrivateFieldGet(this, _UbRadioButtonTextGroup_innerElement, "f").classList.remove(__classPrivateFieldGet(this, _UbRadioButtonTextGroup_direction, "f"));
+        if (__classPrivateFieldGet(this, _UbRadioButtonTextGroup_direction, "f")) {
+            __classPrivateFieldGet(this, _UbRadioButtonTextGroup_innerElement, "f").classList.remove(__classPrivateFieldGet(this, _UbRadioButtonTextGroup_direction, "f"));
+        }
         __classPrivateFieldGet(this, _UbRadioButtonTextGroup_innerElement, "f").classList.add(_value);
         __classPrivateFieldSet(this, _UbRadioButtonTextGroup_direction, _value, "f");
     }
@@ -42,22 +44,19 @@ export class UbRadioButtonTextGroup extends HTMLElement {
     constructor() {
         super();
         _UbRadioButtonTextGroup_instances.add(this);
-        _UbRadioButtonTextGroup_name.set(this, void 0);
+        _UbRadioButtonTextGroup_name.set(this, "");
         _UbRadioButtonTextGroup_direction.set(this, void 0);
         _UbRadioButtonTextGroup_data.set(this, []);
         _UbRadioButtonTextGroup_innerElement.set(this, document.createElement("ul"));
         _UbRadioButtonTextGroup_inputElements.set(this, []);
-        this.attachShadow({ mode: "open" });
-        this.shadowRoot.adoptedStyleSheets = [
-            ...this.shadowRoot.adoptedStyleSheets,
-            styles,
-        ];
+        const shadowRoot = this.attachShadow({ mode: "open" });
+        shadowRoot.adoptedStyleSheets = [...shadowRoot.adoptedStyleSheets, styles];
         this.internals = this.attachInternals();
     }
     connectedCallback() {
         __classPrivateFieldGet(this, _UbRadioButtonTextGroup_innerElement, "f").classList.add("base");
         __classPrivateFieldGet(this, _UbRadioButtonTextGroup_innerElement, "f").setAttribute("role", "radiogroup");
-        this.shadowRoot.appendChild(__classPrivateFieldGet(this, _UbRadioButtonTextGroup_innerElement, "f"));
+        this.shadowRoot?.appendChild(__classPrivateFieldGet(this, _UbRadioButtonTextGroup_innerElement, "f"));
         __classPrivateFieldGet(this, _UbRadioButtonTextGroup_instances, "m", _UbRadioButtonTextGroup_renderRadioButtons).call(this);
     }
     attributeChangedCallback(name, oldValue, newValue) {
@@ -100,8 +99,8 @@ _UbRadioButtonTextGroup_name = new WeakMap(), _UbRadioButtonTextGroup_direction 
         inputElement.setAttribute("value", value);
         inputElement.setAttribute("name", this.name);
         inputElement.setAttribute("id", "radioButton" + index);
-        inputElement.checked = data.checked;
-        inputElement.disabled = data.disabled;
+        inputElement.checked = data.checked ?? false;
+        inputElement.disabled = data.disabled ?? false;
         if (data.checked)
             this.internals.setFormValue(value);
         inputElement.classList.add("input");

@@ -107,37 +107,22 @@ export class UbButton extends HTMLElement {
     constructor() {
         super();
         _UbButton_instances.add(this);
-        _UbButton_loading.set(this, void 0);
-        _UbButton_selected.set(this, void 0);
-        _UbButton_disabled.set(this, void 0);
-        _UbButton_type.set(this, void 0);
-        _UbButton_appearance.set(this, void 0);
-        _UbButton_size.set(this, void 0);
+        _UbButton_loading.set(this, false);
+        _UbButton_selected.set(this, false);
+        _UbButton_disabled.set(this, false);
+        _UbButton_type.set(this, "default");
+        _UbButton_appearance.set(this, "outline");
+        _UbButton_size.set(this, "medium");
         this.buttonElement = document.createElement("button");
         this.textElement = document.createElement("span");
-        this.attachShadow({ mode: "open" });
-        this.shadowRoot.adoptedStyleSheets = [
-            ...this.shadowRoot.adoptedStyleSheets,
-            styles,
-        ];
+        const shadowRoot = this.attachShadow({ mode: "open" });
+        shadowRoot.adoptedStyleSheets = [...shadowRoot.adoptedStyleSheets, styles];
         this.buttonElement.classList.add("base");
         this.textElement.classList.add("base__text");
         this.buttonElement.appendChild(this.textElement);
     }
     connectedCallback() {
-        if (typeof this.loading === "undefined")
-            this.loading = false;
-        if (typeof this.selected === "undefined")
-            this.selected = false;
-        if (typeof this.disabled === "undefined")
-            this.disabled = false;
-        if (typeof this.type === "undefined")
-            this.type = "default";
-        if (typeof this.appearance === "undefined")
-            this.appearance = "outline";
-        if (typeof this.size === "undefined")
-            this.size = "medium";
-        this.shadowRoot.appendChild(this.buttonElement);
+        this.shadowRoot?.appendChild(this.buttonElement);
     }
     attributeChangedCallback(name, oldValue, newValue) {
         if (oldValue === newValue)

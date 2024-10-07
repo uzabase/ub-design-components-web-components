@@ -43,11 +43,8 @@ export class UbCheckbox extends HTMLElement {
         super();
         _UbCheckbox_instances.add(this);
         _UbCheckbox_inputElement.set(this, document.createElement("input"));
-        this.attachShadow({ mode: "open" });
-        this.shadowRoot.adoptedStyleSheets = [
-            ...this.shadowRoot.adoptedStyleSheets,
-            styles,
-        ];
+        const shadowRoot = this.attachShadow({ mode: "open" });
+        shadowRoot.adoptedStyleSheets = [...shadowRoot.adoptedStyleSheets, styles];
         this.internals = this.attachInternals();
     }
     connectedCallback() {
@@ -60,7 +57,7 @@ export class UbCheckbox extends HTMLElement {
         __classPrivateFieldGet(this, _UbCheckbox_inputElement, "f").addEventListener("change", () => __classPrivateFieldGet(this, _UbCheckbox_instances, "m", _UbCheckbox_handleOnChange).call(this));
         checkMarkElement.appendChild(__classPrivateFieldGet(this, _UbCheckbox_inputElement, "f"));
         labelElement.appendChild(checkMarkElement);
-        this.shadowRoot.appendChild(labelElement);
+        this.shadowRoot?.appendChild(labelElement);
     }
     attributeChangedCallback(name, oldValue, newValue) {
         if (oldValue === newValue)

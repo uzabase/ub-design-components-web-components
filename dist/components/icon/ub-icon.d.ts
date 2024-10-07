@@ -6,7 +6,7 @@ export declare class UbIcon extends HTMLElement {
     get size(): Size;
     set size(value: Size);
     static get observedAttributes(): string[];
-    paths: Object;
+    paths: Record<string, string>;
     constructor();
     connectedCallback(): void;
     attributeChangedCallback(name: string, oldValue: string, newValue: string): void;

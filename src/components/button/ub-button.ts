@@ -118,16 +118,9 @@ export class UbButton extends HTMLElement {
 
   constructor() {
     super();
-    this.attachShadow({ mode: "open" });
 
-    if (this.shadowRoot) {
-      this.shadowRoot.adoptedStyleSheets = [
-        ...this.shadowRoot.adoptedStyleSheets,
-        styles,
-      ];
-    } else {
-      console.error("shadowRoot is null");
-    }
+    const shadowRoot = this.attachShadow({ mode: "open" });
+    shadowRoot.adoptedStyleSheets = [...shadowRoot.adoptedStyleSheets, styles];
 
     this.buttonElement.classList.add("base");
     this.textElement.classList.add("base__text");

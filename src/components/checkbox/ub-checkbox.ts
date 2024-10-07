@@ -49,10 +49,16 @@ export class UbCheckbox extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-    this.shadowRoot.adoptedStyleSheets = [
-      ...this.shadowRoot.adoptedStyleSheets,
-      styles,
-    ];
+
+    if (this.shadowRoot) {
+      this.shadowRoot.adoptedStyleSheets = [
+        ...this.shadowRoot.adoptedStyleSheets,
+        styles,
+      ];
+    } else {
+      console.error("shadowRoot is null");
+    }
+
     this.internals = this.attachInternals();
   }
 
@@ -66,7 +72,7 @@ export class UbCheckbox extends HTMLElement {
     this.#inputElement.addEventListener("change", () => this.#handleOnChange());
     checkMarkElement.appendChild(this.#inputElement);
     labelElement.appendChild(checkMarkElement);
-    this.shadowRoot.appendChild(labelElement);
+    this.shadowRoot?.appendChild(labelElement);
   }
 
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
@@ -104,7 +110,7 @@ export class UbCheckbox extends HTMLElement {
           checked: this.checked,
           indeterminate: this.indeterminate,
         },
-      }),
+      })
     );
   }
 }

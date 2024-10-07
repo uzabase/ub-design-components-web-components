@@ -46,5 +46,5 @@ type Story = StoryObj;
 export const Basic: Story = {};
 
 export const Attribute: Story = {
-  decorators: [(story) => html` <ub-button text="text"></ub-button> `],
+  decorators: [() => html` <ub-button text="text"></ub-button> `],
 };

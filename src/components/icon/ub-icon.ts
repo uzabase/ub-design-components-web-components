@@ -7,7 +7,7 @@ styles.replaceSync(resetStyle);
 type Size = "small" | "medium";
 
 export class UbIcon extends HTMLElement {
-  #size: Size;
+  #size: Size = "medium";
 
   #svgElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 
@@ -36,23 +36,27 @@ export class UbIcon extends HTMLElement {
     return ["type", "text", "size"];
   }
 
-  paths: Object;
+  paths: Record<string, string> = {};
 
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-    this.shadowRoot.adoptedStyleSheets = [
-      ...this.shadowRoot.adoptedStyleSheets,
-      styles,
-    ];
+
+    if (this.shadowRoot) {
+      this.shadowRoot.adoptedStyleSheets = [
+        ...this.shadowRoot.adoptedStyleSheets,
+        styles,
+      ];
+    } else {
+      console.error("shadowRoot is null");
+    }
   }
 
   connectedCallback() {
-    if (typeof this.size === "undefined") this.size = "medium";
     this.#svgElement.setAttribute("role", "img");
     this.#svgElement.setAttribute("viewBox", "0 0 24 24");
     this.#svgElement.classList.add("icon");
-    this.shadowRoot.appendChild(this.#svgElement);
+    this.shadowRoot?.appendChild(this.#svgElement);
   }
 
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {

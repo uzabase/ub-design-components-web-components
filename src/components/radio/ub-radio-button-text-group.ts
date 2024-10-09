@@ -15,7 +15,7 @@ type Data = {
 
 export class UbRadioButtonTextGroup extends HTMLElement {
   #name: string = "";
-  #direction?: string;
+  #direction: Direction = "horizontal";
   #data: Data[] = [];
   #innerElement = document.createElement("ul");
   #inputElements: HTMLInputElement[] = [];
@@ -31,9 +31,7 @@ export class UbRadioButtonTextGroup extends HTMLElement {
 
   set direction(value: Direction) {
     const _value: Direction = value === "vertical" ? "vertical" : "horizontal";
-    if (this.#direction) {
-      this.#innerElement.classList.remove(this.#direction);
-    }
+    this.#innerElement.classList.remove(this.#direction);
     this.#innerElement.classList.add(_value);
     this.#direction = _value;
   }

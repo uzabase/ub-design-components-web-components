@@ -25,9 +25,7 @@ export class UbRadioButtonTextGroup extends HTMLElement {
     }
     set direction(value) {
         const _value = value === "vertical" ? "vertical" : "horizontal";
-        if (__classPrivateFieldGet(this, _UbRadioButtonTextGroup_direction, "f")) {
-            __classPrivateFieldGet(this, _UbRadioButtonTextGroup_innerElement, "f").classList.remove(__classPrivateFieldGet(this, _UbRadioButtonTextGroup_direction, "f"));
-        }
+        __classPrivateFieldGet(this, _UbRadioButtonTextGroup_innerElement, "f").classList.remove(__classPrivateFieldGet(this, _UbRadioButtonTextGroup_direction, "f"));
         __classPrivateFieldGet(this, _UbRadioButtonTextGroup_innerElement, "f").classList.add(_value);
         __classPrivateFieldSet(this, _UbRadioButtonTextGroup_direction, _value, "f");
     }
@@ -45,7 +43,7 @@ export class UbRadioButtonTextGroup extends HTMLElement {
         super();
         _UbRadioButtonTextGroup_instances.add(this);
         _UbRadioButtonTextGroup_name.set(this, "");
-        _UbRadioButtonTextGroup_direction.set(this, void 0);
+        _UbRadioButtonTextGroup_direction.set(this, "horizontal");
         _UbRadioButtonTextGroup_data.set(this, []);
         _UbRadioButtonTextGroup_innerElement.set(this, document.createElement("ul"));
         _UbRadioButtonTextGroup_inputElements.set(this, []);

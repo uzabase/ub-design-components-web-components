@@ -50,6 +50,15 @@ describe("ub-button", () => {
       expect(button.classList.contains("isLoading")).toBe(true);
     });
 
+    test("loading属性に空文字列を指定すると、クラスにisLoadingが設定される", async () => {
+      document.body.innerHTML = "<ub-button loading></ub-button>";
+
+      const ubButton = getUbButton();
+      const button = ubButton.shadowRoot!.querySelector("button")!;
+
+      expect(button.classList.contains("isLoading")).toBe(true);
+    });
+
     test("loading属性にfalseを設定すると、クラスにisLoadingが設定されない", async () => {
       document.body.innerHTML = "<ub-button loading='false'></ub-button>";
 
@@ -57,16 +66,6 @@ describe("ub-button", () => {
       const button = ubButton.shadowRoot!.querySelector("button")!;
 
       expect(button.classList.contains("isLoading")).toBe(false);
-    });
-
-    // MEMO: この仕様は、想定とは異なるのではないか？
-    test("loading属性に空文字列を指定すると、クラスにisLoadingが設定される", async () => {
-      document.body.innerHTML = "<ub-button loading=''></ub-button>";
-
-      const ubButton = getUbButton();
-      const button = ubButton.shadowRoot!.querySelector("button")!;
-
-      expect(button.classList.contains("isLoading")).toBe(true);
     });
 
     test("loading属性を更新すると、更新後の値が反映される", async () => {
@@ -100,6 +99,15 @@ describe("ub-button", () => {
       expect(button.classList.contains("isSelected")).toBe(true);
     });
 
+    test("selected属性に空文字列を指定すると、クラスにisSelectedが設定される", async () => {
+      document.body.innerHTML = "<ub-button selected></ub-button>";
+
+      const ubButton = getUbButton();
+      const button = ubButton.shadowRoot!.querySelector("button")!;
+
+      expect(button.classList.contains("isSelected")).toBe(true);
+    });
+
     test("selected属性にfalseを設定すると、クラスにisSelectedが設定されない", async () => {
       document.body.innerHTML = "<ub-button selected='false'></ub-button>";
 
@@ -107,16 +115,6 @@ describe("ub-button", () => {
       const button = ubButton.shadowRoot!.querySelector("button")!;
 
       expect(button.classList.contains("isSelected")).toBe(false);
-    });
-
-    // MEMO: この仕様は、想定とは異なるのではないか？
-    test("selected属性に空文字列を指定すると、クラスにisSelectedが設定される", async () => {
-      document.body.innerHTML = "<ub-button selected=''></ub-button>";
-
-      const ubButton = getUbButton();
-      const button = ubButton.shadowRoot!.querySelector("button")!;
-
-      expect(button.classList.contains("isSelected")).toBe(true);
     });
 
     test("selected属性を更新すると、更新後の値が反映される", async () => {
@@ -150,6 +148,15 @@ describe("ub-button", () => {
       expect(button.classList.contains("isDisable")).toBe(true);
     });
 
+    test("disabled属性に空文字列を指定すると、クラスにisDisableが設定される", async () => {
+      document.body.innerHTML = "<ub-button disabled></ub-button>";
+
+      const ubButton = getUbButton();
+      const button = ubButton.shadowRoot!.querySelector("button")!;
+
+      expect(button.classList.contains("isDisable")).toBe(true);
+    });
+
     test("disabled属性にfalseを設定すると、クラスにisDisableが設定されない", async () => {
       document.body.innerHTML = "<ub-button disabled='false'></ub-button>";
 
@@ -157,16 +164,6 @@ describe("ub-button", () => {
       const button = ubButton.shadowRoot!.querySelector("button")!;
 
       expect(button.classList.contains("isDisable")).toBe(false);
-    });
-
-    // MEMO: この仕様は、想定とは異なるのではないか？
-    test("disabled属性に空文字列を指定すると、クラスにisDisableが設定される", async () => {
-      document.body.innerHTML = "<ub-button disabled=''></ub-button>";
-
-      const ubButton = getUbButton();
-      const button = ubButton.shadowRoot!.querySelector("button")!;
-
-      expect(button.classList.contains("isDisable")).toBe(true);
     });
 
     test("disabled属性を更新すると、更新後の値が反映される", async () => {

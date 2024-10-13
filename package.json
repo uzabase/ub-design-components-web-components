@@ -9,7 +9,7 @@
     "example": "example"
   },
   "scripts": {
-    "format": "prettier --write '(.storybook|src|stories)/**/*.ts'",
+    "format": "prettier --write '(.storybook|src|stories|tests)/**/*.ts'",
     "typecheck": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",

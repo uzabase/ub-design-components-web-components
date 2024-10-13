@@ -31,7 +31,6 @@
     "@storybook/web-components": "^8.3.4",
     "@storybook/web-components-vite": "^8.3.4",
     "happy-dom": "^15.7.4",
-    "jsdom": "^25.0.1",
     "prettier": "3.2.5",
     "prettier-plugin-organize-imports": "^3.2.4",
     "storybook": "^8.3.4",

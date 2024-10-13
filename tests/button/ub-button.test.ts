@@ -329,8 +329,5 @@ describe("ub-button", () => {
     });
   });
 
-  // MEMO: そもそもどういう仕様？
-  test("クリックするとonclickイベントが発生する", async () => {
-    expect(false).toBe(true);
-  });
+  // TODO: onclickイベントのテストを追加
 });

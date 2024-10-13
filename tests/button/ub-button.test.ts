@@ -223,7 +223,7 @@ describe("ub-button", () => {
       expect(button.classList.contains("type__default")).toBe(true);
     });
 
-    test("無効なtype属性を設定すると、その値は反映されない", async () => {
+    test("無効なtype属性を設定すると、その値は反映されず、デフォルト値が設定される", async () => {
       document.body.innerHTML = "<ub-button type='unknown'></ub-button>";
 
       const ubButton = getUbButton();
@@ -270,7 +270,7 @@ describe("ub-button", () => {
       expect(button.classList.contains("appearance__text")).toBe(true);
     });
 
-    test("無効なappearance属性を設定すると、その値は反映されない", async () => {
+    test("無効なappearance属性を設定すると、その値は反映されず、デフォルト値が設定される", async () => {
       document.body.innerHTML = "<ub-button appearance='unknown'></ub-button>";
 
       const ubButton = getUbButton();
@@ -319,7 +319,7 @@ describe("ub-button", () => {
       expect(button.classList.contains("size__xLarge")).toBe(true);
     });
 
-    test("無効なsize属性を設定すると、その値は反映されない", async () => {
+    test("無効なsize属性を設定すると、その値は反映されず、デフォルト値が設定される", async () => {
       document.body.innerHTML = "<ub-button size='unknown'></ub-button>";
 
       const ubButton = getUbButton();

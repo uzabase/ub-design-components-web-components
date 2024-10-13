@@ -5,6 +5,22 @@ type ButtonType = "default" | "destructive";
 type Appearance = "outline" | "fill" | "text";
 type Size = "medium" | "large" | "xLarge" | "width160" | "width80";
 
+const buttonTypes: ButtonType[] = ["default", "destructive"];
+const appearances: Appearance[] = ["outline", "fill", "text"];
+const sizes: Size[] = ["medium", "large", "xLarge", "width160", "width80"];
+
+function isValidType(value: string): value is ButtonType {
+  return buttonTypes.some((type) => type === value);
+}
+
+function isValidAppearance(value: string): value is Appearance {
+  return appearances.some((appearance) => appearance === value);
+}
+
+function isValidSize(value: string): value is Size {
+  return sizes.some((size) => size === value);
+}
+
 const styles = new CSSStyleSheet();
 styles.replaceSync(resetStyle);
 
@@ -154,13 +170,28 @@ export class UbButton extends HTMLElement {
         this.disabled = newValue === "true" || newValue === "";
         break;
       case "type":
-        this.type = newValue as ButtonType;
+        if (isValidType(newValue)) {
+          this.type = newValue;
+        } else {
+          console.warn(`${newValue}は無効なtype属性です。`);
+          this.type = "default";
+        }
         break;
       case "appearance":
-        this.appearance = newValue as Appearance;
+        if (isValidAppearance(newValue)) {
+          this.appearance = newValue;
+        } else {
+          console.warn(`${newValue}は無効なappearance属性です。`);
+          this.appearance = "outline";
+        }
         break;
       case "size":
-        this.size = newValue as Size;
+        if (isValidSize(newValue)) {
+          this.size = newValue;
+        } else {
+          console.warn(`${newValue}は無効なsize属性です。`);
+          this.size = "medium";
+        }
         break;
     }
   }

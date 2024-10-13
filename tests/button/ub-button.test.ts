@@ -203,7 +203,7 @@ describe("ub-button", () => {
         const button = ubButton.shadowRoot!.querySelector("button")!;
 
         expect(button.classList.contains(className)).toBe(true);
-      }
+      },
     );
 
     test("type属性を設定しない場合、デフォルト値はdefaultになる", async () => {
@@ -250,7 +250,7 @@ describe("ub-button", () => {
         const button = ubButton.shadowRoot!.querySelector("button")!;
 
         expect(button.classList.contains(className)).toBe(true);
-      }
+      },
     );
 
     test("appearance属性を設定しない場合、デフォルト値はoutlineになる", async () => {
@@ -299,7 +299,7 @@ describe("ub-button", () => {
         const button = ubButton.shadowRoot!.querySelector("button")!;
 
         expect(button.classList.contains(className)).toBe(true);
-      }
+      },
     );
 
     test("size属性を設定しない場合、デフォルト値はmediumになる", async () => {

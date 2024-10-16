@@ -1,4 +1,5 @@
 import { describe, expect, test } from "vitest";
+import { getByShadowRole } from "shadow-dom-testing-library";
 
 import { UbButton } from "../../src/components/button/ub-button";
 
@@ -8,35 +9,37 @@ function getUbButton() {
   return document.querySelector("ub-button") as UbButton;
 }
 
+function getButton() {
+  return getByShadowRole(document.body, "button");
+}
+
 describe("ub-button", () => {
   describe("text属性", () => {
     test("text属性を設定すると、その文字列が表示される", async () => {
       document.body.innerHTML = "<ub-button text='Hello, World!'></ub-button>";
 
-      const ubButton = getUbButton();
-      const span = ubButton.shadowRoot!.querySelector("span")!;
+      const button = getButton();
 
-      expect(span.textContent).toBe("Hello, World!");
+      expect(button.textContent).toBe("Hello, World!");
     });
 
     test("text属性を設定しない場合、デフォルト値は空文字になる", async () => {
       document.body.innerHTML = "<ub-button></ub-button>";
 
-      const ubButton = getUbButton();
-      const span = ubButton.shadowRoot!.querySelector("span")!;
+      const button = getButton();
 
-      expect(span.textContent).toBe("");
+      expect(button.textContent).toBe("");
     });
 
     test("text属性を更新すると、更新後の値が反映される", async () => {
       document.body.innerHTML = "<ub-button text='Hello, World!'></ub-button>";
 
       const ubButton = getUbButton();
-      const span = ubButton.shadowRoot!.querySelector("span")!;
+      const button = getButton();
 
       ubButton.setAttribute("text", "Hello, Universe!");
 
-      expect(span.textContent).toBe("Hello, Universe!");
+      expect(button.textContent).toBe("Hello, Universe!");
     });
   });
 
@@ -44,8 +47,7 @@ describe("ub-button", () => {
     test("loading属性にtrueを設定すると、クラスにisLoadingが設定される", async () => {
       document.body.innerHTML = "<ub-button loading='true'></ub-button>";
 
-      const ubButton = getUbButton();
-      const button = ubButton.shadowRoot!.querySelector("button")!;
+      const button = getButton();
 
       expect(button.classList.contains("isLoading")).toBe(true);
     });
@@ -53,8 +55,7 @@ describe("ub-button", () => {
     test("loading属性に空文字列を指定すると、クラスにisLoadingが設定される", async () => {
       document.body.innerHTML = "<ub-button loading></ub-button>";
 
-      const ubButton = getUbButton();
-      const button = ubButton.shadowRoot!.querySelector("button")!;
+      const button = getButton();
 
       expect(button.classList.contains("isLoading")).toBe(true);
     });
@@ -62,8 +63,7 @@ describe("ub-button", () => {
     test("loading属性にfalseを設定すると、クラスにisLoadingが設定されない", async () => {
       document.body.innerHTML = "<ub-button loading='false'></ub-button>";
 
-      const ubButton = getUbButton();
-      const button = ubButton.shadowRoot!.querySelector("button")!;
+      const button = getButton();
 
       expect(button.classList.contains("isLoading")).toBe(false);
     });
@@ -72,7 +72,7 @@ describe("ub-button", () => {
       document.body.innerHTML = "<ub-button loading='true'></ub-button>";
 
       const ubButton = getUbButton();
-      const button = ubButton.shadowRoot!.querySelector("button")!;
+      const button = getButton();
 
       ubButton.setAttribute("loading", "false");
 
@@ -82,8 +82,7 @@ describe("ub-button", () => {
     test("loading属性を指定しない場合、isLoadingクラスは設定されない", async () => {
       document.body.innerHTML = "<ub-button></ub-button>";
 
-      const ubButton = getUbButton();
-      const button = ubButton.shadowRoot!.querySelector("button")!;
+      const button = getButton();
 
       expect(button.classList.contains("isLoading")).toBe(false);
     });
@@ -93,8 +92,7 @@ describe("ub-button", () => {
     test("selected属性にtrueを設定すると、クラスにisSelectedが設定される", async () => {
       document.body.innerHTML = "<ub-button selected='true'></ub-button>";
 
-      const ubButton = getUbButton();
-      const button = ubButton.shadowRoot!.querySelector("button")!;
+      const button = getButton();
 
       expect(button.classList.contains("isSelected")).toBe(true);
     });
@@ -102,8 +100,7 @@ describe("ub-button", () => {
     test("selected属性に空文字列を指定すると、クラスにisSelectedが設定される", async () => {
       document.body.innerHTML = "<ub-button selected></ub-button>";
 
-      const ubButton = getUbButton();
-      const button = ubButton.shadowRoot!.querySelector("button")!;
+      const button = getButton();
 
       expect(button.classList.contains("isSelected")).toBe(true);
     });
@@ -111,8 +108,7 @@ describe("ub-button", () => {
     test("selected属性にfalseを設定すると、クラスにisSelectedが設定されない", async () => {
       document.body.innerHTML = "<ub-button selected='false'></ub-button>";
 
-      const ubButton = getUbButton();
-      const button = ubButton.shadowRoot!.querySelector("button")!;
+      const button = getButton();
 
       expect(button.classList.contains("isSelected")).toBe(false);
     });
@@ -121,7 +117,7 @@ describe("ub-button", () => {
       document.body.innerHTML = "<ub-button selected='true'></ub-button>";
 
       const ubButton = getUbButton();
-      const button = ubButton.shadowRoot!.querySelector("button")!;
+      const button = getButton();
 
       ubButton.setAttribute("selected", "false");
 
@@ -131,8 +127,7 @@ describe("ub-button", () => {
     test("selected属性を指定しない場合、isSelectedクラスは設定されない", async () => {
       document.body.innerHTML = "<ub-button></ub-button>";
 
-      const ubButton = getUbButton();
-      const button = ubButton.shadowRoot!.querySelector("button")!;
+      const button = getButton();
 
       expect(button.classList.contains("isSelected")).toBe(false);
     });
@@ -142,8 +137,7 @@ describe("ub-button", () => {
     test("disabled属性にtrueを設定すると、クラスにisDisableが設定される", async () => {
       document.body.innerHTML = "<ub-button disabled='true'></ub-button>";
 
-      const ubButton = getUbButton();
-      const button = ubButton.shadowRoot!.querySelector("button")!;
+      const button = getButton();
 
       expect(button.classList.contains("isDisable")).toBe(true);
     });
@@ -151,8 +145,7 @@ describe("ub-button", () => {
     test("disabled属性に空文字列を指定すると、クラスにisDisableが設定される", async () => {
       document.body.innerHTML = "<ub-button disabled></ub-button>";
 
-      const ubButton = getUbButton();
-      const button = ubButton.shadowRoot!.querySelector("button")!;
+      const button = getButton();
 
       expect(button.classList.contains("isDisable")).toBe(true);
     });
@@ -160,8 +153,7 @@ describe("ub-button", () => {
     test("disabled属性にfalseを設定すると、クラスにisDisableが設定されない", async () => {
       document.body.innerHTML = "<ub-button disabled='false'></ub-button>";
 
-      const ubButton = getUbButton();
-      const button = ubButton.shadowRoot!.querySelector("button")!;
+      const button = getButton();
 
       expect(button.classList.contains("isDisable")).toBe(false);
     });
@@ -170,7 +162,7 @@ describe("ub-button", () => {
       document.body.innerHTML = "<ub-button disabled='true'></ub-button>";
 
       const ubButton = getUbButton();
-      const button = ubButton.shadowRoot!.querySelector("button")!;
+      const button = getButton();
 
       ubButton.setAttribute("disabled", "false");
 
@@ -180,8 +172,7 @@ describe("ub-button", () => {
     test("disabled属性を指定しない場合、isDisableクラスは設定されない", async () => {
       document.body.innerHTML = "<ub-button></ub-button>";
 
-      const ubButton = getUbButton();
-      const button = ubButton.shadowRoot!.querySelector("button")!;
+      const button = getButton();
 
       expect(button.classList.contains("isDisable")).toBe(false);
     });
@@ -196,8 +187,7 @@ describe("ub-button", () => {
       async (type, className) => {
         document.body.innerHTML = `<ub-button type='${type}'></ub-button>`;
 
-        const ubButton = getUbButton();
-        const button = ubButton.shadowRoot!.querySelector("button")!;
+        const button = getButton();
 
         expect(button.classList.contains(className)).toBe(true);
       },
@@ -206,8 +196,7 @@ describe("ub-button", () => {
     test("type属性を設定しない場合、クラスにデフォルト値のtype__defaultが設定される", async () => {
       document.body.innerHTML = "<ub-button></ub-button>";
 
-      const ubButton = getUbButton();
-      const button = ubButton.shadowRoot!.querySelector("button")!;
+      const button = getButton();
 
       expect(button.classList.contains("type__default")).toBe(true);
     });
@@ -216,7 +205,7 @@ describe("ub-button", () => {
       document.body.innerHTML = "<ub-button type='destructive'></ub-button>";
 
       const ubButton = getUbButton();
-      const button = ubButton.shadowRoot!.querySelector("button")!;
+      const button = getButton();
 
       ubButton.setAttribute("type", "default");
 
@@ -227,8 +216,7 @@ describe("ub-button", () => {
     test("無効なtype属性を設定すると、クラスにデフォルト値のtype__defaultが設定される", async () => {
       document.body.innerHTML = "<ub-button type='unknown'></ub-button>";
 
-      const ubButton = getUbButton();
-      const button = ubButton.shadowRoot!.querySelector("button")!;
+      const button = getButton();
 
       expect(button.classList.contains("type__default")).toBe(true);
     });
@@ -244,8 +232,7 @@ describe("ub-button", () => {
       async (appearance, className) => {
         document.body.innerHTML = `<ub-button appearance='${appearance}'></ub-button>`;
 
-        const ubButton = getUbButton();
-        const button = ubButton.shadowRoot!.querySelector("button")!;
+        const button = getButton();
 
         expect(button.classList.contains(className)).toBe(true);
       },
@@ -254,8 +241,7 @@ describe("ub-button", () => {
     test("appearance属性を設定しない場合、クラスにデフォルト値のappearance__outlineが設定される", async () => {
       document.body.innerHTML = "<ub-button></ub-button>";
 
-      const ubButton = getUbButton();
-      const button = ubButton.shadowRoot!.querySelector("button")!;
+      const button = getButton();
 
       expect(button.classList.contains("appearance__outline")).toBe(true);
     });
@@ -264,7 +250,7 @@ describe("ub-button", () => {
       document.body.innerHTML = "<ub-button appearance='fill'></ub-button>";
 
       const ubButton = getUbButton();
-      const button = ubButton.shadowRoot!.querySelector("button")!;
+      const button = getButton();
 
       ubButton.setAttribute("appearance", "text");
 
@@ -275,8 +261,7 @@ describe("ub-button", () => {
     test("無効なappearance属性を設定すると、クラスにデフォルト値のappearance__outlineが設定される", async () => {
       document.body.innerHTML = "<ub-button appearance='unknown'></ub-button>";
 
-      const ubButton = getUbButton();
-      const button = ubButton.shadowRoot!.querySelector("button")!;
+      const button = getButton();
 
       expect(button.classList.contains("appearance__outline")).toBe(true);
     });
@@ -294,8 +279,7 @@ describe("ub-button", () => {
       async (size, className) => {
         document.body.innerHTML = `<ub-button size='${size}'></ub-button>`;
 
-        const ubButton = getUbButton();
-        const button = ubButton.shadowRoot!.querySelector("button")!;
+        const button = getButton();
 
         expect(button.classList.contains(className)).toBe(true);
       },
@@ -304,8 +288,7 @@ describe("ub-button", () => {
     test("size属性を設定しない場合、クラスにデフォルト値のsize__mediumが設定される", async () => {
       document.body.innerHTML = "<ub-button></ub-button>";
 
-      const ubButton = getUbButton();
-      const button = ubButton.shadowRoot!.querySelector("button")!;
+      const button = getButton();
 
       expect(button.classList.contains("size__medium")).toBe(true);
     });
@@ -314,7 +297,7 @@ describe("ub-button", () => {
       document.body.innerHTML = "<ub-button size='large'></ub-button>";
 
       const ubButton = getUbButton();
-      const button = ubButton.shadowRoot!.querySelector("button")!;
+      const button = getButton();
 
       ubButton.setAttribute("size", "xLarge");
 
@@ -325,8 +308,7 @@ describe("ub-button", () => {
     test("無効なsize属性を設定すると、クラスにデフォルト値のsize__mediumが設定される", async () => {
       document.body.innerHTML = "<ub-button size='unknown'></ub-button>";
 
-      const ubButton = getUbButton();
-      const button = ubButton.shadowRoot!.querySelector("button")!;
+      const button = getButton();
 
       expect(button.classList.contains("size__medium")).toBe(true);
     });

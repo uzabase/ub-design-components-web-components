@@ -53,11 +53,10 @@ export class UbCheckboxText extends HTMLElement {
 
   constructor() {
     super();
-    this.attachShadow({ mode: "open" });
-    this.shadowRoot.adoptedStyleSheets = [
-      ...this.shadowRoot.adoptedStyleSheets,
-      styles,
-    ];
+
+    const shadowRoot = this.attachShadow({ mode: "open" });
+    shadowRoot.adoptedStyleSheets = [...shadowRoot.adoptedStyleSheets, styles];
+
     this.internals = this.attachInternals();
   }
 
@@ -73,7 +72,7 @@ export class UbCheckboxText extends HTMLElement {
     checkMarkElement.appendChild(this.#inputElement);
     labelElement.appendChild(checkMarkElement);
     labelElement.appendChild(this.#textElement);
-    this.shadowRoot.appendChild(labelElement);
+    this.shadowRoot?.appendChild(labelElement);
   }
 
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {

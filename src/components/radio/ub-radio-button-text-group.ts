@@ -6,6 +6,12 @@ styles.replaceSync(resetStyle);
 
 type Direction = "horizontal" | "vertical";
 
+const directions: Direction[] = ["horizontal", "vertical"];
+
+function isValidDirection(value: string): value is Direction {
+  return directions.some((direction) => direction === value);
+}
+
 type Data = {
   text: string;
   value?: string;
@@ -14,8 +20,8 @@ type Data = {
 };
 
 export class UbRadioButtonTextGroup extends HTMLElement {
-  #name: string;
-  #direction: string;
+  #name: string = "";
+  #direction: Direction = "horizontal";
   #data: Data[] = [];
   #innerElement = document.createElement("ul");
   #inputElements: HTMLInputElement[] = [];
@@ -53,18 +59,19 @@ export class UbRadioButtonTextGroup extends HTMLElement {
 
   constructor() {
     super();
-    this.attachShadow({ mode: "open" });
-    this.shadowRoot.adoptedStyleSheets = [
-      ...this.shadowRoot.adoptedStyleSheets,
-      styles,
-    ];
+
+    const shadowRoot = this.attachShadow({ mode: "open" });
+    shadowRoot.adoptedStyleSheets = [...shadowRoot.adoptedStyleSheets, styles];
+
     this.internals = this.attachInternals();
+
+    this.direction = "horizontal";
   }
 
   connectedCallback() {
     this.#innerElement.classList.add("base");
     this.#innerElement.setAttribute("role", "radiogroup");
-    this.shadowRoot.appendChild(this.#innerElement);
+    this.shadowRoot?.appendChild(this.#innerElement);
     this.#renderRadioButtons();
   }
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
@@ -74,7 +81,11 @@ export class UbRadioButtonTextGroup extends HTMLElement {
         this.name = newValue;
         break;
       case "direction":
-        this.direction = newValue as Direction;
+        if (isValidDirection(newValue)) {
+          this.direction = newValue;
+        } else {
+          this.direction = "horizontal";
+        }
         break;
       case "json-data":
         if (newValue === null) {
@@ -104,10 +115,10 @@ export class UbRadioButtonTextGroup extends HTMLElement {
       ListElement.classList.add("item");
       inputElement.setAttribute("type", "radio");
       inputElement.setAttribute("value", value);
-      inputElement.setAttribute("name", this.name);
+      if (this.name !== "") inputElement.setAttribute("name", this.name);
       inputElement.setAttribute("id", "radioButton" + index);
-      inputElement.checked = data.checked;
-      inputElement.disabled = data.disabled;
+      inputElement.checked = data.checked ?? false;
+      inputElement.disabled = data.disabled ?? false;
       if (data.checked) this.internals.setFormValue(value);
       inputElement.classList.add("input");
       inputElement.addEventListener("change", (e) => this.#handleOnChange(e));

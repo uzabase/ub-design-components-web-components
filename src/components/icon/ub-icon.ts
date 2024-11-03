@@ -6,13 +6,19 @@ styles.replaceSync(resetStyle);
 
 type Size = "small" | "medium";
 
+const sizes: Size[] = ["small", "medium"];
+
+function isValidSize(value: string): value is Size {
+  return sizes.some((size) => size === value);
+}
+
 export class UbIcon extends HTMLElement {
-  #size: Size;
+  #size: Size = "medium";
 
   #svgElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 
   set type(value: string) {
-    this.#svgElement.innerHTML = this.paths[value];
+    this.#svgElement.innerHTML = value in this.paths ? this.paths[value] : "";
   }
 
   set text(value: string) {
@@ -36,23 +42,22 @@ export class UbIcon extends HTMLElement {
     return ["type", "text", "size"];
   }
 
-  paths: Object;
+  paths: Record<string, string> = {};
 
   constructor() {
     super();
-    this.attachShadow({ mode: "open" });
-    this.shadowRoot.adoptedStyleSheets = [
-      ...this.shadowRoot.adoptedStyleSheets,
-      styles,
-    ];
+
+    const shadowRoot = this.attachShadow({ mode: "open" });
+    shadowRoot.adoptedStyleSheets = [...shadowRoot.adoptedStyleSheets, styles];
+
+    this.size = "medium";
   }
 
   connectedCallback() {
-    if (typeof this.size === "undefined") this.size = "medium";
     this.#svgElement.setAttribute("role", "img");
     this.#svgElement.setAttribute("viewBox", "0 0 24 24");
     this.#svgElement.classList.add("icon");
-    this.shadowRoot.appendChild(this.#svgElement);
+    this.shadowRoot?.appendChild(this.#svgElement);
   }
 
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
@@ -65,7 +70,12 @@ export class UbIcon extends HTMLElement {
         this.text = newValue;
         break;
       case "size":
-        this.size = newValue as Size;
+        if (isValidSize(newValue)) {
+          this.size = newValue;
+        } else {
+          console.warn(`${newValue}は無効なsize属性です。`);
+          this.size = "medium";
+        }
         break;
     }
   }

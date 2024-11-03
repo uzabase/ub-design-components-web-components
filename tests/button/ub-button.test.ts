@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { getByShadowRole } from "shadow-dom-testing-library";
+import { screen } from "shadow-dom-testing-library";
 
 import { UbButton } from "../../src/components/button/ub-button";
 
@@ -10,7 +10,7 @@ function getUbButton() {
 }
 
 function getButton() {
-  return getByShadowRole(document.body, "button");
+  return screen.getByShadowRole("button");
 }
 
 describe("ub-button", () => {
@@ -52,7 +52,7 @@ describe("ub-button", () => {
       expect(button.classList.contains("isLoading")).toBe(true);
     });
 
-    test("loading属性に空文字列を指定すると、クラスにisLoadingが設定される", async () => {
+    test("loading属性に空文字列を設定すると、クラスにisLoadingが設定される", async () => {
       document.body.innerHTML = "<ub-button loading></ub-button>";
 
       const button = getButton();
@@ -79,7 +79,7 @@ describe("ub-button", () => {
       expect(button.classList.contains("isLoading")).toBe(false);
     });
 
-    test("loading属性を指定しない場合、isLoadingクラスは設定されない", async () => {
+    test("loading属性を設定しない場合、isLoadingクラスは設定されない", async () => {
       document.body.innerHTML = "<ub-button></ub-button>";
 
       const button = getButton();
@@ -97,7 +97,7 @@ describe("ub-button", () => {
       expect(button.classList.contains("isSelected")).toBe(true);
     });
 
-    test("selected属性に空文字列を指定すると、クラスにisSelectedが設定される", async () => {
+    test("selected属性に空文字列を設定すると、クラスにisSelectedが設定される", async () => {
       document.body.innerHTML = "<ub-button selected></ub-button>";
 
       const button = getButton();
@@ -124,7 +124,7 @@ describe("ub-button", () => {
       expect(button.classList.contains("isSelected")).toBe(false);
     });
 
-    test("selected属性を指定しない場合、isSelectedクラスは設定されない", async () => {
+    test("selected属性を設定しない場合、isSelectedクラスは設定されない", async () => {
       document.body.innerHTML = "<ub-button></ub-button>";
 
       const button = getButton();
@@ -142,7 +142,7 @@ describe("ub-button", () => {
       expect(button.classList.contains("isDisable")).toBe(true);
     });
 
-    test("disabled属性に空文字列を指定すると、クラスにisDisableが設定される", async () => {
+    test("disabled属性に空文字列を設定すると、クラスにisDisableが設定される", async () => {
       document.body.innerHTML = "<ub-button disabled></ub-button>";
 
       const button = getButton();
@@ -169,7 +169,7 @@ describe("ub-button", () => {
       expect(button.classList.contains("isDisable")).toBe(false);
     });
 
-    test("disabled属性を指定しない場合、isDisableクラスは設定されない", async () => {
+    test("disabled属性を設定しない場合、isDisableクラスは設定されない", async () => {
       document.body.innerHTML = "<ub-button></ub-button>";
 
       const button = getButton();
@@ -214,7 +214,7 @@ describe("ub-button", () => {
     });
 
     test("無効なtype属性を設定すると、クラスにデフォルト値のtype__defaultが設定される", async () => {
-      document.body.innerHTML = "<ub-button type='unknown'></ub-button>";
+      document.body.innerHTML = "<ub-button type='invalid'></ub-button>";
 
       const button = getButton();
 
@@ -259,7 +259,7 @@ describe("ub-button", () => {
     });
 
     test("無効なappearance属性を設定すると、クラスにデフォルト値のappearance__outlineが設定される", async () => {
-      document.body.innerHTML = "<ub-button appearance='unknown'></ub-button>";
+      document.body.innerHTML = "<ub-button appearance='invalid'></ub-button>";
 
       const button = getButton();
 
@@ -306,7 +306,7 @@ describe("ub-button", () => {
     });
 
     test("無効なsize属性を設定すると、クラスにデフォルト値のsize__mediumが設定される", async () => {
-      document.body.innerHTML = "<ub-button size='unknown'></ub-button>";
+      document.body.innerHTML = "<ub-button size='invalid'></ub-button>";
 
       const button = getButton();
 

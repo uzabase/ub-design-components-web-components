@@ -15,7 +15,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "build": "tsc -p tsconfig-build.json",
-    "test": "vitest"
+    "test": "vitest",
+    "prepare": "npm run build"
   },
   "files": [
     "dist"

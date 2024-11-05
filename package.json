@@ -16,7 +16,7 @@
     "build-storybook": "storybook build",
     "build": "tsc -p tsconfig-build.json",
     "test": "vitest",
-    "postinstall": "npm run build"
+    "postinstall": "tsc -p tsconfig-build.json"
   },
   "files": [
     "dist"

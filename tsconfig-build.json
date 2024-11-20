@@ -15,5 +15,5 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "exclude": ["stories", "tests", "dist"]
+  "include": ["src"],
 }

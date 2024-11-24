@@ -12,6 +12,18 @@ var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (
 var _UbButton_instances, _UbButton_loading, _UbButton_selected, _UbButton_disabled, _UbButton_type, _UbButton_appearance, _UbButton_size, _UbButton_buttonDisabledUpdate;
 // @ts-ignore
 import resetStyle from "@acab/reset.css?inline" assert { type: "css" };
+const buttonTypes = ["default", "destructive"];
+const appearances = ["outline", "fill", "text"];
+const sizes = ["medium", "large", "xLarge", "width160", "width80"];
+function isValidType(value) {
+    return buttonTypes.some((type) => type === value);
+}
+function isValidAppearance(value) {
+    return appearances.some((appearance) => appearance === value);
+}
+function isValidSize(value) {
+    return sizes.some((size) => size === value);
+}
 const styles = new CSSStyleSheet();
 styles.replaceSync(resetStyle);
 export class UbButton extends HTMLElement {
@@ -107,37 +119,28 @@ export class UbButton extends HTMLElement {
     constructor() {
         super();
         _UbButton_instances.add(this);
-        _UbButton_loading.set(this, void 0);
-        _UbButton_selected.set(this, void 0);
-        _UbButton_disabled.set(this, void 0);
-        _UbButton_type.set(this, void 0);
-        _UbButton_appearance.set(this, void 0);
-        _UbButton_size.set(this, void 0);
+        _UbButton_loading.set(this, false);
+        _UbButton_selected.set(this, false);
+        _UbButton_disabled.set(this, false);
+        _UbButton_type.set(this, "default");
+        _UbButton_appearance.set(this, "outline");
+        _UbButton_size.set(this, "medium");
         this.buttonElement = document.createElement("button");
         this.textElement = document.createElement("span");
-        this.attachShadow({ mode: "open" });
-        this.shadowRoot.adoptedStyleSheets = [
-            ...this.shadowRoot.adoptedStyleSheets,
-            styles,
-        ];
+        const shadowRoot = this.attachShadow({ mode: "open" });
+        shadowRoot.adoptedStyleSheets = [...shadowRoot.adoptedStyleSheets, styles];
         this.buttonElement.classList.add("base");
         this.textElement.classList.add("base__text");
         this.buttonElement.appendChild(this.textElement);
+        this.loading = false;
+        this.selected = false;
+        this.disabled = false;
+        this.type = "default";
+        this.appearance = "outline";
+        this.size = "medium";
     }
     connectedCallback() {
-        if (typeof this.loading === "undefined")
-            this.loading = false;
-        if (typeof this.selected === "undefined")
-            this.selected = false;
-        if (typeof this.disabled === "undefined")
-            this.disabled = false;
-        if (typeof this.type === "undefined")
-            this.type = "default";
-        if (typeof this.appearance === "undefined")
-            this.appearance = "outline";
-        if (typeof this.size === "undefined")
-            this.size = "medium";
-        this.shadowRoot.appendChild(this.buttonElement);
+        this.shadowRoot?.appendChild(this.buttonElement);
     }
     attributeChangedCallback(name, oldValue, newValue) {
         if (oldValue === newValue)
@@ -156,13 +159,31 @@ export class UbButton extends HTMLElement {
                 this.disabled = newValue === "true" || newValue === "";
                 break;
             case "type":
-                this.type = newValue;
+                if (isValidType(newValue)) {
+                    this.type = newValue;
+                }
+                else {
+                    console.warn(`${newValue}は無効なtype属性です。`);
+                    this.type = "default";
+                }
                 break;
             case "appearance":
-                this.appearance = newValue;
+                if (isValidAppearance(newValue)) {
+                    this.appearance = newValue;
+                }
+                else {
+                    console.warn(`${newValue}は無効なappearance属性です。`);
+                    this.appearance = "outline";
+                }
                 break;
             case "size":
-                this.size = newValue;
+                if (isValidSize(newValue)) {
+                    this.size = newValue;
+                }
+                else {
+                    console.warn(`${newValue}は無効なsize属性です。`);
+                    this.size = "medium";
+                }
                 break;
         }
     }

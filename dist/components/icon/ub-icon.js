@@ -14,9 +14,13 @@ var _UbIcon_size, _UbIcon_svgElement;
 import resetStyle from "@acab/reset.css?inline" assert { type: "css" };
 const styles = new CSSStyleSheet();
 styles.replaceSync(resetStyle);
+const sizes = ["small", "medium"];
+function isValidSize(value) {
+    return sizes.some((size) => size === value);
+}
 export class UbIcon extends HTMLElement {
     set type(value) {
-        __classPrivateFieldGet(this, _UbIcon_svgElement, "f").innerHTML = this.paths[value];
+        __classPrivateFieldGet(this, _UbIcon_svgElement, "f").innerHTML = value in this.paths ? this.paths[value] : "";
     }
     set text(value) {
         __classPrivateFieldGet(this, _UbIcon_svgElement, "f").setAttribute("aria-label", value);
@@ -38,21 +42,18 @@ export class UbIcon extends HTMLElement {
     }
     constructor() {
         super();
-        _UbIcon_size.set(this, void 0);
+        _UbIcon_size.set(this, "medium");
         _UbIcon_svgElement.set(this, document.createElementNS("http://www.w3.org/2000/svg", "svg"));
-        this.attachShadow({ mode: "open" });
-        this.shadowRoot.adoptedStyleSheets = [
-            ...this.shadowRoot.adoptedStyleSheets,
-            styles,
-        ];
+        this.paths = {};
+        const shadowRoot = this.attachShadow({ mode: "open" });
+        shadowRoot.adoptedStyleSheets = [...shadowRoot.adoptedStyleSheets, styles];
+        this.size = "medium";
     }
     connectedCallback() {
-        if (typeof this.size === "undefined")
-            this.size = "medium";
         __classPrivateFieldGet(this, _UbIcon_svgElement, "f").setAttribute("role", "img");
         __classPrivateFieldGet(this, _UbIcon_svgElement, "f").setAttribute("viewBox", "0 0 24 24");
         __classPrivateFieldGet(this, _UbIcon_svgElement, "f").classList.add("icon");
-        this.shadowRoot.appendChild(__classPrivateFieldGet(this, _UbIcon_svgElement, "f"));
+        this.shadowRoot?.appendChild(__classPrivateFieldGet(this, _UbIcon_svgElement, "f"));
     }
     attributeChangedCallback(name, oldValue, newValue) {
         if (oldValue === newValue)
@@ -65,7 +66,13 @@ export class UbIcon extends HTMLElement {
                 this.text = newValue;
                 break;
             case "size":
-                this.size = newValue;
+                if (isValidSize(newValue)) {
+                    this.size = newValue;
+                }
+                else {
+                    console.warn(`${newValue}は無効なsize属性です。`);
+                    this.size = "medium";
+                }
                 break;
         }
     }

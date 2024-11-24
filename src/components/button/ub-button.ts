@@ -144,7 +144,7 @@ export class UbButton extends HTMLElement {
 
     this.loading = false;
     this.selected = false;
-    this.disabled = true;
+    this.disabled = false;
     this.type = "default";
     this.appearance = "outline";
     this.size = "medium";

@@ -7,15 +7,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: git branch
-      # - uses: actions/setup-node@v4
-      #   with:
-      #     node-version: 20
-      # - run: npm ci
-      # - run: npm run build
-      # - run: git config --local user.name "GitHub Action"
-      # - run: git config --local user.email "action@github.com"
-      # - run: git add dist
-      # - run: git commit -m "distディレクトリを更新"
-      # - run: git pull
-      # - run: git push
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npm run build
+      - run: git config --local user.name "GitHub Action"
+      - run: git config --local user.email "action@github.com"
+      - run: git add dist
+      - run: git commit -m "distディレクトリを更新"
+      - run: git push

@@ -25,7 +25,7 @@ const data = [
   },
 ];
 
-const meta: Meta = {
+const meta = {
   component: "ub-radio-button-text-group",
   argTypes: {
     name: { type: "string" },
@@ -41,12 +41,14 @@ const meta: Meta = {
     data: data,
     onchange: action("onchange"),
   },
-};
+} satisfies Meta<UbRadioButtonTextGroup>;
+
 export default meta;
+type Story = StoryObj<UbRadioButtonTextGroup>;
 
-type Story = StoryObj;
-
-export const Basic: Story = {};
+export const Basic: Story = {
+  tags: ["!dev-only"],
+};
 
 export const Attribute: Story = {
   args: {

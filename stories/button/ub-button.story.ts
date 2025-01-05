@@ -5,7 +5,7 @@ import { html } from "lit";
 
 customElements.get("ub-button") || customElements.define("ub-button", UbButton);
 
-const meta: Meta = {
+const meta = {
   component: "ub-button",
   argTypes: {
     text: { type: "string" },
@@ -38,13 +38,15 @@ const meta: Meta = {
     disabled: false,
     onclick: action("onclick"),
   },
-};
+} satisfies Meta<UbButton>;
+
 export default meta;
+type Story = StoryObj<UbButton>;
 
-type Story = StoryObj;
-
-export const Basic: Story = {};
+export const Basic: Story = {
+  tags: ["!dev-only"],
+};
 
 export const Attribute: Story = {
-  decorators: [() => html` <ub-button text="text"></ub-button> `],
+  decorators: [() => html`<ub-button text="text"></ub-button>`],
 };

@@ -7,7 +7,7 @@ import { UbCheckboxText } from "../../src";
 customElements.get("ub-checkbox-text") ||
   customElements.define("ub-checkbox-text", UbCheckboxText);
 
-const meta: Meta = {
+const meta = {
   component: "ub-checkbox-text",
   argTypes: {
     text: { type: "string" },
@@ -29,12 +29,14 @@ const meta: Meta = {
     disabled: false,
     onchange: action("onchange"),
   },
-};
+} satisfies Meta<UbCheckboxText>;
+
 export default meta;
+type Story = StoryObj<UbCheckboxText>;
 
-type Story = StoryObj;
-
-export const Basic: Story = {};
+export const Basic: Story = {
+  tags: ["!dev-only"],
+};
 
 export const Form: Story = {
   decorators: [

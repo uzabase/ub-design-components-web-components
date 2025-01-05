@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/web-components";
 
 customElements.get("ub-icon") || customElements.define("ub-icon", UbIcon);
 
-const meta: Meta = {
+const meta = {
   component: "ub-icon",
   render: (params) => {
     const el = document.createElement("ub-icon");
@@ -31,9 +31,11 @@ const meta: Meta = {
     type: "edit",
     size: "medium",
   },
-};
+} satisfies Meta<UbIcon>;
+
 export default meta;
+type Story = StoryObj<UbIcon>;
 
-type Story = StoryObj;
-
-export const Basic: Story = {};
+export const Basic: Story = {
+  tags: ["!dev-only"],
+};

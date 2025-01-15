@@ -1,5 +1,5 @@
-import { describe, expect, test } from "vitest";
 import { screen } from "shadow-dom-testing-library";
+import { describe, expect, test } from "vitest";
 
 import { UbButton } from "../../src/components/button/ub-button";
 

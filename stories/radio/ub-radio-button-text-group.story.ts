@@ -1,10 +1,10 @@
-import { UbRadioButtonTextGroup } from "../../src/components/radio/ub-radio-button-text-group";
-import type { Meta, StoryObj } from "@storybook/web-components";
 import { action } from "@storybook/addon-actions";
+import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 
-customElements.get("ub-radio-button-text-group") ||
-  customElements.define("ub-radio-button-text-group", UbRadioButtonTextGroup);
+import { UbRadioButtonTextGroup } from "../../src/components/radio/ub-radio-button-text-group";
+
+customElements.define("ub-radio-button-text-group", UbRadioButtonTextGroup);
 
 const data = [
   {

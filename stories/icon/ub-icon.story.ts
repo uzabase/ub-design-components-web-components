@@ -1,7 +1,8 @@
-import { UbIcon } from "../../src/components/icon/ub-icon";
 import type { Meta, StoryObj } from "@storybook/web-components";
 
-customElements.get("ub-icon") || customElements.define("ub-icon", UbIcon);
+import { UbIcon } from "../../src/components/icon/ub-icon";
+
+customElements.define("ub-icon", UbIcon);
 
 const meta = {
   component: "ub-icon",

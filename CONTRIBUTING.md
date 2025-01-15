@@ -77,6 +77,7 @@ input系のコンポーネントについては、フォーム内での振る舞
 このリポジトリでは、[GitHub Actions](https://github.com/features/actions)を利用して以下のようなチェックを行っています。
 
 - [Prettier](https://prettier.io/)によるコードのフォーマットチェック
+- [ESLint](https://eslint.org/)によるコードのリントチェック
 - TypeScriptコードのコンパイルチェック
 - [Vitest](https://vitest.dev/)によるユニットテスト
 

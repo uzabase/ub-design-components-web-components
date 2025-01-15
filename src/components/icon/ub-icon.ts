@@ -1,5 +1,4 @@
-// @ts-ignore
-import resetStyle from "@acab/reset.css?inline" assert { type: "css" };
+import resetStyle from "@acab/reset.css?inline";
 
 const styles = new CSSStyleSheet();
 styles.replaceSync(resetStyle);

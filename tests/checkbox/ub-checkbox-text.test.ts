@@ -1,5 +1,5 @@
-import { describe, expect, test } from "vitest";
 import { screen } from "shadow-dom-testing-library";
+import { describe, expect, test } from "vitest";
 
 import { UbCheckboxText } from "../../src/components/checkbox/ub-checkbox-text";
 

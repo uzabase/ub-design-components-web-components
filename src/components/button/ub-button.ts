@@ -1,5 +1,4 @@
-// @ts-ignore
-import resetStyle from "@acab/reset.css?inline" assert { type: "css" };
+import resetStyle from "@acab/reset.css?inline";
 
 type ButtonType = "default" | "destructive";
 type Appearance = "outline" | "fill" | "text";
@@ -45,9 +44,13 @@ export class UbButton extends HTMLElement {
   set loading(value: boolean) {
     const button = this.buttonElement;
     this.#loading = value;
-    value
-      ? button.classList.add("isLoading")
-      : button.classList.remove("isLoading");
+
+    if (value) {
+      button.classList.add("isLoading");
+    } else {
+      button.classList.remove("isLoading");
+    }
+
     this.#buttonDisabledUpdate();
   }
 
@@ -57,9 +60,12 @@ export class UbButton extends HTMLElement {
   set selected(value: boolean) {
     const button = this.buttonElement;
     this.#selected = value;
-    value
-      ? button.classList.add("isSelected")
-      : button.classList.remove("isSelected");
+
+    if (value) {
+      button.classList.add("isSelected");
+    } else {
+      button.classList.remove("isSelected");
+    }
   }
 
   get disabled() {
@@ -68,9 +74,13 @@ export class UbButton extends HTMLElement {
   set disabled(value: boolean) {
     const button = this.buttonElement;
     this.#disabled = value;
-    value
-      ? button.classList.add("isDisable")
-      : button.classList.remove("isDisable");
+
+    if (value) {
+      button.classList.add("isDisable");
+    } else {
+      button.classList.remove("isDisable");
+    }
+
     this.#buttonDisabledUpdate();
   }
 

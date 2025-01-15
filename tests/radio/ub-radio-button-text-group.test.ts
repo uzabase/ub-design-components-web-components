@@ -1,9 +1,9 @@
-import { describe, expect, test } from "vitest";
 import {
-  screen,
   getByShadowRole,
   queryByShadowText,
+  screen,
 } from "shadow-dom-testing-library";
+import { describe, expect, test } from "vitest";
 
 import { UbRadioButtonTextGroup } from "../../src/components/radio/ub-radio-button-text-group";
 

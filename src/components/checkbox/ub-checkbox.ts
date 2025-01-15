@@ -1,5 +1,4 @@
-// @ts-ignore
-import resetStyle from "@acab/reset.css?inline" assert { type: "css" };
+import resetStyle from "@acab/reset.css?inline";
 
 const styles = new CSSStyleSheet();
 styles.replaceSync(resetStyle);
@@ -23,7 +22,12 @@ export class UbCheckbox extends HTMLElement {
     return this.#inputElement.checked;
   }
   set checked(value: boolean) {
-    value ? this.setAttribute("checked", "") : this.removeAttribute("checked");
+    if (value) {
+      this.setAttribute("checked", "");
+    } else {
+      this.removeAttribute("checked");
+    }
+
     this.#inputElement.checked = value;
     this.internals.setFormValue(value ? this.value : null);
   }
@@ -94,7 +98,6 @@ export class UbCheckbox extends HTMLElement {
   }
 
   #handleOnChange() {
-    this.checked = this.checked;
     this.dispatchEvent(
       new CustomEvent("change", {
         bubbles: true,

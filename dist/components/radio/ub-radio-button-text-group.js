@@ -10,8 +10,7 @@ var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (
     return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 };
 var _UbRadioButtonTextGroup_instances, _UbRadioButtonTextGroup_name, _UbRadioButtonTextGroup_direction, _UbRadioButtonTextGroup_data, _UbRadioButtonTextGroup_innerElement, _UbRadioButtonTextGroup_inputElements, _UbRadioButtonTextGroup_renderRadioButtons, _UbRadioButtonTextGroup_handleOnChange;
-// @ts-ignore
-import resetStyle from "@acab/reset.css?inline" assert { type: "css" };
+import resetStyle from "@acab/reset.css?inline";
 const styles = new CSSStyleSheet();
 styles.replaceSync(resetStyle);
 const directions = ["horizontal", "vertical"];

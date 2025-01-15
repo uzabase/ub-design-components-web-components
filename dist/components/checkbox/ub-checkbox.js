@@ -4,8 +4,7 @@ var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (
     return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 };
 var _UbCheckbox_instances, _UbCheckbox_inputElement, _UbCheckbox_handleOnChange;
-// @ts-ignore
-import resetStyle from "@acab/reset.css?inline" assert { type: "css" };
+import resetStyle from "@acab/reset.css?inline";
 const styles = new CSSStyleSheet();
 styles.replaceSync(resetStyle);
 export class UbCheckbox extends HTMLElement {
@@ -23,7 +22,12 @@ export class UbCheckbox extends HTMLElement {
         return __classPrivateFieldGet(this, _UbCheckbox_inputElement, "f").checked;
     }
     set checked(value) {
-        value ? this.setAttribute("checked", "") : this.removeAttribute("checked");
+        if (value) {
+            this.setAttribute("checked", "");
+        }
+        else {
+            this.removeAttribute("checked");
+        }
         __classPrivateFieldGet(this, _UbCheckbox_inputElement, "f").checked = value;
         this.internals.setFormValue(value ? this.value : null);
     }
@@ -85,7 +89,6 @@ export class UbCheckbox extends HTMLElement {
     }
 }
 _UbCheckbox_inputElement = new WeakMap(), _UbCheckbox_instances = new WeakSet(), _UbCheckbox_handleOnChange = function _UbCheckbox_handleOnChange() {
-    this.checked = this.checked;
     this.dispatchEvent(new CustomEvent("change", {
         bubbles: true,
         composed: true,

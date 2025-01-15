@@ -10,8 +10,7 @@ var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (
     return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 };
 var _UbButton_instances, _UbButton_loading, _UbButton_selected, _UbButton_disabled, _UbButton_type, _UbButton_appearance, _UbButton_size, _UbButton_buttonDisabledUpdate;
-// @ts-ignore
-import resetStyle from "@acab/reset.css?inline" assert { type: "css" };
+import resetStyle from "@acab/reset.css?inline";
 const buttonTypes = ["default", "destructive"];
 const appearances = ["outline", "fill", "text"];
 const sizes = ["medium", "large", "xLarge", "width160", "width80"];
@@ -36,9 +35,12 @@ export class UbButton extends HTMLElement {
     set loading(value) {
         const button = this.buttonElement;
         __classPrivateFieldSet(this, _UbButton_loading, value, "f");
-        value
-            ? button.classList.add("isLoading")
-            : button.classList.remove("isLoading");
+        if (value) {
+            button.classList.add("isLoading");
+        }
+        else {
+            button.classList.remove("isLoading");
+        }
         __classPrivateFieldGet(this, _UbButton_instances, "m", _UbButton_buttonDisabledUpdate).call(this);
     }
     get selected() {
@@ -47,9 +49,12 @@ export class UbButton extends HTMLElement {
     set selected(value) {
         const button = this.buttonElement;
         __classPrivateFieldSet(this, _UbButton_selected, value, "f");
-        value
-            ? button.classList.add("isSelected")
-            : button.classList.remove("isSelected");
+        if (value) {
+            button.classList.add("isSelected");
+        }
+        else {
+            button.classList.remove("isSelected");
+        }
     }
     get disabled() {
         return __classPrivateFieldGet(this, _UbButton_disabled, "f");
@@ -57,9 +62,12 @@ export class UbButton extends HTMLElement {
     set disabled(value) {
         const button = this.buttonElement;
         __classPrivateFieldSet(this, _UbButton_disabled, value, "f");
-        value
-            ? button.classList.add("isDisable")
-            : button.classList.remove("isDisable");
+        if (value) {
+            button.classList.add("isDisable");
+        }
+        else {
+            button.classList.remove("isDisable");
+        }
         __classPrivateFieldGet(this, _UbButton_instances, "m", _UbButton_buttonDisabledUpdate).call(this);
     }
     get type() {

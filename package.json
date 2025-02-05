@@ -29,11 +29,11 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
-    "@storybook/addon-essentials": "^8.5.2",
-    "@storybook/blocks": "^8.5.2",
-    "@storybook/web-components": "^8.5.2",
-    "@storybook/web-components-vite": "^8.5.2",
-    "@vitest/browser": "^3.0.4",
+    "@storybook/addon-essentials": "^8.5.3",
+    "@storybook/blocks": "^8.5.3",
+    "@storybook/web-components": "^8.5.3",
+    "@storybook/web-components-vite": "^8.5.3",
+    "@vitest/browser": "^3.0.5",
     "eslint": "^9.19.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-import": "^2.31.0",
@@ -42,14 +42,14 @@
     "eslint-plugin-wc": "^2.2.0",
     "globals": "^15.14.0",
     "lit": "^3.2.1",
-    "playwright": "^1.50.0",
+    "playwright": "^1.50.1",
     "prettier": "3.4.2",
     "prettier-plugin-organize-imports": "^4.1.0",
     "rimraf": "^6.0.1",
     "shadow-dom-testing-library": "^1.11.3",
-    "storybook": "^8.5.2",
+    "storybook": "^8.5.3",
     "typescript": "^5.7.3",
-    "typescript-eslint": "^8.21.0",
-    "vitest": "^3.0.4"
+    "typescript-eslint": "^8.23.0",
+    "vitest": "^3.0.5"
   }
 }

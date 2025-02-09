@@ -152,7 +152,7 @@ export class UbButton extends HTMLElement {
 
   connectedCallback() {
     const slotElement = document.createElement("slot");
-    this.textElement.appendChild(slotElement)
+    this.textElement.appendChild(slotElement);
     this.buttonElement.appendChild(this.textElement);
     this.shadowRoot!.appendChild(this.buttonElement);
   }

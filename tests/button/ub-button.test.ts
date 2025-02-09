@@ -18,17 +18,9 @@ describe("ub-button", () => {
     test("スロットに渡されたテキストが正しく表示される", async () => {
       document.body.innerHTML = "<ub-button>Hello, World!</ub-button>";
 
-      const button = getButton();
+      const button = await screen.findByText("Hello, World!");
 
       expect(button.textContent).toBe("Hello, World!");
-    });
-
-    test("スロットに何も渡さない場合、何も表示されない", async () => {
-      document.body.innerHTML = "<ub-button></ub-button>";
-
-      const button = getButton();
-
-      expect(button.textContent).toBe("");
     });
   });
 

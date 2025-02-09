@@ -31,14 +31,14 @@ export class UbButton extends HTMLElement {
   #appearance: Appearance = "outline";
   #size: Size = "medium";
 
-  #buttonElement = document.createElement("button");
-  #slotElement = document.createElement("slot");
+  buttonElement = document.createElement("button");
+  textElement = document.createElement("span");
 
   get loading() {
     return this.#loading;
   }
   set loading(value: boolean) {
-    const button = this.#buttonElement;
+    const button = this.buttonElement;
     this.#loading = value;
 
     if (value) {
@@ -54,7 +54,7 @@ export class UbButton extends HTMLElement {
     return this.#selected;
   }
   set selected(value: boolean) {
-    const button = this.#buttonElement;
+    const button = this.buttonElement;
     this.#selected = value;
 
     if (value) {
@@ -68,7 +68,7 @@ export class UbButton extends HTMLElement {
     return this.#disabled;
   }
   set disabled(value: boolean) {
-    const button = this.#buttonElement;
+    const button = this.buttonElement;
     this.#disabled = value;
 
     if (value) {
@@ -84,7 +84,7 @@ export class UbButton extends HTMLElement {
     return this.#type;
   }
   set type(value: ButtonType) {
-    const button = this.#buttonElement;
+    const button = this.buttonElement;
     const typeClassList = {
       default: "type__default",
       destructive: "type__destructive",
@@ -98,7 +98,7 @@ export class UbButton extends HTMLElement {
     return this.#appearance;
   }
   set appearance(value: Appearance) {
-    const button = this.#buttonElement;
+    const button = this.buttonElement;
     const typeClassList = {
       outline: "appearance__outline",
       fill: "appearance__fill",
@@ -113,7 +113,7 @@ export class UbButton extends HTMLElement {
     return this.#size;
   }
   set size(value: Size) {
-    const button = this.#buttonElement;
+    const button = this.buttonElement;
     const typeClassList = {
       medium: "size__medium",
       large: "size__large",
@@ -139,7 +139,8 @@ export class UbButton extends HTMLElement {
       styles,
     ];
 
-    this.#buttonElement.classList.add("base");
+    this.buttonElement.classList.add("base");
+    this.textElement.classList.add("base__text");
 
     this.loading = false;
     this.selected = false;
@@ -150,8 +151,10 @@ export class UbButton extends HTMLElement {
   }
 
   connectedCallback() {
-    this.#buttonElement.appendChild(this.#slotElement);
-    this.shadowRoot!.appendChild(this.#buttonElement);
+    const slotElement = document.createElement("slot");
+    this.textElement.appendChild(slotElement)
+    this.buttonElement.appendChild(this.textElement);
+    this.shadowRoot!.appendChild(this.buttonElement);
   }
 
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
@@ -194,7 +197,7 @@ export class UbButton extends HTMLElement {
   }
 
   #buttonDisabledUpdate() {
-    this.#buttonElement.disabled = this.disabled || this.loading;
+    this.buttonElement.disabled = this.disabled || this.loading;
   }
 }
 

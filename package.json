@@ -34,6 +34,7 @@
     "@storybook/web-components": "^8.5.3",
     "@storybook/web-components-vite": "^8.5.3",
     "@vitest/browser": "^3.0.5",
+    "dedent": "^1.5.3",
     "eslint": "^9.19.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-import": "^2.31.0",

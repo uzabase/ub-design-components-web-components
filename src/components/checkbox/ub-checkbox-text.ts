@@ -5,7 +5,6 @@ styles.replaceSync(resetStyle);
 
 export class UbCheckboxText extends HTMLElement {
   #inputElement = document.createElement("input");
-  #textElement = document.createElement("span");
 
   get value() {
     return this.#inputElement.value;
@@ -44,12 +43,8 @@ export class UbCheckboxText extends HTMLElement {
     this.#inputElement.disabled = value;
   }
 
-  set text(value: string) {
-    this.#textElement.innerText = value;
-  }
-
   static get observedAttributes() {
-    return ["value", "name", "checked", "indeterminate", "disabled", "text"];
+    return ["value", "name", "checked", "indeterminate", "disabled"];
   }
 
   protected internals: ElementInternals;
@@ -69,13 +64,17 @@ export class UbCheckboxText extends HTMLElement {
     const checkMarkElement = document.createElement("span");
     labelElement.classList.add("base");
     checkMarkElement.classList.add("checkmark");
+
     this.#inputElement.setAttribute("type", "checkbox");
     this.#inputElement.classList.add("input");
     this.#inputElement.addEventListener("change", () => this.#handleOnChange());
-    this.#textElement.classList.add("text");
+
+    const slotElement = document.createElement("slot");
+    slotElement.classList.add("text");
+
     checkMarkElement.appendChild(this.#inputElement);
     labelElement.appendChild(checkMarkElement);
-    labelElement.appendChild(this.#textElement);
+    labelElement.appendChild(slotElement);
     this.shadowRoot?.appendChild(labelElement);
   }
 
@@ -96,9 +95,6 @@ export class UbCheckboxText extends HTMLElement {
         break;
       case "disabled":
         this.disabled = newValue === "true" || newValue === "";
-        break;
-      case "text":
-        this.text = newValue;
         break;
     }
   }

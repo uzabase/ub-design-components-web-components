@@ -5,7 +5,6 @@ export declare class UbButton extends HTMLElement {
     #private;
     buttonElement: HTMLButtonElement;
     textElement: HTMLSpanElement;
-    set text(value: string);
     get loading(): boolean;
     set loading(value: boolean);
     get selected(): boolean;

@@ -26,9 +26,6 @@ function isValidSize(value) {
 const styles = new CSSStyleSheet();
 styles.replaceSync(resetStyle);
 export class UbButton extends HTMLElement {
-    set text(value) {
-        this.textElement.innerText = value;
-    }
     get loading() {
         return __classPrivateFieldGet(this, _UbButton_loading, "f");
     }
@@ -114,15 +111,7 @@ export class UbButton extends HTMLElement {
         __classPrivateFieldSet(this, _UbButton_size, value, "f");
     }
     static get observedAttributes() {
-        return [
-            "text",
-            "loading",
-            "selected",
-            "disabled",
-            "type",
-            "appearance",
-            "size",
-        ];
+        return ["loading", "selected", "disabled", "type", "appearance", "size"];
     }
     constructor() {
         super();
@@ -135,11 +124,13 @@ export class UbButton extends HTMLElement {
         _UbButton_size.set(this, "medium");
         this.buttonElement = document.createElement("button");
         this.textElement = document.createElement("span");
-        const shadowRoot = this.attachShadow({ mode: "open" });
-        shadowRoot.adoptedStyleSheets = [...shadowRoot.adoptedStyleSheets, styles];
+        this.attachShadow({ mode: "open" });
+        this.shadowRoot.adoptedStyleSheets = [
+            ...this.shadowRoot.adoptedStyleSheets,
+            styles,
+        ];
         this.buttonElement.classList.add("base");
         this.textElement.classList.add("base__text");
-        this.buttonElement.appendChild(this.textElement);
         this.loading = false;
         this.selected = false;
         this.disabled = false;
@@ -148,15 +139,15 @@ export class UbButton extends HTMLElement {
         this.size = "medium";
     }
     connectedCallback() {
-        this.shadowRoot?.appendChild(this.buttonElement);
+        const slotElement = document.createElement("slot");
+        this.textElement.appendChild(slotElement);
+        this.buttonElement.appendChild(this.textElement);
+        this.shadowRoot.appendChild(this.buttonElement);
     }
     attributeChangedCallback(name, oldValue, newValue) {
         if (oldValue === newValue)
             return;
         switch (name) {
-            case "text":
-                this.text = newValue;
-                break;
             case "loading":
                 this.loading = newValue === "true" || newValue === "";
                 break;

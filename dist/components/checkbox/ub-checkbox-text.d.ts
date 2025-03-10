@@ -8,7 +8,6 @@ export declare class UbCheckboxText extends HTMLElement {
     get indeterminate(): boolean;
     set indeterminate(value: boolean);
     set disabled(value: boolean);
-    set text(value: string);
     static get observedAttributes(): string[];
     protected internals: ElementInternals;
     static formAssociated: boolean;

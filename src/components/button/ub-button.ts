@@ -34,10 +34,6 @@ export class UbButton extends HTMLElement {
   buttonElement = document.createElement("button");
   textElement = document.createElement("span");
 
-  set text(value: string) {
-    this.textElement.innerText = value;
-  }
-
   get loading() {
     return this.#loading;
   }
@@ -131,26 +127,20 @@ export class UbButton extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return [
-      "text",
-      "loading",
-      "selected",
-      "disabled",
-      "type",
-      "appearance",
-      "size",
-    ];
+    return ["loading", "selected", "disabled", "type", "appearance", "size"];
   }
 
   constructor() {
     super();
 
-    const shadowRoot = this.attachShadow({ mode: "open" });
-    shadowRoot.adoptedStyleSheets = [...shadowRoot.adoptedStyleSheets, styles];
+    this.attachShadow({ mode: "open" });
+    this.shadowRoot!.adoptedStyleSheets = [
+      ...this.shadowRoot!.adoptedStyleSheets,
+      styles,
+    ];
 
     this.buttonElement.classList.add("base");
     this.textElement.classList.add("base__text");
-    this.buttonElement.appendChild(this.textElement);
 
     this.loading = false;
     this.selected = false;
@@ -161,15 +151,15 @@ export class UbButton extends HTMLElement {
   }
 
   connectedCallback() {
-    this.shadowRoot?.appendChild(this.buttonElement);
+    const slotElement = document.createElement("slot");
+    this.textElement.appendChild(slotElement);
+    this.buttonElement.appendChild(this.textElement);
+    this.shadowRoot!.appendChild(this.buttonElement);
   }
 
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     if (oldValue === newValue) return;
     switch (name) {
-      case "text":
-        this.text = newValue;
-        break;
       case "loading":
         this.loading = newValue === "true" || newValue === "";
         break;

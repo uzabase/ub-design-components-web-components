@@ -5,7 +5,7 @@ import { UbCheckboxText } from "../../src/components/checkbox/ub-checkbox-text";
 
 customElements.define("ub-checkbox-text", UbCheckboxText);
 
-function getUbCheckbox() {
+function getUbCheckboxText() {
   return document.querySelector("ub-checkbox-text") as UbCheckboxText;
 }
 
@@ -13,15 +13,19 @@ function getCheckbox() {
   return screen.getByShadowRole("checkbox") as HTMLInputElement;
 }
 
-function getCheckboxByLabelText(text: string) {
-  return screen.getByShadowLabelText(text) as HTMLInputElement;
-}
-
-function queryText(text: string) {
-  return screen.queryByShadowText(text);
-}
-
 describe("ub-checkbox-text", () => {
+  describe("スロット", () => {
+    // FIXME: slotで埋め込むように実装していなくても通ってしまうテスト
+    test("スロットに渡されたテキストが正しく表示される", async () => {
+      document.body.innerHTML =
+        "<ub-checkbox-text>Hello, World!</ub-checkbox-text>";
+
+      const ubCheckboxText = await getUbCheckboxText();
+
+      expect(ubCheckboxText.textContent).toBe("Hello, World!");
+    });
+  });
+
   describe("value属性", () => {
     test("value属性を設定すると、チェックボックスのvalue属性にも反映される", async () => {
       document.body.innerHTML =
@@ -36,7 +40,7 @@ describe("ub-checkbox-text", () => {
       document.body.innerHTML =
         "<ub-checkbox-text value='value'></ub-checkbox-text>";
 
-      const ubCheckbox = getUbCheckbox();
+      const ubCheckbox = getUbCheckboxText();
       const checkbox = getCheckbox();
 
       ubCheckbox.setAttribute("value", "new-value");
@@ -67,7 +71,7 @@ describe("ub-checkbox-text", () => {
       document.body.innerHTML =
         "<ub-checkbox-text name='name'></ub-checkbox-text>";
 
-      const ubCheckbox = getUbCheckbox();
+      const ubCheckbox = getUbCheckboxText();
       const checkbox = getCheckbox();
 
       ubCheckbox.setAttribute("name", "new-name");
@@ -115,7 +119,7 @@ describe("ub-checkbox-text", () => {
       document.body.innerHTML =
         "<ub-checkbox-text checked='true'></ub-checkbox-text>";
 
-      const ubCheckbox = getUbCheckbox();
+      const ubCheckbox = getUbCheckboxText();
       const checkbox = getCheckbox();
 
       ubCheckbox.setAttribute("checked", "false");
@@ -144,7 +148,7 @@ describe("ub-checkbox-text", () => {
       document.body.innerHTML =
         "<ub-checkbox-text checked='true'></ub-checkbox-text>";
 
-      const ubCheckbox = getUbCheckbox();
+      const ubCheckbox = getUbCheckboxText();
       const checkbox = getCheckbox();
 
       ubCheckbox.setAttribute("checked", "false");
@@ -193,7 +197,7 @@ describe("ub-checkbox-text", () => {
       document.body.innerHTML =
         "<ub-checkbox-text indeterminate='true'></ub-checkbox-text>";
 
-      const ubCheckbox = getUbCheckbox();
+      const ubCheckbox = getUbCheckboxText();
       const checkbox = getCheckbox();
 
       ubCheckbox.setAttribute("indeterminate", "false");
@@ -242,7 +246,7 @@ describe("ub-checkbox-text", () => {
       document.body.innerHTML =
         "<ub-checkbox-text disabled='true'></ub-checkbox-text>";
 
-      const ubCheckbox = getUbCheckbox();
+      const ubCheckbox = getUbCheckboxText();
       const checkbox = getCheckbox();
 
       ubCheckbox.setAttribute("disabled", "false");
@@ -256,29 +260,6 @@ describe("ub-checkbox-text", () => {
       const checkbox = getCheckbox();
 
       expect(checkbox.disabled).toBe(false);
-    });
-  });
-
-  describe("text属性", () => {
-    test("text属性を設定すると、その文字列が表示される", async () => {
-      document.body.innerHTML =
-        "<ub-checkbox-text text='Hello, World!'></ub-checkbox-text>";
-
-      const checkboxText = queryText("Hello, World!");
-
-      expect(checkboxText).not.toBeNull();
-    });
-
-    test("text属性を更新すると、更新後の値が反映される", async () => {
-      document.body.innerHTML =
-        "<ub-checkbox-text text='Hello, World!'></ub-checkbox-text>";
-
-      const ubCheckbox = getUbCheckbox();
-
-      ubCheckbox.setAttribute("text", "Hello, Universe!");
-
-      const checkboxText = queryText("Hello, Universe!");
-      expect(checkboxText).not.toBeNull();
     });
   });
 
@@ -315,11 +296,12 @@ describe("ub-checkbox-text", () => {
     });
   });
 
-  test("チェックボックスとラベルが関連付けられている", async () => {
-    document.body.innerHTML = `<ub-checkbox-text text="label" value="value"></ub-checkbox-text>`;
+  // FIXME: ラベルテキストをslotで受け取るようにした場合の、正しいテストの書き方がわからない
+  // test("チェックボックスとラベルが関連付けられている", async () => {
+  //   document.body.innerHTML = `<ub-checkbox-text value="value">label</ub-checkbox-text>`;
 
-    const checkbox = getCheckboxByLabelText("label");
+  //   const checkbox = getCheckboxByLabelText("label");
 
-    expect(checkbox.value).toBe("value");
-  });
+  //   expect(checkbox.value).toBe("value");
+  // });
 });

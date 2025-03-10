@@ -14,32 +14,13 @@ function getButton() {
 }
 
 describe("ub-button", () => {
-  describe("text属性", () => {
-    test("text属性を設定すると、その文字列が表示される", async () => {
-      document.body.innerHTML = "<ub-button text='Hello, World!'></ub-button>";
+  describe("スロット", () => {
+    test("スロットに渡されたテキストが正しく表示される", async () => {
+      document.body.innerHTML = "<ub-button>Hello, World!</ub-button>";
 
-      const button = getButton();
+      const ubButton = await getUbButton();
 
-      expect(button.textContent).toBe("Hello, World!");
-    });
-
-    test("text属性を設定しない場合、デフォルト値は空文字になる", async () => {
-      document.body.innerHTML = "<ub-button></ub-button>";
-
-      const button = getButton();
-
-      expect(button.textContent).toBe("");
-    });
-
-    test("text属性を更新すると、更新後の値が反映される", async () => {
-      document.body.innerHTML = "<ub-button text='Hello, World!'></ub-button>";
-
-      const ubButton = getUbButton();
-      const button = getButton();
-
-      ubButton.setAttribute("text", "Hello, Universe!");
-
-      expect(button.textContent).toBe("Hello, Universe!");
+      expect(ubButton.textContent).toBe("Hello, World!");
     });
   });
 

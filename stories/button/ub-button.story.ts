@@ -9,7 +9,9 @@ customElements.define("ub-button", UbButton);
 const meta = {
   component: "ub-button",
   argTypes: {
-    text: { type: "string" },
+    slot: {
+      control: "text",
+    },
     type: {
       control: { type: "select" },
       options: ["default", "destructive"],
@@ -30,7 +32,7 @@ const meta = {
     },
   },
   args: {
-    text: "ub-button",
+    slot: "ub-button",
     type: "default",
     appearance: "fill",
     size: "medium",
@@ -39,6 +41,19 @@ const meta = {
     disabled: false,
     onclick: action("onclick"),
   },
+  render: (args) => html`
+    <ub-button
+      type="${args.type}"
+      appearance="${args.appearance}"
+      size="${args.size}"
+      ?loading="${args.loading}"
+      ?selected="${args.selected}"
+      ?disabled="${args.disabled}"
+      @click="${args.onclick}"
+    >
+      ${args.slot}
+    </ub-button>
+  `,
 } satisfies Meta<UbButton>;
 
 export default meta;
@@ -46,8 +61,4 @@ type Story = StoryObj<UbButton>;
 
 export const Basic: Story = {
   tags: ["!dev-only"],
-};
-
-export const Attribute: Story = {
-  decorators: [() => html`<ub-button text="text"></ub-button>`],
 };

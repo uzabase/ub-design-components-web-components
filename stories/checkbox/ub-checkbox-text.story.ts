@@ -11,7 +11,7 @@ customElements.define("ub-checkbox-text", UbCheckboxText);
 const meta = {
   component: "ub-checkbox-text",
   argTypes: {
-    text: { type: "string" },
+    slot: { control: "text" },
     value: { type: "string" },
     name: { type: "string" },
     checked: { type: "boolean" },
@@ -22,7 +22,7 @@ const meta = {
     },
   },
   args: {
-    text: "ub-checkbox-text-text",
+    slot: "ub-checkbox-text-label",
     value: "ub-checkbox-text-value",
     name: "ub-checkbox-text-name",
     checked: false,
@@ -30,6 +30,18 @@ const meta = {
     disabled: false,
     onchange: action("onchange"),
   },
+  render: (args) => html`
+    <ub-checkbox-text
+      value="${args.value}"
+      name="${args.name}"
+      ?checked="${args.checked}"
+      ?indeterminate="${args.indeterminate}"
+      ?disabled="${args.disabled}"
+      @change="${args.onchange}"
+    >
+      ${args.slot}
+    </ub-checkbox-text>
+  `,
 } satisfies Meta<UbCheckboxText>;
 
 export default meta;

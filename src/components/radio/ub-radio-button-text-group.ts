@@ -59,8 +59,11 @@ export class UbRadioButtonTextGroup extends HTMLElement {
   constructor() {
     super();
 
-    const shadowRoot = this.attachShadow({ mode: "open" });
-    shadowRoot.adoptedStyleSheets = [...shadowRoot.adoptedStyleSheets, styles];
+    this.attachShadow({ mode: "open" });
+    this.shadowRoot!.adoptedStyleSheets = [
+      ...this.shadowRoot!.adoptedStyleSheets,
+      styles,
+    ];
 
     this.internals = this.attachInternals();
 
@@ -70,7 +73,7 @@ export class UbRadioButtonTextGroup extends HTMLElement {
   connectedCallback() {
     this.#innerElement.classList.add("base");
     this.#innerElement.setAttribute("role", "radiogroup");
-    this.shadowRoot?.appendChild(this.#innerElement);
+    this.shadowRoot!.appendChild(this.#innerElement);
     this.#renderRadioButtons();
   }
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {

@@ -50,15 +50,18 @@ export class UbRadioButtonTextGroup extends HTMLElement {
         _UbRadioButtonTextGroup_data.set(this, []);
         _UbRadioButtonTextGroup_innerElement.set(this, document.createElement("ul"));
         _UbRadioButtonTextGroup_inputElements.set(this, []);
-        const shadowRoot = this.attachShadow({ mode: "open" });
-        shadowRoot.adoptedStyleSheets = [...shadowRoot.adoptedStyleSheets, styles];
+        this.attachShadow({ mode: "open" });
+        this.shadowRoot.adoptedStyleSheets = [
+            ...this.shadowRoot.adoptedStyleSheets,
+            styles,
+        ];
         this.internals = this.attachInternals();
         this.direction = "horizontal";
     }
     connectedCallback() {
         __classPrivateFieldGet(this, _UbRadioButtonTextGroup_innerElement, "f").classList.add("base");
         __classPrivateFieldGet(this, _UbRadioButtonTextGroup_innerElement, "f").setAttribute("role", "radiogroup");
-        this.shadowRoot?.appendChild(__classPrivateFieldGet(this, _UbRadioButtonTextGroup_innerElement, "f"));
+        this.shadowRoot.appendChild(__classPrivateFieldGet(this, _UbRadioButtonTextGroup_innerElement, "f"));
         __classPrivateFieldGet(this, _UbRadioButtonTextGroup_instances, "m", _UbRadioButtonTextGroup_renderRadioButtons).call(this);
     }
     attributeChangedCallback(name, oldValue, newValue) {

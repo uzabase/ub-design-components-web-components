@@ -44,15 +44,18 @@ export class UbIcon extends HTMLElement {
         _UbIcon_size.set(this, "medium");
         _UbIcon_svgElement.set(this, document.createElementNS("http://www.w3.org/2000/svg", "svg"));
         this.paths = {};
-        const shadowRoot = this.attachShadow({ mode: "open" });
-        shadowRoot.adoptedStyleSheets = [...shadowRoot.adoptedStyleSheets, styles];
+        this.attachShadow({ mode: "open" });
+        this.shadowRoot.adoptedStyleSheets = [
+            ...this.shadowRoot.adoptedStyleSheets,
+            styles,
+        ];
         this.size = "medium";
     }
     connectedCallback() {
         __classPrivateFieldGet(this, _UbIcon_svgElement, "f").setAttribute("role", "img");
         __classPrivateFieldGet(this, _UbIcon_svgElement, "f").setAttribute("viewBox", "0 0 24 24");
         __classPrivateFieldGet(this, _UbIcon_svgElement, "f").classList.add("icon");
-        this.shadowRoot?.appendChild(__classPrivateFieldGet(this, _UbIcon_svgElement, "f"));
+        this.shadowRoot.appendChild(__classPrivateFieldGet(this, _UbIcon_svgElement, "f"));
     }
     attributeChangedCallback(name, oldValue, newValue) {
         if (oldValue === newValue)

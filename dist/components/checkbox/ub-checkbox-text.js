@@ -62,11 +62,13 @@ export class UbCheckboxText extends HTMLElement {
         __classPrivateFieldGet(this, _UbCheckboxText_inputElement, "f").setAttribute("type", "checkbox");
         __classPrivateFieldGet(this, _UbCheckboxText_inputElement, "f").classList.add("input");
         __classPrivateFieldGet(this, _UbCheckboxText_inputElement, "f").addEventListener("change", () => __classPrivateFieldGet(this, _UbCheckboxText_instances, "m", _UbCheckboxText_handleOnChange).call(this));
+        const slotContainerElement = document.createElement("div");
+        slotContainerElement.classList.add("text");
         const slotElement = document.createElement("slot");
-        slotElement.classList.add("text");
+        slotContainerElement.appendChild(slotElement);
         checkMarkElement.appendChild(__classPrivateFieldGet(this, _UbCheckboxText_inputElement, "f"));
         labelElement.appendChild(checkMarkElement);
-        labelElement.appendChild(slotElement);
+        labelElement.appendChild(slotContainerElement);
         this.shadowRoot.appendChild(labelElement);
     }
     attributeChangedCallback(name, oldValue, newValue) {

@@ -72,12 +72,15 @@ export class UbCheckboxText extends HTMLElement {
     this.#inputElement.classList.add("input");
     this.#inputElement.addEventListener("change", () => this.#handleOnChange());
 
+    const slotContainerElement = document.createElement("div");
+    slotContainerElement.classList.add("text");
+
     const slotElement = document.createElement("slot");
-    slotElement.classList.add("text");
+    slotContainerElement.appendChild(slotElement);
 
     checkMarkElement.appendChild(this.#inputElement);
     labelElement.appendChild(checkMarkElement);
-    labelElement.appendChild(slotElement);
+    labelElement.appendChild(slotContainerElement);
     this.shadowRoot!.appendChild(labelElement);
   }
 

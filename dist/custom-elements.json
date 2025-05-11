@@ -175,28 +175,62 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "",
+          "description": "UbCheckboxTextは、デザインシステム2.0におけるテキスト付きチェックボックスコンポーネントです。\nチェック状態、不確定状態、無効状態を制御でき、テキストラベルを表示し、フォームと連携することができます。",
           "name": "UbCheckboxText",
+          "slots": [
+            {
+              "description": "チェックボックスに関連するラベルテキスト（デフォルトスロット）",
+              "name": ""
+            }
+          ],
           "members": [
             {
               "kind": "field",
-              "name": "value"
+              "name": "value",
+              "description": "チェックボックスの値",
+              "type": {
+                "text": "string"
+              },
+              "attribute": "value"
             },
             {
               "kind": "field",
-              "name": "name"
+              "name": "name",
+              "description": "チェックボックスの名前",
+              "type": {
+                "text": "string"
+              },
+              "attribute": "name"
             },
             {
               "kind": "field",
-              "name": "checked"
+              "name": "checked",
+              "description": "チェックボックスがチェックされているかどうか",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "checked"
             },
             {
               "kind": "field",
-              "name": "indeterminate"
+              "name": "indeterminate",
+              "description": "チェックボックスが不確定状態かどうか",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "indeterminate"
             },
             {
               "kind": "field",
-              "name": "disabled"
+              "name": "disabled",
+              "description": "チェックボックスが無効状態かどうか",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "disabled"
             },
             {
               "kind": "field",
@@ -230,25 +264,55 @@
           ],
           "attributes": [
             {
-              "name": "value"
+              "name": "value",
+              "description": "チェックボックスの値",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "value"
             },
             {
-              "name": "name"
+              "name": "name",
+              "description": "チェックボックスの名前",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "name"
             },
             {
-              "name": "checked"
+              "name": "checked",
+              "description": "チェックボックスがチェックされているかどうか",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "checked"
             },
             {
-              "name": "indeterminate"
+              "name": "indeterminate",
+              "description": "チェックボックスが不確定状態かどうか",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "indeterminate"
             },
             {
-              "name": "disabled"
+              "name": "disabled",
+              "description": "チェックボックスが無効状態かどうか",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "disabled"
             }
           ],
           "superclass": {
             "name": "HTMLElement"
           },
-          "customElement": true
+          "tagName": "ub-checkbox-text",
+          "customElement": true,
+          "summary": "テキスト付きチェックボックスコンポーネント"
         }
       ],
       "exports": [
@@ -268,28 +332,62 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "",
+          "description": "UbCheckboxは、デザインシステム2.0におけるチェックボックスコンポーネントです。\nチェック状態、不確定状態、無効状態を制御でき、フォームと連携することができます。",
           "name": "UbCheckbox",
+          "slots": [
+            {
+              "description": "チェックボックスに関連するラベルテキスト（デフォルトスロット）",
+              "name": ""
+            }
+          ],
           "members": [
             {
               "kind": "field",
-              "name": "value"
+              "name": "value",
+              "description": "チェックボックスの値",
+              "type": {
+                "text": "string"
+              },
+              "attribute": "value"
             },
             {
               "kind": "field",
-              "name": "name"
+              "name": "name",
+              "description": "チェックボックスの名前",
+              "type": {
+                "text": "string"
+              },
+              "attribute": "name"
             },
             {
               "kind": "field",
-              "name": "checked"
+              "name": "checked",
+              "description": "チェックボックスがチェックされているかどうか",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "checked"
             },
             {
               "kind": "field",
-              "name": "indeterminate"
+              "name": "indeterminate",
+              "description": "チェックボックスが不確定状態かどうか",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "indeterminate"
             },
             {
               "kind": "field",
-              "name": "disabled"
+              "name": "disabled",
+              "description": "チェックボックスが無効状態かどうか",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "disabled"
             },
             {
               "kind": "field",
@@ -323,25 +421,55 @@
           ],
           "attributes": [
             {
-              "name": "value"
+              "name": "value",
+              "description": "チェックボックスの値",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "value"
             },
             {
-              "name": "name"
+              "name": "name",
+              "description": "チェックボックスの名前",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "name"
             },
             {
-              "name": "checked"
+              "name": "checked",
+              "description": "チェックボックスがチェックされているかどうか",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "checked"
             },
             {
-              "name": "indeterminate"
+              "name": "indeterminate",
+              "description": "チェックボックスが不確定状態かどうか",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "indeterminate"
             },
             {
-              "name": "disabled"
+              "name": "disabled",
+              "description": "チェックボックスが無効状態かどうか",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "disabled"
             }
           ],
           "superclass": {
             "name": "HTMLElement"
           },
-          "customElement": true
+          "tagName": "ub-checkbox",
+          "customElement": true,
+          "summary": "チェックボックスコンポーネント"
         }
       ],
       "exports": [
@@ -357,28 +485,157 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/radio/ub-radio-button-text-group.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "UbRadioButtonTextGroupは、デザインシステム2.0におけるラジオボタングループコンポーネントです。\nテキスト付きラジオボタンを水平または垂直方向に配置し、フォームと連携することができます。\n\nフォーム内で使用する場合、name属性を設定することでフォーム送信時に選択されたラジオボタンの値が送信されます。\nフォームのリセット時には、ラジオボタンの選択状態もリセットされます。",
+          "name": "UbRadioButtonTextGroup",
+          "members": [
+            {
+              "kind": "field",
+              "name": "name",
+              "description": "ラジオボタングループの名前",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "name"
+            },
+            {
+              "kind": "field",
+              "name": "direction",
+              "description": "ラジオボタングループの配置方向（\"horizontal\"または\"vertical\"）\n- \"horizontal\": 水平方向に配置\n- \"vertical\": 垂直方向に配置",
+              "type": {
+                "text": "\"horizontal\"|\"vertical\""
+              },
+              "default": "\"horizontal\"",
+              "attribute": "direction"
+            },
+            {
+              "kind": "field",
+              "name": "data",
+              "description": "ラジオボタンのデータ配列\n各データは次のプロパティを持つことができます：\n- text: ラジオボタンのラベルテキスト（必須）\n- value: ラジオボタンの値（省略時は \"on\" が設定されます）\n- checked: ラジオボタンの初期チェック状態（省略時は false）\n- disabled: ラジオボタンの無効状態（省略時は false）",
+              "type": {
+                "text": "Data[]"
+              },
+              "default": "[]",
+              "attribute": "json-data"
+            },
+            {
+              "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "default": "true"
+            },
+            {
+              "kind": "method",
+              "name": "formResetCallback"
+            },
+            {
+              "kind": "field",
+              "name": "adoptedStyleSheets",
+              "type": {
+                "text": "array"
+              },
+              "default": "[ ...this.shadowRoot!.adoptedStyleSheets, styles, ]"
+            }
+          ],
+          "events": [
+            {
+              "name": "change",
+              "type": {
+                "text": "CustomEvent"
+              }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "name",
+              "description": "ラジオボタングループの名前",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "fieldName": "name"
+            },
+            {
+              "name": "direction",
+              "description": "ラジオボタングループの配置方向（\"horizontal\"または\"vertical\"）\n- \"horizontal\": 水平方向に配置\n- \"vertical\": 垂直方向に配置",
+              "type": {
+                "text": "\"horizontal\"|\"vertical\""
+              },
+              "default": "\"horizontal\"",
+              "fieldName": "direction"
+            },
+            {
+              "name": "json-data",
+              "description": "ラジオボタンのデータ配列\n各データは次のプロパティを持つことができます：\n- text: ラジオボタンのラベルテキスト（必須）\n- value: ラジオボタンの値（省略時は \"on\" が設定されます）\n- checked: ラジオボタンの初期チェック状態（省略時は false）\n- disabled: ラジオボタンの無効状態（省略時は false）",
+              "type": {
+                "text": "Data[]"
+              },
+              "default": "[]",
+              "fieldName": "data"
+            }
+          ],
+          "superclass": {
+            "name": "HTMLElement"
+          },
+          "tagName": "ub-radio-button-text-group",
+          "customElement": true,
+          "summary": "テキスト付きラジオボタングループコンポーネント"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "UbRadioButtonTextGroup",
+          "declaration": {
+            "name": "UbRadioButtonTextGroup",
+            "module": "src/components/radio/ub-radio-button-text-group.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/icon/ub-icon.ts",
       "declarations": [
         {
           "kind": "class",
-          "description": "",
+          "description": "UbIconは、デザインシステム2.0におけるアイコンコンポーネントです。\n異なるタイプとサイズのアイコンを表示することができます。",
           "name": "UbIcon",
           "members": [
             {
               "kind": "field",
-              "name": "type"
+              "name": "type",
+              "description": "アイコンのタイプ\n指定されたタイプに対応するSVGパスが表示されます",
+              "type": {
+                "text": "string"
+              },
+              "attribute": "type"
             },
             {
               "kind": "field",
-              "name": "text"
+              "name": "text",
+              "description": "アイコンのアクセシビリティテキスト\nスクリーンリーダーなどの支援技術で読み上げられるテキストを設定します",
+              "type": {
+                "text": "string"
+              },
+              "attribute": "text"
             },
             {
               "kind": "field",
               "name": "size",
+              "description": "アイコンのサイズ（\"small\"または\"medium\"）\n- \"small\": 小サイズ\n- \"medium\": 中サイズ",
               "type": {
-                "text": "string"
+                "text": "\"small\"|\"medium\""
               },
-              "default": "\"medium\""
+              "default": "\"medium\"",
+              "attribute": "size"
             },
             {
               "kind": "field",
@@ -399,19 +656,37 @@
           ],
           "attributes": [
             {
-              "name": "type"
+              "name": "type",
+              "description": "アイコンのタイプ\n指定されたタイプに対応するSVGパスが表示されます",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "type"
             },
             {
-              "name": "text"
+              "name": "text",
+              "description": "アイコンのアクセシビリティテキスト\nスクリーンリーダーなどの支援技術で読み上げられるテキストを設定します",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "text"
             },
             {
-              "name": "size"
+              "name": "size",
+              "description": "アイコンのサイズ（\"small\"または\"medium\"）\n- \"small\": 小サイズ\n- \"medium\": 中サイズ",
+              "type": {
+                "text": "\"small\"|\"medium\""
+              },
+              "default": "\"medium\"",
+              "fieldName": "size"
             }
           ],
           "superclass": {
             "name": "HTMLElement"
           },
-          "customElement": true
+          "tagName": "ub-icon",
+          "customElement": true,
+          "summary": "アイコンコンポーネント"
         }
       ],
       "exports": [
@@ -421,89 +696,6 @@
           "declaration": {
             "name": "UbIcon",
             "module": "src/components/icon/ub-icon.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/radio/ub-radio-button-text-group.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "UbRadioButtonTextGroup",
-          "members": [
-            {
-              "kind": "field",
-              "name": "name"
-            },
-            {
-              "kind": "field",
-              "name": "direction",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"horizontal\""
-            },
-            {
-              "kind": "field",
-              "name": "data"
-            },
-            {
-              "kind": "field",
-              "name": "formAssociated",
-              "type": {
-                "text": "boolean"
-              },
-              "static": true,
-              "default": "true"
-            },
-            {
-              "kind": "method",
-              "name": "formResetCallback"
-            },
-            {
-              "kind": "field",
-              "name": "adoptedStyleSheets",
-              "type": {
-                "text": "array"
-              },
-              "default": "[ ...this.shadowRoot!.adoptedStyleSheets, styles, ]"
-            }
-          ],
-          "events": [
-            {
-              "name": "change",
-              "type": {
-                "text": "CustomEvent"
-              }
-            }
-          ],
-          "attributes": [
-            {
-              "name": "name"
-            },
-            {
-              "name": "direction"
-            },
-            {
-              "name": "json-data"
-            }
-          ],
-          "superclass": {
-            "name": "HTMLElement"
-          },
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "UbRadioButtonTextGroup",
-          "declaration": {
-            "name": "UbRadioButtonTextGroup",
-            "module": "src/components/radio/ub-radio-button-text-group.ts"
           }
         }
       ]

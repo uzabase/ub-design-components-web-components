@@ -3,9 +3,24 @@ import resetStyle from "@acab/reset.css?inline";
 const styles = new CSSStyleSheet();
 styles.replaceSync(resetStyle);
 
+/**
+ * UbCheckboxは、デザインシステム2.0におけるチェックボックスコンポーネントです。
+ * チェック状態、不確定状態、無効状態を制御でき、フォームと連携することができます。
+ *
+ * @element ub-checkbox
+ * @summary チェックボックスコンポーネント
+ *
+ * @slot - チェックボックスに関連するラベルテキスト（デフォルトスロット）
+ */
 export class UbCheckbox extends HTMLElement {
   #inputElement = document.createElement("input");
 
+  /**
+   * チェックボックスの値
+   *
+   * @attribute
+   * @type {string}
+   */
   get value() {
     return this.#inputElement.value;
   }
@@ -13,11 +28,24 @@ export class UbCheckbox extends HTMLElement {
     this.#inputElement.value = value;
   }
 
+  /**
+   * チェックボックスの名前
+   *
+   * @attribute
+   * @type {string}
+   */
   set name(value: string) {
     this.setAttribute("name", value);
     this.#inputElement.name = value;
   }
 
+  /**
+   * チェックボックスがチェックされているかどうか
+   *
+   * @attribute
+   * @type {boolean}
+   * @default false
+   */
   get checked() {
     return this.#inputElement.checked;
   }
@@ -32,6 +60,13 @@ export class UbCheckbox extends HTMLElement {
     this.internals.setFormValue(value ? this.value : null);
   }
 
+  /**
+   * チェックボックスが不確定状態かどうか
+   *
+   * @attribute
+   * @type {boolean}
+   * @default false
+   */
   get indeterminate() {
     return this.#inputElement.indeterminate;
   }
@@ -39,6 +74,13 @@ export class UbCheckbox extends HTMLElement {
     this.#inputElement.indeterminate = value;
   }
 
+  /**
+   * チェックボックスが無効状態かどうか
+   *
+   * @attribute
+   * @type {boolean}
+   * @default false
+   */
   set disabled(value: boolean) {
     this.#inputElement.disabled = value;
   }

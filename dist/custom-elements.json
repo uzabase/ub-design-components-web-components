@@ -171,6 +171,106 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/icon/ub-icon.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "UbIconは、デザインシステム2.0におけるアイコンコンポーネントです。\n異なるタイプとサイズのアイコンを表示することができます。",
+          "name": "UbIcon",
+          "members": [
+            {
+              "kind": "field",
+              "name": "type",
+              "description": "アイコンのタイプ\n指定されたタイプに対応するSVGパスが表示されます",
+              "type": {
+                "text": "string"
+              },
+              "attribute": "type"
+            },
+            {
+              "kind": "field",
+              "name": "text",
+              "description": "アイコンのアクセシビリティテキスト\nスクリーンリーダーなどの支援技術で読み上げられるテキストを設定します",
+              "type": {
+                "text": "string"
+              },
+              "attribute": "text"
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "description": "アイコンのサイズ（\"small\"または\"medium\"）\n- \"small\": 小サイズ\n- \"medium\": 中サイズ",
+              "type": {
+                "text": "\"small\"|\"medium\""
+              },
+              "default": "\"medium\"",
+              "attribute": "size"
+            },
+            {
+              "kind": "field",
+              "name": "paths",
+              "type": {
+                "text": "Record<string, string>"
+              },
+              "default": "{}"
+            },
+            {
+              "kind": "field",
+              "name": "adoptedStyleSheets",
+              "type": {
+                "text": "array"
+              },
+              "default": "[ ...this.shadowRoot!.adoptedStyleSheets, styles, ]"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "type",
+              "description": "アイコンのタイプ\n指定されたタイプに対応するSVGパスが表示されます",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "type"
+            },
+            {
+              "name": "text",
+              "description": "アイコンのアクセシビリティテキスト\nスクリーンリーダーなどの支援技術で読み上げられるテキストを設定します",
+              "type": {
+                "text": "string"
+              },
+              "fieldName": "text"
+            },
+            {
+              "name": "size",
+              "description": "アイコンのサイズ（\"small\"または\"medium\"）\n- \"small\": 小サイズ\n- \"medium\": 中サイズ",
+              "type": {
+                "text": "\"small\"|\"medium\""
+              },
+              "default": "\"medium\"",
+              "fieldName": "size"
+            }
+          ],
+          "superclass": {
+            "name": "HTMLElement"
+          },
+          "tagName": "ub-icon",
+          "customElement": true,
+          "summary": "アイコンコンポーネント"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "UbIcon",
+          "declaration": {
+            "name": "UbIcon",
+            "module": "src/components/icon/ub-icon.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/checkbox/ub-checkbox-text.ts",
       "declarations": [
         {
@@ -596,106 +696,6 @@
           "declaration": {
             "name": "UbRadioButtonTextGroup",
             "module": "src/components/radio/ub-radio-button-text-group.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/icon/ub-icon.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "UbIconは、デザインシステム2.0におけるアイコンコンポーネントです。\n異なるタイプとサイズのアイコンを表示することができます。",
-          "name": "UbIcon",
-          "members": [
-            {
-              "kind": "field",
-              "name": "type",
-              "description": "アイコンのタイプ\n指定されたタイプに対応するSVGパスが表示されます",
-              "type": {
-                "text": "string"
-              },
-              "attribute": "type"
-            },
-            {
-              "kind": "field",
-              "name": "text",
-              "description": "アイコンのアクセシビリティテキスト\nスクリーンリーダーなどの支援技術で読み上げられるテキストを設定します",
-              "type": {
-                "text": "string"
-              },
-              "attribute": "text"
-            },
-            {
-              "kind": "field",
-              "name": "size",
-              "description": "アイコンのサイズ（\"small\"または\"medium\"）\n- \"small\": 小サイズ\n- \"medium\": 中サイズ",
-              "type": {
-                "text": "\"small\"|\"medium\""
-              },
-              "default": "\"medium\"",
-              "attribute": "size"
-            },
-            {
-              "kind": "field",
-              "name": "paths",
-              "type": {
-                "text": "Record<string, string>"
-              },
-              "default": "{}"
-            },
-            {
-              "kind": "field",
-              "name": "adoptedStyleSheets",
-              "type": {
-                "text": "array"
-              },
-              "default": "[ ...this.shadowRoot!.adoptedStyleSheets, styles, ]"
-            }
-          ],
-          "attributes": [
-            {
-              "name": "type",
-              "description": "アイコンのタイプ\n指定されたタイプに対応するSVGパスが表示されます",
-              "type": {
-                "text": "string"
-              },
-              "fieldName": "type"
-            },
-            {
-              "name": "text",
-              "description": "アイコンのアクセシビリティテキスト\nスクリーンリーダーなどの支援技術で読み上げられるテキストを設定します",
-              "type": {
-                "text": "string"
-              },
-              "fieldName": "text"
-            },
-            {
-              "name": "size",
-              "description": "アイコンのサイズ（\"small\"または\"medium\"）\n- \"small\": 小サイズ\n- \"medium\": 中サイズ",
-              "type": {
-                "text": "\"small\"|\"medium\""
-              },
-              "default": "\"medium\"",
-              "fieldName": "size"
-            }
-          ],
-          "superclass": {
-            "name": "HTMLElement"
-          },
-          "tagName": "ub-icon",
-          "customElement": true,
-          "summary": "アイコンコンポーネント"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "UbIcon",
-          "declaration": {
-            "name": "UbIcon",
-            "module": "src/components/icon/ub-icon.ts"
           }
         }
       ]

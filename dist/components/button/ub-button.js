@@ -25,7 +25,23 @@ function isValidSize(value) {
 }
 const styles = new CSSStyleSheet();
 styles.replaceSync(resetStyle);
+/**
+ * UbButtonは、デザインシステム2.0におけるボタンコンポーネントです。
+ * 様々なタイプ、外観、サイズを設定でき、ローディング状態や選択状態、無効状態を制御できます。
+ *
+ * @element ub-button
+ * @summary ボタンコンポーネント
+ *
+ * @slot - ボタンのテキストコンテンツ（デフォルトスロット）
+ */
 export class UbButton extends HTMLElement {
+    /**
+     * ボタンがローディング状態かどうか
+     *
+     * @attribute
+     * @type {boolean}
+     * @default false
+     */
     get loading() {
         return __classPrivateFieldGet(this, _UbButton_loading, "f");
     }
@@ -40,6 +56,13 @@ export class UbButton extends HTMLElement {
         }
         __classPrivateFieldGet(this, _UbButton_instances, "m", _UbButton_buttonDisabledUpdate).call(this);
     }
+    /**
+     * ボタンが選択状態かどうか
+     *
+     * @attribute
+     * @type {boolean}
+     * @default false
+     */
     get selected() {
         return __classPrivateFieldGet(this, _UbButton_selected, "f");
     }
@@ -53,6 +76,13 @@ export class UbButton extends HTMLElement {
             button.classList.remove("isSelected");
         }
     }
+    /**
+     * ボタンが無効状態かどうか
+     *
+     * @attribute
+     * @type {boolean}
+     * @default false
+     */
     get disabled() {
         return __classPrivateFieldGet(this, _UbButton_disabled, "f");
     }
@@ -67,6 +97,15 @@ export class UbButton extends HTMLElement {
         }
         __classPrivateFieldGet(this, _UbButton_instances, "m", _UbButton_buttonDisabledUpdate).call(this);
     }
+    /**
+     * ボタンのタイプ（"default" または "destructive"）
+     * - "default": 標準的なボタン
+     * - "destructive": 削除などの破壊的な操作を表すボタン
+     *
+     * @attribute
+     * @type {"default"|"destructive"}
+     * @default "default"
+     */
     get type() {
         return __classPrivateFieldGet(this, _UbButton_type, "f");
     }
@@ -80,6 +119,16 @@ export class UbButton extends HTMLElement {
         button.classList.add(typeClassList[value]);
         __classPrivateFieldSet(this, _UbButton_type, value, "f");
     }
+    /**
+     * ボタンの外観（"outline"、"fill"、または "text"）
+     * - "outline": 枠線のみのボタン
+     * - "fill": 塗りつぶされたボタン
+     * - "text": テキストのみのボタン
+     *
+     * @attribute
+     * @type {"outline"|"fill"|"text"}
+     * @default "outline"
+     */
     get appearance() {
         return __classPrivateFieldGet(this, _UbButton_appearance, "f");
     }
@@ -94,6 +143,18 @@ export class UbButton extends HTMLElement {
         button.classList.add(typeClassList[value]);
         __classPrivateFieldSet(this, _UbButton_appearance, value, "f");
     }
+    /**
+     * ボタンのサイズ（"medium"、"large"、"xLarge"、"width160"、または "width80"）
+     * - "medium": 中サイズ
+     * - "large": 大サイズ
+     * - "xLarge": 特大サイズ
+     * - "width160": 幅160pxのボタン
+     * - "width80": 幅80pxのボタン
+     *
+     * @attribute
+     * @type {"medium"|"large"|"xLarge"|"width160"|"width80"}
+     * @default "medium"
+     */
     get size() {
         return __classPrivateFieldGet(this, _UbButton_size, "f");
     }

@@ -10,7 +10,7 @@ import tseslint from "typescript-eslint";
 /** @type {import('eslint').Linter.Config[]} */
 export default [
   {
-    ignores: ["dist", "!.storybook"],
+    ignores: ["dist", "!.storybook", "storybook-static"],
   },
   {
     files: ["**/*.{js,mjs,cjs,ts}"],

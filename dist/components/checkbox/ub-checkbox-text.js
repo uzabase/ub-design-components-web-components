@@ -7,17 +7,45 @@ var _UbCheckboxText_instances, _UbCheckboxText_inputElement, _UbCheckboxText_han
 import resetStyle from "@acab/reset.css?inline";
 const styles = new CSSStyleSheet();
 styles.replaceSync(resetStyle);
+/**
+ * UbCheckboxTextは、デザインシステム2.0におけるテキスト付きチェックボックスコンポーネントです。
+ * チェック状態、不確定状態、無効状態を制御でき、テキストラベルを表示し、フォームと連携することができます。
+ *
+ * @element ub-checkbox-text
+ * @summary テキスト付きチェックボックスコンポーネント
+ *
+ * @slot - チェックボックスに関連するラベルテキスト（デフォルトスロット）
+ */
 export class UbCheckboxText extends HTMLElement {
+    /**
+     * チェックボックスの値
+     *
+     * @attribute
+     * @type {string}
+     */
     get value() {
         return __classPrivateFieldGet(this, _UbCheckboxText_inputElement, "f").value;
     }
     set value(value) {
         __classPrivateFieldGet(this, _UbCheckboxText_inputElement, "f").value = value;
     }
+    /**
+     * チェックボックスの名前
+     *
+     * @attribute
+     * @type {string}
+     */
     set name(value) {
         this.setAttribute("name", value);
         __classPrivateFieldGet(this, _UbCheckboxText_inputElement, "f").name = value;
     }
+    /**
+     * チェックボックスがチェックされているかどうか
+     *
+     * @attribute
+     * @type {boolean}
+     * @default false
+     */
     get checked() {
         return __classPrivateFieldGet(this, _UbCheckboxText_inputElement, "f").checked;
     }
@@ -31,12 +59,26 @@ export class UbCheckboxText extends HTMLElement {
         __classPrivateFieldGet(this, _UbCheckboxText_inputElement, "f").checked = value;
         this.internals.setFormValue(value ? this.value : null);
     }
+    /**
+     * チェックボックスが不確定状態かどうか
+     *
+     * @attribute
+     * @type {boolean}
+     * @default false
+     */
     get indeterminate() {
         return __classPrivateFieldGet(this, _UbCheckboxText_inputElement, "f").indeterminate;
     }
     set indeterminate(value) {
         __classPrivateFieldGet(this, _UbCheckboxText_inputElement, "f").indeterminate = value;
     }
+    /**
+     * チェックボックスが無効状態かどうか
+     *
+     * @attribute
+     * @type {boolean}
+     * @default false
+     */
     set disabled(value) {
         __classPrivateFieldGet(this, _UbCheckboxText_inputElement, "f").disabled = value;
     }

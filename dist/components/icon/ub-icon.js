@@ -10,7 +10,7 @@ var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (
     return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 };
 var _UbIcon_size, _UbIcon_svgElement;
-import resetStyle from "@acab/reset.css?inline";
+import resetStyle from "@sp-design/recet.css/src/reset.css?inline";
 const styles = new CSSStyleSheet();
 styles.replaceSync(resetStyle);
 const sizes = ["small", "medium"];

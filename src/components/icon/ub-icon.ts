@@ -1,4 +1,4 @@
-import resetStyle from "@acab/reset.css?inline";
+import resetStyle from "@sp-design/recet.css/src/reset.css?inline";
 
 const styles = new CSSStyleSheet();
 styles.replaceSync(resetStyle);

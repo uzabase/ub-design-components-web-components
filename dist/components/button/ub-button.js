@@ -10,7 +10,7 @@ var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (
     return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 };
 var _UbButton_instances, _UbButton_loading, _UbButton_selected, _UbButton_disabled, _UbButton_type, _UbButton_appearance, _UbButton_size, _UbButton_buttonDisabledUpdate;
-import resetStyle from "@acab/reset.css?inline";
+import resetStyle from "@sp-design/recet.css/src/reset.css?inline";
 const buttonTypes = ["default", "destructive"];
 const appearances = ["outline", "fill", "text"];
 const sizes = ["medium", "large", "xLarge", "width160", "width80"];

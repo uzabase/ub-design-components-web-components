@@ -4,7 +4,7 @@ var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (
     return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 };
 var _UbCheckboxText_instances, _UbCheckboxText_inputElement, _UbCheckboxText_handleOnChange;
-import resetStyle from "@acab/reset.css?inline";
+import resetStyle from "@sp-design/recet.css/src/reset.css?inline";
 const styles = new CSSStyleSheet();
 styles.replaceSync(resetStyle);
 export class UbCheckboxText extends HTMLElement {

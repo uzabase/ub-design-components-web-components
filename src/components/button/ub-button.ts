@@ -1,4 +1,4 @@
-import resetStyle from "@acab/reset.css?inline";
+import resetStyle from "@sp-design/recet.css/src/reset.css?inline";
 
 type ButtonType = "default" | "destructive";
 type Appearance = "outline" | "fill" | "text";

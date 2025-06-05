@@ -4,9 +4,6 @@ var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (
     return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 };
 var _UbCheckbox_instances, _UbCheckbox_inputElement, _UbCheckbox_handleOnChange;
-import resetStyle from "@sp-design/recet.css/src/reset.css?inline";
-const styles = new CSSStyleSheet();
-styles.replaceSync(resetStyle);
 export class UbCheckbox extends HTMLElement {
     get value() {
         return __classPrivateFieldGet(this, _UbCheckbox_inputElement, "f").value;
@@ -48,10 +45,6 @@ export class UbCheckbox extends HTMLElement {
         _UbCheckbox_instances.add(this);
         _UbCheckbox_inputElement.set(this, document.createElement("input"));
         this.attachShadow({ mode: "open" });
-        this.shadowRoot.adoptedStyleSheets = [
-            ...this.shadowRoot.adoptedStyleSheets,
-            styles,
-        ];
         this.internals = this.attachInternals();
     }
     connectedCallback() {

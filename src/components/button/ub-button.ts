@@ -1,5 +1,3 @@
-import resetStyle from "@sp-design/recet.css/src/reset.css?inline";
-
 type ButtonType = "default" | "destructive";
 type Appearance = "outline" | "fill" | "text";
 type Size = "medium" | "large" | "xLarge" | "width160" | "width80";
@@ -19,9 +17,6 @@ function isValidAppearance(value: string): value is Appearance {
 function isValidSize(value: string): value is Size {
   return sizes.some((size) => size === value);
 }
-
-const styles = new CSSStyleSheet();
-styles.replaceSync(resetStyle);
 
 export class UbButton extends HTMLElement {
   #loading: boolean = false;
@@ -134,10 +129,6 @@ export class UbButton extends HTMLElement {
     super();
 
     this.attachShadow({ mode: "open" });
-    this.shadowRoot!.adoptedStyleSheets = [
-      ...this.shadowRoot!.adoptedStyleSheets,
-      styles,
-    ];
 
     this.buttonElement.classList.add("base");
     this.textElement.classList.add("base__text");

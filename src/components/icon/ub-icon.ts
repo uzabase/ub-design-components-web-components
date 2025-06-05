@@ -1,8 +1,3 @@
-import resetStyle from "@sp-design/recet.css/src/reset.css?inline";
-
-const styles = new CSSStyleSheet();
-styles.replaceSync(resetStyle);
-
 type Size = "small" | "medium";
 
 const sizes: Size[] = ["small", "medium"];
@@ -47,10 +42,6 @@ export class UbIcon extends HTMLElement {
     super();
 
     this.attachShadow({ mode: "open" });
-    this.shadowRoot!.adoptedStyleSheets = [
-      ...this.shadowRoot!.adoptedStyleSheets,
-      styles,
-    ];
 
     this.size = "medium";
   }

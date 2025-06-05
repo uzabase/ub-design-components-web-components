@@ -1,8 +1,3 @@
-import resetStyle from "@sp-design/recet.css/src/reset.css?inline";
-
-const styles = new CSSStyleSheet();
-styles.replaceSync(resetStyle);
-
 type Direction = "horizontal" | "vertical";
 
 const directions: Direction[] = ["horizontal", "vertical"];
@@ -60,10 +55,6 @@ export class UbRadioButtonTextGroup extends HTMLElement {
     super();
 
     this.attachShadow({ mode: "open" });
-    this.shadowRoot!.adoptedStyleSheets = [
-      ...this.shadowRoot!.adoptedStyleSheets,
-      styles,
-    ];
 
     this.internals = this.attachInternals();
 

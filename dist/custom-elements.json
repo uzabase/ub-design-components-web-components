@@ -163,115 +163,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/radio/ub-radio-button-text-group.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "UbRadioButtonTextGroupは、デザインシステム2.0におけるラジオボタングループコンポーネントです。\nテキスト付きラジオボタンを水平または垂直方向に配置し、フォームと連携することができます。\n\nフォーム内で使用する場合、name属性を設定することでフォーム送信時に選択されたラジオボタンの値が送信されます。\nフォームのリセット時には、ラジオボタンの選択状態もリセットされます。",
-          "name": "UbRadioButtonTextGroup",
-          "members": [
-            {
-              "kind": "field",
-              "name": "name",
-              "description": "ラジオボタングループの名前",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "attribute": "name"
-            },
-            {
-              "kind": "field",
-              "name": "direction",
-              "description": "ラジオボタングループの配置方向（\"horizontal\"または\"vertical\"）\n- \"horizontal\": 水平方向に配置\n- \"vertical\": 垂直方向に配置",
-              "type": {
-                "text": "\"horizontal\"|\"vertical\""
-              },
-              "default": "\"horizontal\"",
-              "attribute": "direction"
-            },
-            {
-              "kind": "field",
-              "name": "data",
-              "description": "ラジオボタンのデータ配列\n各データは次のプロパティを持つことができます：\n- text: ラジオボタンのラベルテキスト（必須）\n- value: ラジオボタンの値（省略時は \"on\" が設定されます）\n- checked: ラジオボタンの初期チェック状態（省略時は false）\n- disabled: ラジオボタンの無効状態（省略時は false）",
-              "type": {
-                "text": "Data[]"
-              },
-              "default": "[]",
-              "attribute": "json-data"
-            },
-            {
-              "kind": "field",
-              "name": "formAssociated",
-              "type": {
-                "text": "boolean"
-              },
-              "static": true,
-              "default": "true"
-            },
-            {
-              "kind": "method",
-              "name": "formResetCallback"
-            }
-          ],
-          "events": [
-            {
-              "name": "change",
-              "type": {
-                "text": "CustomEvent"
-              }
-            }
-          ],
-          "attributes": [
-            {
-              "name": "name",
-              "description": "ラジオボタングループの名前",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "fieldName": "name"
-            },
-            {
-              "name": "direction",
-              "description": "ラジオボタングループの配置方向（\"horizontal\"または\"vertical\"）\n- \"horizontal\": 水平方向に配置\n- \"vertical\": 垂直方向に配置",
-              "type": {
-                "text": "\"horizontal\"|\"vertical\""
-              },
-              "default": "\"horizontal\"",
-              "fieldName": "direction"
-            },
-            {
-              "name": "json-data",
-              "description": "ラジオボタンのデータ配列\n各データは次のプロパティを持つことができます：\n- text: ラジオボタンのラベルテキスト（必須）\n- value: ラジオボタンの値（省略時は \"on\" が設定されます）\n- checked: ラジオボタンの初期チェック状態（省略時は false）\n- disabled: ラジオボタンの無効状態（省略時は false）",
-              "type": {
-                "text": "Data[]"
-              },
-              "default": "[]",
-              "fieldName": "data"
-            }
-          ],
-          "superclass": {
-            "name": "HTMLElement"
-          },
-          "tagName": "ub-radio-button-text-group",
-          "customElement": true,
-          "summary": "テキスト付きラジオボタングループコンポーネント"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "UbRadioButtonTextGroup",
-          "declaration": {
-            "name": "UbRadioButtonTextGroup",
-            "module": "src/components/radio/ub-radio-button-text-group.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/components/checkbox/ub-checkbox-text.ts",
       "declarations": [
         {
@@ -656,6 +547,115 @@
           "declaration": {
             "name": "UbIcon",
             "module": "src/components/icon/ub-icon.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/radio/ub-radio-button-text-group.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "UbRadioButtonTextGroupは、デザインシステム2.0におけるラジオボタングループコンポーネントです。\nテキスト付きラジオボタンを水平または垂直方向に配置し、フォームと連携することができます。\n\nフォーム内で使用する場合、name属性を設定することでフォーム送信時に選択されたラジオボタンの値が送信されます。\nフォームのリセット時には、ラジオボタンの選択状態もリセットされます。",
+          "name": "UbRadioButtonTextGroup",
+          "members": [
+            {
+              "kind": "field",
+              "name": "name",
+              "description": "ラジオボタングループの名前",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "name"
+            },
+            {
+              "kind": "field",
+              "name": "direction",
+              "description": "ラジオボタングループの配置方向（\"horizontal\"または\"vertical\"）\n- \"horizontal\": 水平方向に配置\n- \"vertical\": 垂直方向に配置",
+              "type": {
+                "text": "\"horizontal\"|\"vertical\""
+              },
+              "default": "\"horizontal\"",
+              "attribute": "direction"
+            },
+            {
+              "kind": "field",
+              "name": "data",
+              "description": "ラジオボタンのデータ配列\n各データは次のプロパティを持つことができます：\n- text: ラジオボタンのラベルテキスト（必須）\n- value: ラジオボタンの値（省略時は \"on\" が設定されます）\n- checked: ラジオボタンの初期チェック状態（省略時は false）\n- disabled: ラジオボタンの無効状態（省略時は false）",
+              "type": {
+                "text": "Data[]"
+              },
+              "default": "[]",
+              "attribute": "json-data"
+            },
+            {
+              "kind": "field",
+              "name": "formAssociated",
+              "type": {
+                "text": "boolean"
+              },
+              "static": true,
+              "default": "true"
+            },
+            {
+              "kind": "method",
+              "name": "formResetCallback"
+            }
+          ],
+          "events": [
+            {
+              "name": "change",
+              "type": {
+                "text": "CustomEvent"
+              }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "name",
+              "description": "ラジオボタングループの名前",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "fieldName": "name"
+            },
+            {
+              "name": "direction",
+              "description": "ラジオボタングループの配置方向（\"horizontal\"または\"vertical\"）\n- \"horizontal\": 水平方向に配置\n- \"vertical\": 垂直方向に配置",
+              "type": {
+                "text": "\"horizontal\"|\"vertical\""
+              },
+              "default": "\"horizontal\"",
+              "fieldName": "direction"
+            },
+            {
+              "name": "json-data",
+              "description": "ラジオボタンのデータ配列\n各データは次のプロパティを持つことができます：\n- text: ラジオボタンのラベルテキスト（必須）\n- value: ラジオボタンの値（省略時は \"on\" が設定されます）\n- checked: ラジオボタンの初期チェック状態（省略時は false）\n- disabled: ラジオボタンの無効状態（省略時は false）",
+              "type": {
+                "text": "Data[]"
+              },
+              "default": "[]",
+              "fieldName": "data"
+            }
+          ],
+          "superclass": {
+            "name": "HTMLElement"
+          },
+          "tagName": "ub-radio-button-text-group",
+          "customElement": true,
+          "summary": "テキスト付きラジオボタングループコンポーネント"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "UbRadioButtonTextGroup",
+          "declaration": {
+            "name": "UbRadioButtonTextGroup",
+            "module": "src/components/radio/ub-radio-button-text-group.ts"
           }
         }
       ]

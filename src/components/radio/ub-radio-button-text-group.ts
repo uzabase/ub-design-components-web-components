@@ -13,6 +13,16 @@ type Data = {
   disabled?: boolean;
 };
 
+/**
+ * UbRadioButtonTextGroupは、デザインシステム2.0におけるラジオボタングループコンポーネントです。
+ * テキスト付きラジオボタンを水平または垂直方向に配置し、フォームと連携することができます。
+ *
+ * フォーム内で使用する場合、name属性を設定することでフォーム送信時に選択されたラジオボタンの値が送信されます。
+ * フォームのリセット時には、ラジオボタンの選択状態もリセットされます。
+ *
+ * @element ub-radio-button-text-group
+ * @summary テキスト付きラジオボタングループコンポーネント
+ */
 export class UbRadioButtonTextGroup extends HTMLElement {
   #name: string = "";
   #direction: Direction = "horizontal";
@@ -20,6 +30,13 @@ export class UbRadioButtonTextGroup extends HTMLElement {
   #innerElement = document.createElement("ul");
   #inputElements: HTMLInputElement[] = [];
 
+  /**
+   * ラジオボタングループの名前
+   *
+   * @attribute
+   * @type {string}
+   * @default ""
+   */
   get name() {
     return this.#name;
   }
@@ -29,6 +46,15 @@ export class UbRadioButtonTextGroup extends HTMLElement {
     this.#name = value;
   }
 
+  /**
+   * ラジオボタングループの配置方向（"horizontal"または"vertical"）
+   * - "horizontal": 水平方向に配置
+   * - "vertical": 垂直方向に配置
+   *
+   * @attribute
+   * @type {"horizontal"|"vertical"}
+   * @default "horizontal"
+   */
   set direction(value: Direction) {
     const _value: Direction = value === "vertical" ? "vertical" : "horizontal";
     this.#innerElement.classList.remove(this.#direction);
@@ -36,6 +62,18 @@ export class UbRadioButtonTextGroup extends HTMLElement {
     this.#direction = _value;
   }
 
+  /**
+   * ラジオボタンのデータ配列
+   * 各データは次のプロパティを持つことができます：
+   * - text: ラジオボタンのラベルテキスト（必須）
+   * - value: ラジオボタンの値（省略時は "on" が設定されます）
+   * - checked: ラジオボタンの初期チェック状態（省略時は false）
+   * - disabled: ラジオボタンの無効状態（省略時は false）
+   *
+   * @attribute json-data
+   * @type {Data[]}
+   * @default []
+   */
   get data() {
     return this.#data;
   }

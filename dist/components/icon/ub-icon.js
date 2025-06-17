@@ -14,13 +14,43 @@ const sizes = ["small", "medium"];
 function isValidSize(value) {
     return sizes.some((size) => size === value);
 }
+/**
+ * UbIconは、デザインシステム2.0におけるアイコンコンポーネントです。
+ * 異なるタイプとサイズのアイコンを表示することができます。
+ *
+ * @element ub-icon
+ * @summary アイコンコンポーネント
+ */
 export class UbIcon extends HTMLElement {
+    /**
+     * アイコンのタイプ
+     * 指定されたタイプに対応するSVGパスが表示されます
+     *
+     * @attribute
+     * @type {string}
+     */
     set type(value) {
         __classPrivateFieldGet(this, _UbIcon_svgElement, "f").innerHTML = value in this.paths ? this.paths[value] : "";
     }
+    /**
+     * アイコンのアクセシビリティテキスト
+     * スクリーンリーダーなどの支援技術で読み上げられるテキストを設定します
+     *
+     * @attribute
+     * @type {string}
+     */
     set text(value) {
         __classPrivateFieldGet(this, _UbIcon_svgElement, "f").setAttribute("aria-label", value);
     }
+    /**
+     * アイコンのサイズ（"small"または"medium"）
+     * - "small": 小サイズ
+     * - "medium": 中サイズ
+     *
+     * @attribute
+     * @type {"small"|"medium"}
+     * @default "medium"
+     */
     get size() {
         return __classPrivateFieldGet(this, _UbIcon_size, "f");
     }

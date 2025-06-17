@@ -16,7 +16,8 @@
     "typecheck": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "build": "rimraf dist && tsc -p tsconfig-build.json",
+    "build": "rimraf dist && tsc -p tsconfig-build.json && npm run analyze",
+    "analyze": "custom-elements-manifest analyze --config custom-elements-manifest.config.mjs",
     "test": "vitest"
   },
   "files": [
@@ -25,6 +26,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@custom-elements-manifest/analyzer": "^0.10.4",
     "@eslint/js": "^9.25.1",
     "@storybook/addon-actions": "^8.6.12",
     "@storybook/addon-essentials": "^8.6.12",

@@ -1,12 +1,54 @@
+/**
+ * UbCheckboxTextは、デザインシステム2.0におけるテキスト付きチェックボックスコンポーネントです。
+ * チェック状態、不確定状態、無効状態を制御でき、テキストラベルを表示し、フォームと連携することができます。
+ *
+ * @element ub-checkbox-text
+ * @summary テキスト付きチェックボックスコンポーネント
+ *
+ * @slot - チェックボックスに関連するラベルテキスト（デフォルトスロット）
+ */
 export declare class UbCheckboxText extends HTMLElement {
     #private;
+    /**
+     * チェックボックスの値
+     *
+     * @attribute
+     * @type {string}
+     */
     get value(): string;
     set value(value: string);
+    /**
+     * チェックボックスの名前
+     *
+     * @attribute
+     * @type {string}
+     */
     set name(value: string);
+    /**
+     * チェックボックスがチェックされているかどうか
+     *
+     * @attribute
+     * @type {boolean}
+     * @default false
+     */
     get checked(): boolean;
     set checked(value: boolean);
+    /**
+     * チェックボックスが不確定状態かどうか
+     *
+     * @attribute
+     * @type {boolean}
+     * @default false
+     */
     get indeterminate(): boolean;
     set indeterminate(value: boolean);
+    /**
+     * チェックボックスが無効状態かどうか
+     *
+     * @attribute
+     * @type {boolean}
+     * @default false
+     */
     set disabled(value: boolean);
     static get observedAttributes(): string[];
     protected internals: ElementInternals;

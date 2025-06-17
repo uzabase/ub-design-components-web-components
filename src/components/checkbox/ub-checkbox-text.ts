@@ -1,6 +1,21 @@
+/**
+ * UbCheckboxTextは、デザインシステム2.0におけるテキスト付きチェックボックスコンポーネントです。
+ * チェック状態、不確定状態、無効状態を制御でき、テキストラベルを表示し、フォームと連携することができます。
+ *
+ * @element ub-checkbox-text
+ * @summary テキスト付きチェックボックスコンポーネント
+ *
+ * @slot - チェックボックスに関連するラベルテキスト（デフォルトスロット）
+ */
 export class UbCheckboxText extends HTMLElement {
   #inputElement = document.createElement("input");
 
+  /**
+   * チェックボックスの値
+   *
+   * @attribute
+   * @type {string}
+   */
   get value() {
     return this.#inputElement.value;
   }
@@ -8,11 +23,24 @@ export class UbCheckboxText extends HTMLElement {
     this.#inputElement.value = value;
   }
 
+  /**
+   * チェックボックスの名前
+   *
+   * @attribute
+   * @type {string}
+   */
   set name(value: string) {
     this.setAttribute("name", value);
     this.#inputElement.name = value;
   }
 
+  /**
+   * チェックボックスがチェックされているかどうか
+   *
+   * @attribute
+   * @type {boolean}
+   * @default false
+   */
   get checked() {
     return this.#inputElement.checked;
   }
@@ -27,6 +55,13 @@ export class UbCheckboxText extends HTMLElement {
     this.internals.setFormValue(value ? this.value : null);
   }
 
+  /**
+   * チェックボックスが不確定状態かどうか
+   *
+   * @attribute
+   * @type {boolean}
+   * @default false
+   */
   get indeterminate() {
     return this.#inputElement.indeterminate;
   }
@@ -34,6 +69,13 @@ export class UbCheckboxText extends HTMLElement {
     this.#inputElement.indeterminate = value;
   }
 
+  /**
+   * チェックボックスが無効状態かどうか
+   *
+   * @attribute
+   * @type {boolean}
+   * @default false
+   */
   set disabled(value: boolean) {
     this.#inputElement.disabled = value;
   }

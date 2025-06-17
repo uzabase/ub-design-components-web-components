@@ -18,6 +18,15 @@ function isValidSize(value: string): value is Size {
   return sizes.some((size) => size === value);
 }
 
+/**
+ * UbButtonは、デザインシステム2.0におけるボタンコンポーネントです。
+ * 様々なタイプ、外観、サイズを設定でき、ローディング状態や選択状態、無効状態を制御できます。
+ *
+ * @element ub-button
+ * @summary ボタンコンポーネント
+ *
+ * @slot - ボタンのテキストコンテンツ（デフォルトスロット）
+ */
 export class UbButton extends HTMLElement {
   #loading: boolean = false;
   #selected: boolean = false;
@@ -29,6 +38,13 @@ export class UbButton extends HTMLElement {
   buttonElement = document.createElement("button");
   textElement = document.createElement("span");
 
+  /**
+   * ボタンがローディング状態かどうか
+   *
+   * @attribute
+   * @type {boolean}
+   * @default false
+   */
   get loading() {
     return this.#loading;
   }
@@ -45,6 +61,13 @@ export class UbButton extends HTMLElement {
     this.#buttonDisabledUpdate();
   }
 
+  /**
+   * ボタンが選択状態かどうか
+   *
+   * @attribute
+   * @type {boolean}
+   * @default false
+   */
   get selected() {
     return this.#selected;
   }
@@ -59,6 +82,13 @@ export class UbButton extends HTMLElement {
     }
   }
 
+  /**
+   * ボタンが無効状態かどうか
+   *
+   * @attribute
+   * @type {boolean}
+   * @default false
+   */
   get disabled() {
     return this.#disabled;
   }
@@ -75,6 +105,15 @@ export class UbButton extends HTMLElement {
     this.#buttonDisabledUpdate();
   }
 
+  /**
+   * ボタンのタイプ（"default" または "destructive"）
+   * - "default": 標準的なボタン
+   * - "destructive": 削除などの破壊的な操作を表すボタン
+   *
+   * @attribute
+   * @type {"default"|"destructive"}
+   * @default "default"
+   */
   get type() {
     return this.#type;
   }
@@ -89,6 +128,16 @@ export class UbButton extends HTMLElement {
     this.#type = value;
   }
 
+  /**
+   * ボタンの外観（"outline"、"fill"、または "text"）
+   * - "outline": 枠線のみのボタン
+   * - "fill": 塗りつぶされたボタン
+   * - "text": テキストのみのボタン
+   *
+   * @attribute
+   * @type {"outline"|"fill"|"text"}
+   * @default "outline"
+   */
   get appearance() {
     return this.#appearance;
   }
@@ -104,6 +153,18 @@ export class UbButton extends HTMLElement {
     this.#appearance = value;
   }
 
+  /**
+   * ボタンのサイズ（"medium"、"large"、"xLarge"、"width160"、または "width80"）
+   * - "medium": 中サイズ
+   * - "large": 大サイズ
+   * - "xLarge": 特大サイズ
+   * - "width160": 幅160pxのボタン
+   * - "width80": 幅80pxのボタン
+   *
+   * @attribute
+   * @type {"medium"|"large"|"xLarge"|"width160"|"width80"}
+   * @default "medium"
+   */
   get size() {
     return this.#size;
   }

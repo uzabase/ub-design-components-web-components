@@ -14,7 +14,24 @@ const directions = ["horizontal", "vertical"];
 function isValidDirection(value) {
     return directions.some((direction) => direction === value);
 }
+/**
+ * UbRadioButtonTextGroupは、デザインシステム2.0におけるラジオボタングループコンポーネントです。
+ * テキスト付きラジオボタンを水平または垂直方向に配置し、フォームと連携することができます。
+ *
+ * フォーム内で使用する場合、name属性を設定することでフォーム送信時に選択されたラジオボタンの値が送信されます。
+ * フォームのリセット時には、ラジオボタンの選択状態もリセットされます。
+ *
+ * @element ub-radio-button-text-group
+ * @summary テキスト付きラジオボタングループコンポーネント
+ */
 export class UbRadioButtonTextGroup extends HTMLElement {
+    /**
+     * ラジオボタングループの名前
+     *
+     * @attribute
+     * @type {string}
+     * @default ""
+     */
     get name() {
         return __classPrivateFieldGet(this, _UbRadioButtonTextGroup_name, "f");
     }
@@ -23,12 +40,33 @@ export class UbRadioButtonTextGroup extends HTMLElement {
         this.setAttribute("name", value);
         __classPrivateFieldSet(this, _UbRadioButtonTextGroup_name, value, "f");
     }
+    /**
+     * ラジオボタングループの配置方向（"horizontal"または"vertical"）
+     * - "horizontal": 水平方向に配置
+     * - "vertical": 垂直方向に配置
+     *
+     * @attribute
+     * @type {"horizontal"|"vertical"}
+     * @default "horizontal"
+     */
     set direction(value) {
         const _value = value === "vertical" ? "vertical" : "horizontal";
         __classPrivateFieldGet(this, _UbRadioButtonTextGroup_innerElement, "f").classList.remove(__classPrivateFieldGet(this, _UbRadioButtonTextGroup_direction, "f"));
         __classPrivateFieldGet(this, _UbRadioButtonTextGroup_innerElement, "f").classList.add(_value);
         __classPrivateFieldSet(this, _UbRadioButtonTextGroup_direction, _value, "f");
     }
+    /**
+     * ラジオボタンのデータ配列
+     * 各データは次のプロパティを持つことができます：
+     * - text: ラジオボタンのラベルテキスト（必須）
+     * - value: ラジオボタンの値（省略時は "on" が設定されます）
+     * - checked: ラジオボタンの初期チェック状態（省略時は false）
+     * - disabled: ラジオボタンの無効状態（省略時は false）
+     *
+     * @attribute json-data
+     * @type {Data[]}
+     * @default []
+     */
     get data() {
         return __classPrivateFieldGet(this, _UbRadioButtonTextGroup_data, "f");
     }

@@ -1,16 +1,14 @@
 type Placement = "top" | "bottom" | "left" | "right";
-type Size = "auto" | "width240" | "width320" | "width400";
 
 /**
  * UbTooltipは、要素にマウスオーバーした際に補足情報を表示するコンポーネントです。
- * ツールチップを表示する場所、ツールチップの大きさ、表示する文字、z-indexを指定できます。
+ * ツールチップを表示する場所、表示する文字、z-indexを指定できます。
  *
  * @element ub-tooltip
  * @summary ツールチップコンポーネント
  */
 export class UbTooltip extends HTMLElement {
   #placement: Placement = "top";
-  #size: Size = "auto";
   #zindex: string = "10";
   #label: string = "";
   #showTooltip: boolean = false;
@@ -29,13 +27,6 @@ export class UbTooltip extends HTMLElement {
   }
   set placement(value: Placement) {
     this.#placement = value;
-  }
-
-  get size() {
-    return this.#size;
-  }
-  set size(value: Size) {
-    this.#size = value;
   }
 
   get zindex() {
@@ -61,21 +52,12 @@ export class UbTooltip extends HTMLElement {
     return ["top", "bottom", "left", "right"].includes(value);
   }
 
-  #isValidSize(value: string): value is Size {
-    return ["auto", "width240", "width320", "width400"].includes(value);
-  }
-
   connectedCallback() {
     this.#label = this.getAttribute("label") || "";
     const placementAttr = this.getAttribute("placement");
     this.#placement = this.#isValidPlacement(placementAttr || "")
       ? (placementAttr as Placement)
       : "top";
-
-    const sizeAttr = this.getAttribute("size");
-    this.#size = this.#isValidSize(sizeAttr || "")
-      ? (sizeAttr as Size)
-      : "auto";
 
     this.#zindex = this.getAttribute("zindex") || "10";
     this.#render();
@@ -97,7 +79,6 @@ export class UbTooltip extends HTMLElement {
   attributeChangedCallback(name: string, _oldValue: string, newValue: string) {
     if (name === "label") this.#label = newValue;
     if (name === "placement") this.#placement = newValue as Placement;
-    if (name === "size") this.#size = newValue as Size;
     if (name === "zindex") this.#zindex = newValue;
     this.#render();
   }
@@ -141,7 +122,8 @@ export class UbTooltip extends HTMLElement {
     // ツールチップが表示される場合のみ作成
     if (this.#showTooltip) {
       const tooltipElement = document.createElement("div");
-      tooltipElement.className = `tooltip__main ${this.#size}`;
+      tooltipElement.className = "tooltip__main";
+      tooltipElement.style.maxWidth = "320px";
       tooltipElement.style.zIndex = this.#zindex;
       tooltipElement.setAttribute("data-popper-placement", this.#placement);
 

@@ -15,10 +15,6 @@ const meta = {
       control: { type: "select" },
       options: ["top", "bottom", "left", "right"],
     },
-    size: {
-      control: { type: "select" },
-      options: ["auto", "width240", "width320", "width400"],
-    },
     zindex: {
       control: "text",
     },
@@ -26,14 +22,12 @@ const meta = {
   args: {
     label: "label",
     placement: "top",
-    size: "auto",
     zindex: "10",
   },
   render: (args) => html`
     <ub-tooltip
       label="${args.label}"
       placement="${args.placement}"
-      size="${args.size}"
       zindex="${args.zindex}"
     >
       <button>Hover me</button>

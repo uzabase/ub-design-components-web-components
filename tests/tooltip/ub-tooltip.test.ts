@@ -23,7 +23,6 @@ describe("ub-tooltip", () => {
       const ubTooltip = getUbTooltip();
 
       expect(ubTooltip.placement).toBe("top");
-      expect(ubTooltip.size).toBe("auto");
       expect(ubTooltip.zindex).toBe("10");
       expect(ubTooltip.label).toBe("");
     });
@@ -65,26 +64,6 @@ describe("ub-tooltip", () => {
       document.body.innerHTML = "<ub-tooltip placement='invalid'></ub-tooltip>";
       const ubTooltip = getUbTooltip();
       expect(ubTooltip.placement).toBe("top");
-    });
-  });
-
-  describe("size属性", () => {
-    test("size属性が正しく渡せている", async () => {
-      document.body.innerHTML = "<ub-tooltip size='width240'></ub-tooltip>";
-      const ubTooltip = getUbTooltip();
-      expect(ubTooltip.size).toBe("width240");
-    });
-
-    test("size属性が無い場合、autoが指定される", async () => {
-      document.body.innerHTML = "<ub-tooltip></ub-tooltip>";
-      const ubTooltip = getUbTooltip();
-      expect(ubTooltip.size).toBe("auto");
-    });
-
-    test("無効なsize属性が指定された場合、autoが指定される", async () => {
-      document.body.innerHTML = "<ub-tooltip size='invalid'></ub-tooltip>";
-      const ubTooltip = getUbTooltip();
-      expect(ubTooltip.size).toBe("auto");
     });
   });
 
@@ -152,7 +131,7 @@ describe("ub-tooltip", () => {
   describe("ツールチップの表示", () => {
     test("ツールチップの要素が正しく作成される", () => {
       document.body.innerHTML =
-        "<ub-tooltip label='Test' placement='bottom' size='width240' zindex='100'></ub-tooltip>";
+        "<ub-tooltip label='Test' placement='bottom' zindex='100'></ub-tooltip>";
       const ubTooltip = getUbTooltip();
 
       // ツールチップを表示
@@ -163,10 +142,10 @@ describe("ub-tooltip", () => {
 
       const tooltip = ubTooltip.shadowRoot?.querySelector(".tooltip__main");
       expect(tooltip).toBeTruthy();
-      expect(tooltip?.className).toContain("tooltip__main");
-      expect(tooltip?.className).toContain("width240");
+      expect(tooltip?.className).toBe("tooltip__main");
       expect(tooltip?.getAttribute("data-popper-placement")).toBe("bottom");
       expect((tooltip as HTMLElement)?.style.zIndex).toBe("100");
+      expect((tooltip as HTMLElement)?.style.maxWidth).toBe("320px");
 
       // ラベル要素の確認
       const label = tooltip?.querySelector(".tooltip__label");
